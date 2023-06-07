@@ -77,13 +77,13 @@ const Register = () => {
     }, [errors, showError]);
 
     const dropdowns = (data) => {
-        console.log(data,'dropdownss')
+        console.log(data, 'dropdownss')
         setLookUpData(data);
     }
 
 
     const handleChange = (event) => {
-        const {name, value, errorMessage} = event.target;
+        const { name, value, errorMessage } = event.target;
         setCorporatePrimaryData(preState => ({
             ...preState,
             [name]: value
@@ -169,44 +169,70 @@ const Register = () => {
 
 
     return (
-        <div className="page container" >
-            <div className="log-in-container">
-                <div className=" col-12 register-card-main">
-                    <div className="registration-card">
-                        <div style={{ width: "100%" }}>
-                            <div className="register-as-text">
-                                <p style={{ fontWeight: "bold" }}>REGISTER AS </p>
-                                <p style={{ fontSize: "30px", color: "#016bbc" }}>
-                                    Corporate{" "}
-                                </p>
-                            </div>
-                            <hr
-                                className="mt-2"
-                                style={{ width: "90%", marginBottom: "30px", color: "gray" }}
-                            ></hr>
-                        </div>
 
-                        <CorporatePrimaryCmp
-                            corporatePrimaryData={corporatePrimaryData}
-                            errors={errors}
-                            history={history}
-                            // path={"data:image/png;base64," + path}
-                            actualPath={path}
-                            filename={filename}
-                            lookUpData={lookUpData}
-                            isBtnDisabled={isBtnDisabled}
-                            showError={showError}
-                            handleChange={handleChange}
-                            handleChangeImg={handleChangeImg}
-                            handleSubmit={handleSubmit}
-                        />
+        <section className="login">
+
+            <div className="log-in-main-container" style={{ background: "rgba(0, 0, 0, 0.5)" }}>
+                <video autoPlay muted loop className="back-vid">
+                    <source src='./Videos/v1.mp4' type="video/mp4" />
+                </video>
+                <div className="logo-container">
+                    <div className="logo-main">C2Hire.</div>
+                </div>
+                <div className="row">
+                    <div className="main-container">
+                        <div className='page'>
+
+                            <div className="page container" >
+                                <div className="log-in-container">
+                                    <div className=" col-12 register-card-main">
+                                        <div className="registration-card">
+                                            <div style={{ width: "100%" }}>
+                                                <div className="register-as-text">
+                                                    <p style={{ fontWeight: "bold" }}>REGISTER AS </p>
+                                                    <p style={{ fontSize: "30px", color: "#016bbc" }}>
+                                                        Corporate{" "}
+                                                    </p>
+                                                </div>
+                                                <hr
+                                                    className="mt-2"
+                                                    style={{ width: "90%", marginBottom: "30px", color: "gray" }}
+                                                ></hr>
+                                            </div>
+
+                                            <CorporatePrimaryCmp
+                                                corporatePrimaryData={corporatePrimaryData}
+                                                errors={errors}
+                                                history={history}
+                                                // path={"data:image/png;base64," + path}
+                                                actualPath={path}
+                                                filename={filename}
+                                                lookUpData={lookUpData}
+                                                isBtnDisabled={isBtnDisabled}
+                                                showError={showError}
+                                                handleChange={handleChange}
+                                                handleChangeImg={handleChangeImg}
+                                                handleSubmit={handleSubmit}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
             </div>
 
-        </div>
+
+        </section>
+
 
     );
 }
 
 export default Register;
+
+
