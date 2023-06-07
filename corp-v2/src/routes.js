@@ -10,9 +10,9 @@ const CorporateSecondary = React.lazy(() =>
   import("./Pages/Formss/Corporate/Register/CorporateSecondary")
 );
 
-// const CorporateContactPersonnel = React.lazy(() =>
-//   import("./Pages/Forms/Corporate/Register/CorporateContactPersonnel")
-// );
+const CorporateContactPersonnel = React.lazy(() =>
+  import("./Pages/Formss/Corporate/Register/CorporateContactPersonnel")
+);
 // const Authentication = React.lazy(() =>
 //   import("./Pages/Forms/Corporate/Register/Authentication")
 // );
@@ -128,14 +128,14 @@ const routes = [
     name: "CorporateSecondary",
     component: <CorporateSecondary/>,
   },
-  // {
-  //   path: "/register/contactPersonnel",
-  //   strict: true,
-  //   exact: true,
-  //   role: "corporateReg",
-  //   name: "CorporateContactPersonnel",
-  //   component: <CorporateContactPersonnel/>,
-  // },
+  {
+    path: "/register/contactPersonnel",
+    strict: true,
+    exact: true,
+    role: "corporateReg",
+    name: "CorporateContactPersonnel",
+    component: <CorporateContactPersonnel/>,
+  },
   // {
   //   path: "/register/authentication",
   //   strict: true,
@@ -450,15 +450,6 @@ const routes = [
 //     component: <TicketChatCmp />
 // },
 ];
-
-
-
-
-
-
-
-
-
 
 
 
