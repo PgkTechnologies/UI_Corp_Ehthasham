@@ -20,7 +20,7 @@ function* validateReferralCodeRequestSaga(action) {
   } catch (err) {
     if (err?.response) {
       action.payload.callback(err?.response?.data?.errors[0]?.message);
-      //toast.error(err?.response?.data?.errors[0]?.message);
+      toast.error(err?.response?.data?.errors[0]?.message);
     } else {
       //toast.error("Something Wrong!", err?.message);
     }

@@ -128,7 +128,7 @@ const Register = () => {
     //     }
     //     return new File([u8arr], filename, { type: type });
     // }
-
+console.log(corporatePrimaryData.referral,'referallll')
     const handleSubmit = (event) => {
         event.preventDefault();
         if (corporatePrimaryData.referral.length > 0) {
@@ -179,9 +179,9 @@ const Register = () => {
                 <div className="logo-container">
                     <div className="logo-main">C2Hire.</div>
                 </div>
-                <div className="row">
+                {/* <div className="row">
                     <div className="main-container">
-                        <div className='page'>
+                        <div className='page'> */}
 
                             <div className="page container" >
                                 <div className="log-in-container">
@@ -222,9 +222,9 @@ const Register = () => {
 
 
                         </div>
-                    </div>
+                    {/* </div>
                 </div>
-            </div>
+            </div> */}
 
 
         </section>

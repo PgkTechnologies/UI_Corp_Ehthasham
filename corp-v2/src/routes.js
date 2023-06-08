@@ -1,7 +1,6 @@
 import React from "react";
 
 
-
 const Login = React.lazy(() => import("./Pages/Formss/Corporate/Login"));
 
 const Register = React.lazy(() =>
@@ -41,7 +40,7 @@ const CorporateContactPersonnel = React.lazy(() =>
 //   import("./Pages/Forms/Student/StudentPayment")
 // );
 // const Dashboard = React.lazy(() => import("./Pages/Dashboard/Dashboard"));
-const Profile = React.lazy(() => import("./Pages/DashBoard/Profile/Profile"));
+// const Profile = React.lazy(() => import("./Pages/DashBoard/Profile/Profile"));
 
 // const HiringCriteria = React.lazy(() =>
 //   import("./Pages/Dashboard/CreateJob/HiringCriteria/index")
@@ -91,7 +90,7 @@ const Profile = React.lazy(() => import("./Pages/DashBoard/Profile/Profile"));
 // const Support = React.lazy(() => import("./Pages/Dashboard/Support/Support"));
 // const TicketChatCmp = React.lazy(() => import('./Components/Dashboard/SupportCmp/TicketChatCmp'));
 // const UniversityStudents = React.lazy(() => import("./Pages/Dashboard/Subscribe/University/UniversityStudents/UniversityStudents"));
-// const ForgotPassword = React.lazy(() => import("./Pages/Forms/ForgotPassword/ForgotPassword"));
+const ForgotPassword = React.lazy(() => import("./Pages/Formss/Corporate/ForgotPassword/ForgotPassword"));
 const Mike = React.lazy(() => import("./Pages/Formss/Corporate/Login/LoginForm"));
 
 
@@ -106,14 +105,14 @@ const routes = [
     name: "Login",
     component: <Login/>,
   },
-  // {
-  //   path: "/forgotPassword",
-  //   strict: true,
-  //   exact: true,
-  //   role: "corporate",
-  //   name: "forgotPassword",
-  //   component: <ForgotPassword/>,
-  // },
+  {
+    path: "/forgotPassword",
+    strict: true,
+    exact: true,
+    role: "corporateReg",
+    name: "forgotPassword",
+    component: <ForgotPassword/>,
+  },
   {
     path: "/register",
     strict: true,
@@ -227,14 +226,14 @@ const routes = [
 //     name: "Dashboard",
 //     component: <Dashboard/>,
 //   },
-  {
-    path: "/dashboard/profile/",
-    strict: true,
-    exact: true,
-    role: "dashboard",
-    name: "Profile",
-    component: <Profile/>,
-  },
+  // {
+  //   path: "/dashboard/profile/",
+  //   strict: true,
+  //   exact: true,
+  //   role: "dashboard",
+  //   name: "Profile",
+  //   component: <Profile/>,
+  // },
 //   {
 //     path: "/dashboard/createjob/hiring",
 //     strict: true,
