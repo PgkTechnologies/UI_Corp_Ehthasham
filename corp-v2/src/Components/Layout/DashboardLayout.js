@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router';
 import routes from '../../routes';
 // import DashboardHeader from '../Common/DashboardHeader';
@@ -10,12 +10,14 @@ import { useNavigate } from "react-router";
 import { useDispatch } from 'react-redux';
 import { actionLogoutRequestSaga } from '../../Store/Actions/SagaActions/DashboardSaga/LoginSagaActions';
 import { Outlet} from 'react-router-dom';
-
+import Header from "../Common/Header/Header"
+import {useAuth} from "../../utils/Auth"
 
 const DashboardLayout = () => {
     const apiStatus = useSelector(state => state.DashboardReducer.apiStatus);
     const dispatch = useDispatch();
     const history = useNavigate();
+    const auth = useAuth();
 
     const handleOnIdle = event => {
         dispatch(actionLogoutRequestSaga());
@@ -39,30 +41,29 @@ const DashboardLayout = () => {
         debounce: 500
     });
 
-    // const getRoutes = (routes) => {
-    //     const token = localStorage.getItem('token');
-    //     const type = 'Corporate';
-    //     if (!token)
-    //     {
-    //         return <Navigate to="/" />
-    //     }            
-    //     return routes.map((route, i) => {
-    //         if (route.role === 'dashboard') {
-    //             return route.component ? (<Route path={route.path}
-    //                 key={i}
-    //                 exact={route.exact}
-    //                 strict={route.strict}
-    //                 name={route.name}
-    //                 render={props => <route.component {...props} />}
-    //             />) : (null)
-    //         }
-    //     });
-    // }
+    const logout = () => {
+        dispatch(actionLogoutRequestSaga());
+        history("/");
+        auth.logOut();
+        localStorage.clear();
+        localStorage.setItem("email", "");
+        localStorage.setItem("type", "");
+        localStorage.setItem("auth_token", "");
+      };
+
+      useEffect(() => {
+        const tokenView = localStorage.getItem("AUTH");
+        //console.log(tokenView, "TOKENNNNNNNNNNNNNNNNNNN");
+        const authentication = tokenView;
+        if (authentication) {
+          auth.logIn(authentication);
+        }
+      }, []);
 
     return (
-        <>
-           <p> hiiidashboard</p>
-        </>
+     <div className='App'>
+        <Header logout={logout} />
+     </div>
     )
 }
 

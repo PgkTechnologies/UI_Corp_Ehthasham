@@ -2,29 +2,21 @@ import React from 'react';
 // import ReactDOM from 'react-dom';
 import { toast } from 'react-toastify';
 import { applyMiddleware, createStore } from 'redux';
-import ReactDOM from "react-dom/client"; 
+import ReactDOM from "react-dom/client";
 import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import 'react-toastify/dist/ReactToastify.css';
 import AllReducers from './Store/Reducers';
-import {webportalAppRootSaga} from './Store/Sagas';
+import { webportalAppRootSaga } from './Store/Sagas';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import history from './@history';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-
-
-
-toast.configure({
-  autoClose: 4000,
-  draggable: false,
-  position: toast.POSITION.TOP_RIGHT,
-  hideProgressBar: true,
-  pauseOnFocusLoss: false,
-});
+import { ToastContainer } from 'react-toastify';
+import { AuthProvider } from './utils/Auth';
 
 // toast({
 //   autoClose: 4000,
@@ -46,11 +38,24 @@ root.render(
   <React.StrictMode>
     <Provider store={store} >
       <Router
-       history={history}  basename="/"
-       >
+        history={history} basename="/"
+      >
+        <AuthProvider>
         <App />
+        <ToastContainer
+          position="top-right"
+          autoClose={3500}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          pauseOnHover
+          theme="dark"
+        />
+        </AuthProvider>
       </Router>
-      </Provider>
+    </Provider>
   </React.StrictMode>,
   // document.getElementById('root')
 );

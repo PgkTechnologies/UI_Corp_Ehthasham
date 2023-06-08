@@ -11,9 +11,9 @@ const CorporateSecondary = React.lazy(() =>
   import("./Pages/Formss/Corporate/Register/CorporateSecondary")
 );
 
-const CorporateContactPersonnel = React.lazy(() =>
-  import("./Pages/Formss/Corporate/Register/CorporateContactPersonnel")
-);
+// const CorporateContactPersonnel = React.lazy(() =>
+//   import("./Pages/Forms/Corporate/Register/CorporateContactPersonnel")
+// );
 // const Authentication = React.lazy(() =>
 //   import("./Pages/Forms/Corporate/Register/Authentication")
 // );
@@ -39,8 +39,10 @@ const CorporateContactPersonnel = React.lazy(() =>
 // const StudentPayment = React.lazy(() =>
 //   import("./Pages/Forms/Student/StudentPayment")
 // );
-// const Dashboard = React.lazy(() => import("./Pages/Dashboard/Dashboard"));
-// const Profile = React.lazy(() => import("./Pages/DashBoard/Profile/Profile"));
+
+const Dashboard = React.lazy(() => import("./Pages/DashBoard/Dashboard"));
+const Profile = React.lazy(() => import("./Pages/DashBoard/Profile/Profile"));
+
 
 // const HiringCriteria = React.lazy(() =>
 //   import("./Pages/Dashboard/CreateJob/HiringCriteria/index")
@@ -129,14 +131,14 @@ const routes = [
     name: "CorporateSecondary",
     component: <CorporateSecondary/>,
   },
-  {
-    path: "/register/contactPersonnel",
-    strict: true,
-    exact: true,
-    role: "corporateReg",
-    name: "CorporateContactPersonnel",
-    component: <CorporateContactPersonnel/>,
-  },
+  // {
+  //   path: "/register/contactPersonnel",
+  //   strict: true,
+  //   exact: true,
+  //   role: "corporateReg",
+  //   name: "CorporateContactPersonnel",
+  //   component: <CorporateContactPersonnel/>,
+  // },
   // {
   //   path: "/register/authentication",
   //   strict: true,
@@ -217,23 +219,25 @@ const routes = [
 //     name: "StudentPayment",
 //     component: <StudentPayment/>,
 //   },
-//   // DASHBOARD
-//   {
-//     path: "/dashboard",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Dashboard",
-//     component: <Dashboard/>,
-//   },
-  // {
-  //   path: "/dashboard/profile/",
-  //   strict: true,
-  //   exact: true,
-  //   role: "dashboard",
-  //   name: "Profile",
-  //   component: <Profile/>,
-  // },
+
+  // DASHBOARD
+  {
+    path: "/dashboard",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "Dashboard",
+    component: <Dashboard/>,
+  },
+  {
+    path: "/profile",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "Profile",
+    component: <Profile/>,
+  },
+
 //   {
 //     path: "/dashboard/createjob/hiring",
 //     strict: true,

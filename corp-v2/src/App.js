@@ -45,7 +45,7 @@ function App() {
         <Route
           element={
             <RequireAuth>
-              <DashboardLayout />
+               <DashboardLayout/>
             </RequireAuth>
           }
         >
