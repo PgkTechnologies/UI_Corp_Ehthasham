@@ -41,7 +41,7 @@ const CorporateSecondary = React.lazy(() =>
 // );
 
 const Dashboard = React.lazy(() => import("./Pages/DashBoard/Dashboard"));
-const Profile = React.lazy(() => import("./Pages/DashBoard/Profile/Profile"));
+const Profile = React.lazy(() => import("./Pages/Profile/Profile"));
 
 
 // const HiringCriteria = React.lazy(() =>
