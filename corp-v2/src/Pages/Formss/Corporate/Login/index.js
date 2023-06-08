@@ -5,8 +5,10 @@ import { toast } from 'react-toastify';
 import { actionLoginRequestSaga } from '../../../../Store/Actions/SagaActions/DashboardSaga/LoginSagaActions';
 import { checkObjectProperties } from '../../../../utils/utils';
 import CryptoJS from "crypto-js";
+
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../../utils/Auth';
+
 
 
 const Login = () => {   //same as login Form and cmp
@@ -221,7 +223,7 @@ const Login = () => {   //same as login Form and cmp
                       className="d-flex justify-content-end"
                       style={{ marginBottom: "20px" }}
                     >
-                      {/* <Link >Forgot Password?</Link> */}
+                      <Link to={'/forgotPassword'} >Forgot Password?</Link>
                     </div>
                     <button
                       type="submit"
