@@ -5,7 +5,8 @@ import { toast } from 'react-toastify';
 import { actionLoginRequestSaga } from '../../../../Store/Actions/SagaActions/DashboardSaga/LoginSagaActions';
 import { checkObjectProperties } from '../../../../utils/utils';
 import CryptoJS from "crypto-js";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../../utils/Auth';
 
 
 const Login = () => {   //same as login Form and cmp
@@ -13,6 +14,8 @@ const Login = () => {   //same as login Form and cmp
   const [loginType, setLoginType] = useState("");
   const [type] = useState("Corporate");
    const history = useNavigate();
+   const location = useLocation();
+   const auth = useAuth();
 
   const initialState = {
     email: "",
@@ -117,11 +120,34 @@ const Login = () => {   //same as login Form and cmp
     }
   };
 
+  const redirectPath = location.state?.path || "/";
+
+  console.log(auth,'OOOTH')
+
+  useEffect(() => {
+    const authCheck = localStorage.getItem("AUTH");
+    console.log(authCheck,'authCHECK')
+    if (authCheck) {
+      auth.logIn(authCheck); 
+      history(redirectPath, { replace: true });
+    }
+  }, []);
+
+
   const onSuccess = (navigateUrl) => {
-    
+
+    console.log(navigateUrl,"RESPONSE__TOKENS")
+
+    const authCheck = localStorage.getItem("AUTH");
+    if (navigateUrl) {
+      auth.logIn(navigateUrl.token);
+    } else {
+      auth.logIn(authCheck);
+    }
+
     if (navigateUrl === "/dashboard") {
       console.log(navigateUrl, "Srinuuuu")
-      history("/dashboard/profile/");
+      history("/dashboard");
     } else if (navigateUrl === "/verify") {
       history("/register/authentication");
     } else {

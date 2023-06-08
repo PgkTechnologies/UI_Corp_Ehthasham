@@ -10,6 +10,9 @@ const CorporateSecondary = React.lazy(() =>
   import("./Pages/Formss/Corporate/Register/CorporateSecondary")
 );
 
+const Dashboard = React.lazy (() =>
+   import ("./Pages/DashBoard/Dashboard"));
+
 // const CorporateContactPersonnel = React.lazy(() =>
 //   import("./Pages/Forms/Corporate/Register/CorporateContactPersonnel")
 // );
@@ -216,17 +219,17 @@ const routes = [
 //     name: "StudentPayment",
 //     component: <StudentPayment/>,
 //   },
-//   // DASHBOARD
-//   {
-//     path: "/dashboard",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Dashboard",
-//     component: <Dashboard/>,
-//   },
+  // DASHBOARD
   {
-    path: "/dashboard/profile/",
+    path: "/dashboard",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "Dashboard",
+    component: <Dashboard/>,
+  },
+  {
+    path: "/profile",
     strict: true,
     exact: true,
     role: "dashboard",
