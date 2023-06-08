@@ -41,7 +41,7 @@ const CorporateSecondary = React.lazy(() =>
 // );
 
 const Dashboard = React.lazy(() => import("./Pages/DashBoard/Dashboard"));
-const Profile = React.lazy(() => import("./Pages/DashBoard/Profile/Profile"));
+// const Profile = React.lazy(() => import("./Pages/DashBoard/Profile/Profile"));
 
 
 // const HiringCriteria = React.lazy(() =>
@@ -229,14 +229,14 @@ const routes = [
     name: "Dashboard",
     component: <Dashboard/>,
   },
-  {
-    path: "/profile",
-    strict: true,
-    exact: true,
-    role: "dashboard",
-    name: "Profile",
-    component: <Profile/>,
-  },
+  // {
+  //   path: "/profile",
+  //   strict: true,
+  //   exact: true,
+  //   role: "dashboard",
+  //   name: "Profile",
+  //   component: <Profile/>,
+  // },
 
 //   {
 //     path: "/dashboard/createjob/hiring",
