@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const Login = React.lazy(() => import("./Pages/Formss/Corporate/Login"));
 
 const Register = React.lazy(() =>
@@ -41,7 +40,7 @@ const CorporateSecondary = React.lazy(() =>
 // );
 
 const Dashboard = React.lazy(() => import("./Pages/DashBoard/Dashboard"));
-const Profile = React.lazy(() => import("./Pages/DashBoard/Profile/Profile"));
+ const Profile = React.lazy(() => import("./Pages/Profile/Profile"));
 
 
 // const HiringCriteria = React.lazy(() =>
