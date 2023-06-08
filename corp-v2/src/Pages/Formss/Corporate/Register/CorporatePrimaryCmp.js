@@ -234,7 +234,7 @@ const CorporatePrimaryCmp = (props) => {
 
             <div className="row cmp-register-main">
                 <div className="cmp-register-head mt-2" style={{ fontWeight: 'bold' }}>
-                    Profile picture (if any)
+                    Profile picture*(if any)
                 </div>
                 <div className="row row-container">
                     <div className="col-12">

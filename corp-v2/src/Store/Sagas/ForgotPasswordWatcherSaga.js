@@ -41,6 +41,7 @@ function* validateOtpForPasswordSaga(action) {
         const payload = action.payload.apiPayloadRequest;
         const resp = yield call(validateOtpForPassword, payload);
         action.payload.callback(resp);
+        toast.success("Password Changed Successfully!");
     } catch (err) {
         action.payload.callback("Error");
         if (err?.response) {            

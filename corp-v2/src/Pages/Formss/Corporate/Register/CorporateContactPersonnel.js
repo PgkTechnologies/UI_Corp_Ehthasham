@@ -505,55 +505,55 @@ const CorporateContactPersonnel = () => {
                 <div className="logo-container">
                     <div className="logo-main">C2Hire.</div>
                 </div>
-                <div className="row">
+                {/* <div className="row">
                     <div className="main-container">
-                        <div className='page'>
+                        <div className='page'> */}
 
-                            <div className="page container" >
-                                <div className="log-in-container">
-                                    <div className=" col-12 register-card-main">
-                                        <div className="registration-card">
-                                            <div style={{ width: "100%" }}>
-                                                <div className="register-as-text">
-                                                    <p style={{ fontWeight: "bold" }}>REGISTER AS </p>
-                                                    <p style={{ fontSize: "30px", color: "#016bbc" }}>
-                                                        Corporate{" "}
-                                                    </p>
-                                                    <div style={{ color: 'rgb(1, 107, 188)', textAlign: 'center' }}>Contact Personnel</div>
-                                                </div>
-                                                <hr
-                                                    className="mt-2"
-                                                    style={{ width: "90%", marginBottom: "30px", color: "gray" }}
-                                                ></hr>
-                                            </div>
-                                            <ContactPersonnelCmp
-                                                history={history}
-                                                errors={errors}
-                                                showError={showError}
-                                                isBtnDisabled={isBtnDisabled}
-                                                repeatPasswordErr={repeatPasswordErr}
-                                                repeatPassword={repeatPassword}
-                                                contactPersonnel={contactPersonnel}
-                                                handleChange={handleChange}
-                                                handleSubmit={handleSubmit}
-                                                onYes={onYes}
-                                                onNo={onNo}
-                                                gstnRequire={gstnRequire}
-                                                disable={disable}
-                                                setContactPersonnel={setContactPersonnel}
-                                                setDisable={setDisable}
-                                                handleShow={handleShow}
-                                            />
-                                        </div>
+                <div className="page container" >
+                    <div className="log-in-container">
+                        <div className=" col-12 register-card-main">
+                            <div className="registration-card">
+                                <div style={{ width: "100%" }}>
+                                    <div className="register-as-text">
+                                        <p style={{ fontWeight: "bold" }}>REGISTER AS </p>
+                                        <p style={{ fontSize: "30px", color: "#016bbc" }}>
+                                            Corporate{" "}
+                                        </p>
+                                        <div style={{ color: 'rgb(1, 107, 188)', textAlign: 'center' }}>Contact Personnel</div>
                                     </div>
+                                    <hr
+                                        className="mt-2"
+                                        style={{ width: "90%", marginBottom: "30px", color: "gray" }}
+                                    ></hr>
                                 </div>
-
-                               
+                                <ContactPersonnelCmp
+                                    history={history}
+                                    errors={errors}
+                                    showError={showError}
+                                    isBtnDisabled={isBtnDisabled}
+                                    repeatPasswordErr={repeatPasswordErr}
+                                    repeatPassword={repeatPassword}
+                                    contactPersonnel={contactPersonnel}
+                                    handleChange={handleChange}
+                                    handleSubmit={handleSubmit}
+                                    onYes={onYes}
+                                    onNo={onNo}
+                                    gstnRequire={gstnRequire}
+                                    disable={disable}
+                                    setContactPersonnel={setContactPersonnel}
+                                    setDisable={setDisable}
+                                    handleShow={handleShow}
+                                />
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
+            {/* </div>
+                </div>
+            </div> */}
 
 
         </section>
