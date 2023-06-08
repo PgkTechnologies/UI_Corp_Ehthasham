@@ -1,5 +1,8 @@
 import React from "react";
 
+
+
+
 const Login = React.lazy(() => import("./Pages/Formss/Corporate/Login"));
 
 const Register = React.lazy(() =>
@@ -9,9 +12,6 @@ const Register = React.lazy(() =>
 const CorporateSecondary = React.lazy(() =>
   import("./Pages/Formss/Corporate/Register/CorporateSecondary")
 );
-
-const Dashboard = React.lazy (() =>
-   import ("./Pages/DashBoard/Dashboard"));
 
 // const CorporateContactPersonnel = React.lazy(() =>
 //   import("./Pages/Forms/Corporate/Register/CorporateContactPersonnel")
@@ -41,7 +41,8 @@ const Dashboard = React.lazy (() =>
 // const StudentPayment = React.lazy(() =>
 //   import("./Pages/Forms/Student/StudentPayment")
 // );
-// const Dashboard = React.lazy(() => import("./Pages/Dashboard/Dashboard"));
+
+const Dashboard = React.lazy(() => import("./Pages/DashBoard/Dashboard"));
 const Profile = React.lazy(() => import("./Pages/DashBoard/Profile/Profile"));
 
 // const HiringCriteria = React.lazy(() =>
@@ -453,15 +454,6 @@ const routes = [
 //     component: <TicketChatCmp />
 // },
 ];
-
-
-
-
-
-
-
-
-
 
 
 

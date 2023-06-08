@@ -161,7 +161,8 @@ const CorporateSecondary = () => {
         }
     };
 
-    const handleChange = (name, value, errorMessage) => {
+    const handleChange = (event) => {
+        const {name, value, error} = event.target;
         if (['corporateHQAddressPhone', 'corporateLocalBranchAddressPhone'].includes(name)) {
             while (value.toString().startsWith('+91')) {
                 value = value.replace('+91', '')
@@ -173,7 +174,7 @@ const CorporateSecondary = () => {
         }));
         setErrors(preState => ({
             ...preState,
-            [name]: errorMessage
+            [name]: error
         }));
         if (name === 'corporateHQAddressCountry') {
             allCountriesInfo.map((item) => {
@@ -193,6 +194,104 @@ const CorporateSecondary = () => {
         } else if (name === 'corporateLocalBranchAddressState') {
             getCitiesByStateName(corporateSecondary.corporateLocalBranchAddressCountry, value, 'LOCAL');
         }
+
+        switch (name) {
+            case "corporateHQAddressZipCode":
+                // if (val.match(phoneno)) {
+                if (value.length <= 6 && value.length > 4 ) {
+                    setErrors((preState) => ({
+                        ...preState,
+                        corporateHQAddressZipCode: "",
+                    }));
+                } else {
+                    setErrors((preState) => ({
+                        ...preState,
+                        corporateHQAddressZipCode: "Invalid",
+                    }));
+                }
+                return;
+
+                case "corporateHQAddressPhone":
+                // if (val.match(phoneno)) {
+                if (value.length === 10 ) {
+                    setErrors((preState) => ({
+                        ...preState,
+                        corporateHQAddressPhone: "",
+                    }));
+                } else {
+                    setErrors((preState) => ({
+                        ...preState,
+                        corporateHQAddressPhone: "Invalid",
+                    }));
+                }
+                return;
+
+                case "corporateHQAddressEmail":
+                const mailformat1 =
+                    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                if (value && mailformat1.test(value)) {
+                    setErrors((preState) => ({
+                        ...preState,
+                        corporateHQAddressEmail: "",
+                    }));
+                } else if (!value || !mailformat1.test(value)) {
+                    setErrors((preState) => ({
+                        ...preState,
+                        corporateHQAddressEmail: "Invalid Email",
+                    }));
+                }
+                return;
+
+
+
+                case "corporateLocalBranchAddressZipCode":
+                    // if (val.match(phoneno)) {
+                    if (value.length <= 6 && value.length > 4 ) {
+                        setErrors((preState) => ({
+                            ...preState,
+                            corporateLocalBranchAddressZipCode: "",
+                        }));
+                    } else {
+                        setErrors((preState) => ({
+                            ...preState,
+                            corporateLocalBranchAddressZipCode: "Invalid",
+                        }));
+                    }
+                    return;
+    
+                    case "corporateLocalBranchAddressPhone":
+                    // if (val.match(phoneno)) {
+                    if (value.length === 10 ) {
+                        setErrors((preState) => ({
+                            ...preState,
+                            corporateLocalBranchAddressPhone: "",
+                        }));
+                    } else {
+                        setErrors((preState) => ({
+                            ...preState,
+                            corporateLocalBranchAddressPhone: "Invalid",
+                        }));
+                    }
+                    return;
+    
+                    case "corporateLocalBranchAddressEmail":
+                    const mailformat2 =
+                        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                    if (value && mailformat2.test(value)) {
+                        setErrors((preState) => ({
+                            ...preState,
+                            corporateLocalBranchAddressEmail: "",
+                        }));
+                    } else if (!value || !mailformat2.test(value)) {
+                        setErrors((preState) => ({
+                            ...preState,
+                            corporateLocalBranchAddressEmail: "Invalid Email",
+                        }));
+                    }
+                    return;
+               
+                default: break;
+            }
     }
 
     const getCitiesByStateName = (countryName, stateName, type) => {
@@ -327,6 +426,21 @@ const CorporateSecondary = () => {
     }
 
     return (
+
+        <section className="login">
+
+        <div className="log-in-main-container" style={{ background: "rgba(0, 0, 0, 0.5)" }}>
+          <video autoPlay muted loop className="back-vid">
+            <source src='./Videos/v1.mp4' type="video/mp4" />
+          </video>
+          <div className="logo-container">
+            <div className="logo-main">C2Hire.</div>
+          </div>
+          {/* <div className="row"> */}
+            {/* <div className="main-container">
+              <div className='page'> */}
+
+
         <div className="page container" >
             <div className="log-in-container">
                 <div className=" col-12 register-card-main">
@@ -369,6 +483,12 @@ const CorporateSecondary = () => {
             </div>
 
         </div>
+        </div>
+        {/* </div> */}
+        {/* </div>
+        </div> */}
+        </section>
+
 
     )
 }
