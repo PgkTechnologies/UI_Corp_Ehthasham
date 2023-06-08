@@ -22,7 +22,7 @@ import { AuthProvider } from './utils/Auth';
 //   autoClose: 4000,
 //   draggable: false,
 //   position: toast.POSITION.TOP_RIGHT,
-//   hideProgressBar: true,
+//   hideProgressBar: true, 
 //   pauseOnFocusLoss: false,
 //   });
 

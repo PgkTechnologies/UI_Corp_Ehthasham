@@ -10,8 +10,8 @@ import { useNavigate } from "react-router";
 import { useDispatch } from 'react-redux';
 import { actionLogoutRequestSaga } from '../../Store/Actions/SagaActions/DashboardSaga/LoginSagaActions';
 import { Outlet} from 'react-router-dom';
-import Header from "../Common/Header/Header"
 import {useAuth} from "../../utils/Auth"
+import Header from '../Common/Header/Header';
 
 const DashboardLayout = () => {
     const apiStatus = useSelector(state => state.DashboardReducer.apiStatus);
@@ -62,7 +62,7 @@ const DashboardLayout = () => {
 
     return (
      <div className='App'>
-        <Header logout={logout} />
+        <Header logout={logout} /> 
      </div>
     )
 }
