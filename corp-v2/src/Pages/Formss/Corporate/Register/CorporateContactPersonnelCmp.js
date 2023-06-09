@@ -214,7 +214,7 @@ const ContactPersonnelCmp = (props) => {
                             label={'First Name'}
                             onChange={props?.handleChange}
                             value={props?.contactPersonnel?.secondaryContactFirstName}
-                            required={true}
+                           
                         />
                     </FormControl>
                 </div>
@@ -259,7 +259,7 @@ const ContactPersonnelCmp = (props) => {
                             label={'Last Name'}
                             onChange={props?.handleChange}
                             value={props?.contactPersonnel?.secondaryContactLastName}
-                            required={true}
+                           
                         />
                     </FormControl>
                 </div>
@@ -280,7 +280,7 @@ const ContactPersonnelCmp = (props) => {
                             label={'Designation'}
                             onChange={props?.handleChange}
                             value={props?.contactPersonnel?.secondaryContactDesignation}
-                            required={true}
+                            
                         />
                     </FormControl>
                 </div>
@@ -300,7 +300,7 @@ const ContactPersonnelCmp = (props) => {
                             label={'Phone Number'}
                             onChange={props?.handleChange}
                             value={props?.contactPersonnel?.secondaryContactPhone}
-                            required={true}
+                           
                             error={props?.errors?.secondaryContactPhone}
                         />
                     </FormControl>
@@ -321,7 +321,7 @@ const ContactPersonnelCmp = (props) => {
                             label={'Email'}
                             onChange={props?.handleChange}
                             value={props?.contactPersonnel?.secondaryContactEmail}
-                            required={true}
+                           
                             error={props?.errors?.secondaryContactEmail}
                         />
                     </FormControl>
@@ -420,7 +420,7 @@ const ContactPersonnelCmp = (props) => {
                             variant="filled"
                             label={'Repeat the password'}
                             onChange={props?.handleChange}
-                            value={props?.contactPersonnel?.repeatPassword}
+                            value={props?.repeatPassword}
                             required={true}
                             error={props?.errors?.repeatPassword}
                         />
@@ -433,7 +433,11 @@ const ContactPersonnelCmp = (props) => {
                 <div className="row-container">
                     <Checkbox
                         // checked={universityPrimaryData.attribute6 || ""}
-                         onClick={onCheckboxClick}
+                        onClick={onCheckboxClick}
+                        name="isTermsAndConditionsChecked"
+                        // onChange={() =>
+                        //     props?.handleChange()
+                        // }
                         required
                     />
                     <div>I here by accept the terms and conditions of C2Hire</div>
@@ -441,23 +445,23 @@ const ContactPersonnelCmp = (props) => {
             </div>
 
             <div style={{ width: '100%' }}>
-        <div style={{ float: 'left' }}>
-          <button className="btn" type="button"onClick={() => {
-            history("/register/CorporateSecondary");
-          }}>
-            Back
-          </button>
-        </div>
-        <div style={{ float: 'right' }}>
-          <button
-            className="btn"
-            type="submit"
-            disabled={isDisabled}
-          >
-            Next
-          </button>
-        </div>
-      </div>
+                <div style={{ float: 'left' }}>
+                    <button className="btn" type="button" onClick={() => {
+                        history("/register/CorporateSecondary");
+                    }}>
+                        Back
+                    </button>
+                </div>
+                <div style={{ float: 'right' }}>
+                    <button
+                        className="btn"
+                        type="submit"
+                        disabled={isDisabled}
+                    >
+                        Next
+                    </button>
+                </div>
+            </div>
 
         </form>
     )

@@ -311,10 +311,7 @@ const CorporateContactPersonnel = () => {
                     }));
 
                 }
-                setContactPersonnel((preState) => ({
-                    ...preState,
-                    repeatPassword: value,
-                }));
+                setRepeatPassword( value);
 
                 return;
 
@@ -339,13 +336,13 @@ const CorporateContactPersonnel = () => {
         }
         return keyList;
     };
-    console.log(contactPersonnel.secondaryContactPhone, 'passswordsecond')
-    console.log(contactPersonnel.primaryContactEmail, 'passswordpriemail')
-    console.log(contactPersonnel.secondaryContactDesignation, 'passswordcontsctdesin')
-    console.log(contactPersonnel.primaryContactPhone, 'passswordcontactphone')
-    console.log(contactPersonnel.gstn, 'passswordgstn')
-    console.log(contactPersonnel.password, 'passsword')
-    console.log(contactPersonnel.repeatPassword, 'passswordrepaeta')
+    // console.log(contactPersonnel.secondaryContactPhone, 'passswordsecond')
+    // console.log(contactPersonnel.primaryContactEmail, 'passswordpriemail')
+    // console.log(contactPersonnel.secondaryContactDesignation, 'passswordcontsctdesin')
+    // console.log(contactPersonnel.primaryContactPhone, 'passswordcontactphone')
+    // console.log(contactPersonnel.gstn, 'passswordgstn')
+    // console.log(contactPersonnel.password, 'passsword')
+    console.log(repeatPassword, 'passswordrepaeta')
 
 
     const trimNumber = (number) => {
@@ -363,6 +360,9 @@ const CorporateContactPersonnel = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        console.log(event ,'finall Dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+
         const selectedName = "Corporate";
         const {
             primaryContactFirstName,
@@ -373,24 +373,25 @@ const CorporateContactPersonnel = () => {
             password,
             gstn,
         } = contactPersonnel;
-        // const primary = JSON.parse(sessionStorage.getItem('primary'));
-        // const secondary = JSON.parse(sessionStorage.getItem('secondary'));
+         
+
+        console.log(contactPersonnel, 'CCCCP')
         if (
             primaryContactFirstName &&
             primaryContactLastName &&
             primaryContactDesignation &&
             primaryContactPhone &&
             primaryContactEmail &&
-            ((gstnRequire && gstn.length > 0) || !gstnRequire) &&
-            password === repeatPassword
+            ((gstnRequire && gstn.length > 0) || !gstnRequire) 
+            // &&
+            // password === repeatPassword
         ) {
-            // const finalData = { ...primary, ...secondary, ...contactPersonnel };
-            // const finalData = Object.assign(storeData, contactPersonnel);
+            
+
             const finalData = { ...storeData, ...contactPersonnel };
-            // const image1 = JSON.parse(sessionStorage.getItem('image1'));
-            // const file = image1?.name?.split('.').slice(0, -1).join('.')
-            // const convertToFile = new File([file], image1?.name, { type: image1?.type, lastModified: image1?.lastModified });
-            // finalData.attachment = convertToFile;
+            console.log(finalData, ' CORP FINALE ')
+            
+
             finalData.corporateHQAddressPhone =
                 "+91" + trimNumber(storeData?.corporateHQAddressPhone);
             finalData.corporateLocalBranchAddressPhone =
@@ -414,6 +415,7 @@ const CorporateContactPersonnel = () => {
             }).toString();
 
             finalData.password = hashedPassword;
+            
 
             // finalData.attachment = convertToFile;
             delete finalData.countryCode;
@@ -425,9 +427,12 @@ const CorporateContactPersonnel = () => {
             // await dispatch(SignupAction(finalData, history));
             // history('/register/authentication');
             if (selectedName === "Corporate") {
+                console.log(selectedName,'NAMEEEE AAGAYA')
                 await dispatch(SaveCoprorateData(contactPersonnel, 3));
                 await dispatch(SignupAction(finalData, history, selectedName));
                 setshowError(false);
+                console.log(history,' FIRED API')
+
             } else if (selectedName === "University") {
                 let iv = CryptoJS.enc.Utf8.parse("1234567812345678");
                 let key = CryptoJS.enc.Utf8.parse("5v8y/B?E(G+KbPeShVmYq3t6w9z$C&12");
@@ -492,8 +497,10 @@ const CorporateContactPersonnel = () => {
         } else {
             setshowError(true);
         }
+        
     };
 
+    
     return (
 
         <section className="login">
