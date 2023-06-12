@@ -13,9 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 // // import { actionGetSearchCorporates } from "../../../Store/Actions/SubscriptionActions";
 // // import { SaveUniversityCriteriaData } from "../../../Store/Actions/UniversityActions";
 import { useAuth } from "../../../utils/Auth";
-import { useNavigate } from "react-router-dom";
-import TokenPurchase from "./TokenPurchase";
-import SearchBar from "./SearchBar/SearchBar";
+import { useNavigate } from 'react-router-dom';
 
 const Header = (props) => {
   const dispatch = useDispatch();
