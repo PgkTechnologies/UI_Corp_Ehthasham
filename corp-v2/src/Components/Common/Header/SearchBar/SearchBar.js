@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { AccountBalance, SearchOutlined } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
-import { actionGetSearchCorporates } from "../../../../Store/Actions/SubscriptionActions";
+// import { actionGetSearchCorporates } from "../../../../Store/Actions/SubscriptionActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import PreLoader from "../../../../Utils/PreLoader";
-import PreLoaderSmall from "../../../../Utils/PreLoaderSmall";
+import PreLoader from "../../../../utils/PreLoader";
 
+ 
 const SearchBar = (props) => {
   const [filterdValues, setFilteredValues] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
   const dispatch = useDispatch();
-  const searchStatus = useSelector((state) => state.loginReducer.searchStatus);
+  const searchStatus = useSelector((state) => state?.loginReducer?.searchStatus);
   const navigate = useNavigate();
   const size = 20;
   const page = 1;
@@ -19,12 +19,12 @@ const SearchBar = (props) => {
     let getData;
     if (wordEntered.length > 0) {
       getData = setTimeout(() => {
-        dispatch(
-          actionGetSearchCorporates({
-            apiPayloadRequest: wordEntered, page: page, size: size,
-            callback: getSeachDataResult,
-          })
-        );
+        // dispatch(
+        //   actionGetSearchCorporates({
+        //     apiPayloadRequest: wordEntered, page: page, size: size,
+        //     callback: getSeachDataResult,
+        //   })
+        // );
       }, 500);
     }
 
@@ -77,7 +77,8 @@ const SearchBar = (props) => {
       />
       {searchStatus ? (
         <div>
-          <PreLoaderSmall />
+          {/* <PreLoaderSmall/> */}
+          
         </div>
       ) : null}
       <div className="search-results">

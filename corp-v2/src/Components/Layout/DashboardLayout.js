@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router';
 import routes from '../../routes';
-// import DashboardHeader from '../Common/DashboardHeader';
-// import DashboardSidebar from '../Common/DashboardSidebar';
-// import HeaderModalForm from '../Common/HeaderModalForm';
 import { useSelector } from 'react-redux';
 import { useIdleTimer } from 'react-idle-timer';
 import { useNavigate } from "react-router";
@@ -12,6 +9,7 @@ import { actionLogoutRequestSaga } from '../../Store/Actions/SagaActions/Dashboa
 import { Outlet} from 'react-router-dom';
 import {useAuth} from "../../utils/Auth"
 import Header from '../Common/Header/Header';
+import BodySideBar from '../Common/BodySidebar/BodySideBar';
 
 const DashboardLayout = () => {
     const apiStatus = useSelector(state => state.DashboardReducer.apiStatus);
@@ -63,6 +61,7 @@ const DashboardLayout = () => {
     return (
      <div className='App'>
         <Header logout={logout} /> 
+        <BodySideBar/>
      </div>
     )
 }

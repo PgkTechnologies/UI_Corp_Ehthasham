@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { actionGetBulkTokenNumberRequest } from "../../../Store/Sagas/CommonSagaAction";
+// import { actionGetBulkTokenNumberRequest } from "../../../Store/Sagas/CommonSagaAction";
 
 const TokenPurchase = (props) => {
   const [amount, setAmount] = useState(0);
@@ -18,15 +18,15 @@ const TokenPurchase = (props) => {
   };
 
   const getBulkTokens = () => {
-    dispatch(
-      actionGetBulkTokenNumberRequest({
-        callback: (response) => {
-          setTokensCount(parseInt(response.bulkCount));
-          setBulkPrice(parseInt(response.bulkPrice));
-          //setTokensCount(response);
-        },
-      })
-    );
+    // dispatch(
+    //   actionGetBulkTokenNumberRequest({
+    //     callback: (response) => {
+    //       setTokensCount(parseInt(response.bulkCount));
+    //       setBulkPrice(parseInt(response.bulkPrice));
+    //       //setTokensCount(response);
+    //     },
+    //   })
+    // );
   };
 
   const handleSubmit = (event) => {

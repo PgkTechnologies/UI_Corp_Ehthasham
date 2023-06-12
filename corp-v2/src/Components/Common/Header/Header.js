@@ -10,11 +10,12 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useDispatch, useSelector } from "react-redux";
 // // import { getUserTokenData } from "../../../Store/Actions/ProfileActions";
-// import SearchBar from "./SearchBar/SearchBar";
 // // import { actionGetSearchCorporates } from "../../../Store/Actions/SubscriptionActions";
 // // import { SaveUniversityCriteriaData } from "../../../Store/Actions/UniversityActions";
 import { useAuth } from "../../../utils/Auth";
 import { useNavigate } from "react-router-dom";
+import TokenPurchase from "./TokenPurchase";
+import SearchBar from "./SearchBar/SearchBar";
 
 const Header = (props) => {
   const dispatch = useDispatch();
@@ -115,10 +116,10 @@ const Header = (props) => {
             justifyContent: "flex-start",
           }}
         >
-          {/* <SearchBar
+          <SearchBar
             placeholder="Search Corporates for Subscription..."
             data={searchList}
-          /> */}
+          />
         </div>
         <div
           className="col-3"
@@ -220,14 +221,15 @@ const Header = (props) => {
                 style={{ background: "#0367b9" }}
                 onClick={props.logout}
               >
+                
                 <div className="more-content" style={{ color: "white" }}>
-                  <LogoutIcon
+                  {/* <LogoutIcon
                     style={{
                       fontSize: "20px",
                       marginBottom: "3px",
                       marginRight: "35px",
                     }}
-                  />
+                  /> */}
                   Log Out
                 </div>
               </div>
@@ -258,7 +260,7 @@ const Header = (props) => {
             {tokensData.bonusTokenBalance}
           </div>
 
-          {/* <TokenPurchase handleClose={handleClose} /> */}
+          <TokenPurchase handleClose={handleClose} />
         </Modal.Body>
       </Modal >
     </>
