@@ -234,14 +234,14 @@ const routes = [
     name: "Dashboard",
     component: <Dashboard/>,
   },
-  // {
-  //   path: "/profile",
-  //   strict: true,
-  //   exact: true,
-  //   role: "dashboard",
-  //   name: "Profile",
-  //   component: <Profile/>,
-  // },
+  {
+    path: "/profile",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "Profile",
+    component: <Profile/>,
+  },
 
 //   {
 //     path: "/dashboard/createjob/hiring",

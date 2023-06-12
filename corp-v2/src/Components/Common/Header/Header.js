@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 // // import { SaveUniversityCriteriaData } from "../../../Store/Actions/UniversityActions";
 import { useAuth } from "../../../utils/Auth";
 import { useNavigate } from 'react-router-dom';
+import SearchBar from "./SearchBar/SearchBar";
+import TokenPurchase from "./TokenPurchase";
 
 const Header = (props) => {
   const dispatch = useDispatch();
