@@ -47,10 +47,11 @@ function* loginRequestSaga(action) {
   try {
     const response = yield call(loginRequest, action.payload.apiPayloadRequest);
     if (response.redirectURL !== "/verify") {
-      localStorage.setItem("token", response.token);
       localStorage.setItem("AUTH", response.token);
       yield put(actionGetCorporateProfileSagaAction());
       toast.success("Login successful");
+      console.log(response.token, 'TOKENNNNNN RESPONSE')
+      localStorage.setItem("token", response.token);
       console.log(response, "Srini");
     } else {
       localStorage.setItem("regStatus", JSON.stringify(response));

@@ -57,7 +57,7 @@ const BasicCmp = (props) => {
             }}
             required={true}
             disabled={true}
-            value={props?.profileData?.universitySector}
+            value={props?.profileData?.corporateType}
           />
         </div>
         <div className="col-3">
@@ -87,7 +87,7 @@ const BasicCmp = (props) => {
             }}
             required={true}
             disabled={true}
-            value={props?.profileData?.universityCollegeName ? props?.profileData?.universityCollegeName : ""}
+            value={props?.profileData?.corporateName}
           />
         </div>
         <div className="col-6">
@@ -101,7 +101,7 @@ const BasicCmp = (props) => {
               shrink: true
             }}
             required={true}
-            value={props?.profileData?.universityID ? props?.profileData?.universityID : ""}
+            value={props?.profileData?.CIN }
             disabled={true}
           />
         </div>
@@ -117,7 +117,7 @@ const BasicCmp = (props) => {
           }}
             required={true}
             disabled={true}
-            value={props?.profileData?.universityCollegeName ? props?.profileData?.universityCollegeName : ""}
+            value={props?.profileData?.corporateCategory}
           />
         </div>
         <div className="col-6">
@@ -132,7 +132,7 @@ const BasicCmp = (props) => {
           }}
             required={true}
             disabled={true}
-            value={props?.profileData?.universityCollegeID ? props?.profileData?.universityCollegeID : ""}
+            value={props?.profileData?.corporateIndustry}
           />
         </div>
         <div className="col-6">
@@ -147,7 +147,7 @@ const BasicCmp = (props) => {
             }}
             required={true}
             disabled={true}
-            value={props?.profileData?.primaryContactEmail ? props?.profileData?.primaryContactEmail : ""}
+            value={props?.profileData?.primaryContactEmail}
           />
         </div>
         <div className="col-6">
@@ -162,7 +162,7 @@ const BasicCmp = (props) => {
             }}
             required={true}
             disabled={true}
-            value={props?.profileData?.primaryContactEmail ? props?.profileData?.primaryContactEmail : ""}
+            value={props?.profileData?.gstn }
           />
         </div>
       </div>

@@ -6,10 +6,18 @@ import { ACTION_GET_CORPORATE_PROFILE_REQUEST, ACTION_PATCH_CORPORATE_PROFILE_RE
 import { actionUpdateGlobalLoaderSagaAction } from '../Actions/SagaActions/CommonSagaActions';
 import { actionGetCorporateProfileResponse, actionGetCorporateProfileSagaAction } from '../Actions/SagaActions/CorporateProfileSagaActions'
 
+ 
+const token = localStorage.getItem('AUTH');
 
 const getCorporateProfileRequest = () => {
   const URL = "/u/profile/";
-  return Axios.get(URL).then((res) => {
+  
+        const header = {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        }
+  return Axios.get(URL, header).then((res) => {
     return res.data;
   });
 };
@@ -36,7 +44,7 @@ function* getCorporateProfileRequestSaga(action) {
   }
 }
 
-
+//
 function patchCorporateProfileRequest(formData) {
   const URL = "/u/profile/";
   return Axios.patch(URL, formData).then((res) => {
@@ -98,36 +106,36 @@ function* postPublishCorporateProfileRequestSaga(action) {
 
 const getPaymentEmailDetails = (action) => {
   const URL = "/pg/getEmailData";
-  return Axios.post(URL,action)
-      .then((res) => {
-          return res.data;
-      });
+  return Axios.post(URL, action)
+    .then((res) => {
+      return res.data;
+    });
 }
 
 function* getPaymentEmailDetailsRequestSaga(action) {
   yield put(actionUpdateGlobalLoaderSagaAction(true));
   try {
-      const response = yield call(
-        getPaymentEmailDetails,
-        action.payload.apiPayloadRequest   //new 
-        );
-      if (action?.payload?.callback) {
-          action.payload.callback(response);
-      }
+    const response = yield call(
+      getPaymentEmailDetails,
+      action.payload.apiPayloadRequest   //new 
+    );
+    if (action?.payload?.callback) {
+      action.payload.callback(response);
+    }
   } catch (err) {
-      if (err?.response) {
-          toast.error(err?.response?.data?.errors[0]?.message);
-      } else {
-          //toast.error("Something Wrong!", err?.message);
-      }
+    if (err?.response) {
+      toast.error(err?.response?.data?.errors[0]?.message);
+    } else {
+      //toast.error("Something Wrong!", err?.message);
+    }
   } finally {
-      yield put(actionUpdateGlobalLoaderSagaAction(false));
+    yield put(actionUpdateGlobalLoaderSagaAction(false));
   }
 }
 
 function postInvoiceUniversityRequest(formData) {
   const URL = "/pg/sendInvoice";
-  return Axios.post(URL, formData,{ contentType: "application/json" }).then((res) => {
+  return Axios.post(URL, formData, { contentType: "application/json" }).then((res) => {
     return res.data;
   });
 }

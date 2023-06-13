@@ -1,6 +1,6 @@
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import SecurityIcon from "@mui/icons-material/Security";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PreLoader from "../../utils/PreLoader";
 import { useSelector } from "react-redux";
 import BasicCmp from "./BasicCmp";
@@ -14,8 +14,17 @@ const CorporateProfile = () => {
 
     const apiStatus = useSelector((state) => state.loginReducer?.apiStatus);
     const [profile, setProfile] = useState([]);
-    
 
+
+    const profileInfo = useSelector(//
+        (state) => state.DashboardReducer.profileInfo
+    );
+
+    useEffect(()=>{
+        setProfile(profileInfo)
+    },[profileInfo]) 
+
+    console.log(profileInfo, 'REDUCER PRO');
 
     return (
         <>
@@ -55,15 +64,20 @@ const CorporateProfile = () => {
                 )}
             </div>
             <div>
-                <BasicCmp 
-                profileData={profile}
-                 />
+                <BasicCmp
+                    profileData={profile}
+                />
                 <AddressCmp
+                 profileData={profile}
                 />
 
-                <ProfileCmp/>
+                <ProfileCmp 
+                 profileData={profile}
+                />
 
-                <PasswordForm/>
+                <PasswordForm 
+                 profileData={profile}
+                />
 
             </div>
         </>

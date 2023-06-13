@@ -16,6 +16,7 @@ import { useAuth } from "../../../utils/Auth";
 import { useNavigate } from 'react-router-dom';
 import SearchBar from "./SearchBar/SearchBar";
 import TokenPurchase from "./TokenPurchase";
+import { actionGetCorporateProfileSagaAction } from "../../../Store/Actions/SagaActions/CorporateProfileSagaActions";
 
 const Header = (props) => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const Header = (props) => {
     (state) => state.loginReducer?.universityProfile
   );
 
-
+  
   const auth = useAuth();
 
   const [searchList, setSearchList] = useState([]);
@@ -54,6 +55,10 @@ const Header = (props) => {
       handleShow(true);
     }
   }, [auth.tokenPurchase]);
+
+  useEffect (()=>{
+    dispatch(actionGetCorporateProfileSagaAction());
+  },[])
 
   const onChange = (name, value, errorMessage = undefined) => {
     switch (name) {

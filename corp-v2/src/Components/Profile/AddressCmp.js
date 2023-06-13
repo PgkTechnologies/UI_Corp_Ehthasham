@@ -17,7 +17,7 @@ const AddressCmp = (props) => {
     setAge(event.target.value);
   };
 
-  //console.log(profileData?.universityHQAddressCountry, countries, cityListLocal, "CHECK");
+  //console.log(profileData?.corporateHQAddressCountry, countries, cityListLocal, "CHECK");
 
   return (
     <>
@@ -33,7 +33,7 @@ const AddressCmp = (props) => {
               <TextField
                 label="Adress (Line 1)"
                 type="text"
-                name="universityHQAddressLine1"
+                name="corporateHQAddressLine1"
                 variant="filled"
                 helperText={props?.errors?.hAddressLine1}
                 error={props?.errors?.hAddressLine1 ? true : false}
@@ -41,26 +41,20 @@ const AddressCmp = (props) => {
                 required={true}
                 onChange={onChange}
                 value={
-                  profileData?.universityHQAddressLine1
-                    ? profileData.universityHQAddressLine1
-                    : ""
-                }
+                  profileData?.corporateHQAddressLine1 ? profileData?.corporateHQAddressLine1 : '' }
               />
             </div>
             <div className="col-12">
               <TextField
                 label="Adress (Line 2)"
                 type="text"
-                name="universityHQAddressLine2"
+                name="corporateHQAddressLine2"
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
                 onChange={onChange}
                 value={
-                  profileData?.universityHQAddressLine2
-                    ? profileData?.universityHQAddressLine2
-                    : ""
-                }
+                  profileData?.corporateHQAddressLine2 ?  profileData?.corporateHQAddressLine2 : ''  }
               />
             </div>
             <div className="col-6">
@@ -74,9 +68,9 @@ const AddressCmp = (props) => {
                 <Select
                   labelId="demo-simple-select-filled-label17"
                   id="demo-simple-select-filled17"
-                  name="universityHQAddressCountry"
+                  name="corporateHQAddressCountry"
                   required
-                  value={profileData?.universityHQAddressCountry ? profileData?.universityHQAddressCountry : ""}
+                  value={profileData?.corporateHQAddressCountry ? profileData?.corporateHQAddressCountry :'' }
                   onChange={onChange}
                 >
                   {countries?.length > 0 ? (
@@ -102,20 +96,17 @@ const AddressCmp = (props) => {
                 <Select
                   labelId="demo-simple-select-filled-label2"
                   id="demo-simple-select-filled2"
-                  name="universityHQAddressState"
+                  name="corporateHQAddressState"
                   required
                   value={
-                    profileData?.universityHQAddressState
-                      ? profileData?.universityHQAddressState
-                      : ""
-                  }
+                    profileData?.corporateHQAddressState ? profileData?.corporateHQAddressState : ''  }
                   onChange={onChange}
                 >
                   {countries?.length > 0 ? (
                     countries
                       .filter(
                         (x) =>
-                          x.name === profileData?.universityHQAddressCountry
+                          x.name === profileData?.corporateHQAddressCountry
                       )[0]
                       ?.states?.map((item, i) => (
                         <MenuItem key={i} value={item.name}>
@@ -139,13 +130,10 @@ const AddressCmp = (props) => {
                 <Select
                   labelId="demo-simple-select-filled-label3"
                   id="demo-simple-select-filled3"
-                  name="universityHQAddressCity"
+                  name="corporateHQAddressCity"
                   required
                   value={
-                    profileData?.universityHQAddressCity
-                      ? profileData?.universityHQAddressCity
-                      : ""
-                  }
+                    profileData?.corporateHQAddressCity ?  profileData?.corporateHQAddressCity : ''}
                   onChange={onChange}
                 >
                   {cityListHQ?.length > 0 ? (
@@ -164,39 +152,33 @@ const AddressCmp = (props) => {
               <TextField
                 label="District"
                 type="text"
-                name="universityHQAddressDistrict"
+                name="corporateHQAddressDistrict"
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
                 onChange={onChange}
                 value={
-                  profileData?.universityHQAddressDistrict
-                    ? profileData?.universityHQAddressDistrict
-                    : ""
-                }
+                  profileData?.corporateHQAddressDistrict ? profileData?.corporateHQAddressDistrict : '' }
               />
             </div>
             <div className="col-4">
               <TextField
                 label="Zipcode"
                 type="text"
-                name="universityHQAddressZipcode"
+                name="corporateHQAddressZipcode"
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
                 onChange={onChange}
                 value={
-                  profileData?.universityHQAddressZipcode
-                    ? profileData?.universityHQAddressZipcode
-                    : ""
-                }
+                  profileData?.corporateHQAddressZipCode ? profileData?.corporateHQAddressZipCode : ''}
               />
             </div>
             <div className="col-12">
               <TextField
                 label="Phone Number"
                 type="text"
-                name="universityHQAddressPhone"
+                name="corporateHQAddressPhone"
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
@@ -212,14 +194,14 @@ const AddressCmp = (props) => {
               <TextField
                 label="Office Mail"
                 type="text"
-                name="universityHQAddressemail"
+                name="corporateHQAddressemail"
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
                 onChange={onChange}
                 value={
-                  profileData?.universityHQAddressemail
-                    ? profileData?.universityHQAddressemail
+                  profileData?.corporateHQAddressEmail
+                    ? profileData?.corporateHQAddressEmail
                     : ""
                 }
               />
@@ -234,8 +216,8 @@ const AddressCmp = (props) => {
                 <div className="sub-title d-flex justify-content-center align-items-center" style={{ paddingTop: '0' }}>
                   <input
                     type="checkbox"
-                    onChange={props?.toggleUniversityHeadQuarters}
-                    name={"sameAsuniversityHeadquarters"}
+                    onChange={props?.toggleCorporateHeadQuarters}
+                    name={"sameAscorporateHeadquarters"}
                     className="custom-control-input"
                     id="customCheck1"
                   />
@@ -253,14 +235,14 @@ const AddressCmp = (props) => {
               <TextField
                 label="Adress (Line 1)"
                 type="text"
-                name="universityLocalBranchAddressLine1"
+                name="corporateLocalBranchAddressLine1"
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
                 onChange={onChange}
                 value={
-                  profileData?.universityLocalBranchAddressLine1
-                    ? profileData?.universityLocalBranchAddressLine1
+                  profileData?.corporateLocalBranchAddressLine1
+                    ? profileData?.corporateLocalBranchAddressLine1
                     : ""
                 }
               />
@@ -269,14 +251,14 @@ const AddressCmp = (props) => {
               <TextField
                 label="Adress (Line 2)"
                 type="text"
-                name="universityLocalBranchAddressLine2"
+                name="corporateLocalBranchAddressLine2"
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
                 onChange={onChange}
                 value={
-                  profileData?.universityLocalBranchAddressLine2
-                    ? profileData?.universityLocalBranchAddressLine2
+                  profileData?.corporateLocalBranchAddressLine2
+                    ? profileData?.corporateLocalBranchAddressLine2
                     : ""
                 }
               />
@@ -292,11 +274,11 @@ const AddressCmp = (props) => {
                 <Select
                   labelId="demo-simple-select-filled-label4"
                   id="demo-simple-select-filled4"
-                  name="universityLocalBranchAddressCountry"
+                  name="corporateLocalBranchAddressCountry"
                   required
                   value={
-                    profileData?.universityLocalBranchAddressCountry
-                      ? profileData?.universityLocalBranchAddressCountry
+                    profileData?.corporateLocalBranchAddressCountry
+                      ? profileData?.corporateLocalBranchAddressCountry
                       : ""
                   }
                   onChange={onChange}
@@ -324,11 +306,11 @@ const AddressCmp = (props) => {
                 <Select
                   labelId="demo-simple-select-filled-label5"
                   id="demo-simple-select-filled5"
-                  name="universityLocalBranchAddressState"
+                  name="corporateLocalBranchAddressState"
                   required
                   value={
-                    profileData?.universityLocalBranchAddressState
-                      ? profileData?.universityLocalBranchAddressState
+                    profileData?.corporateLocalBranchAddressState
+                      ? profileData?.corporateLocalBranchAddressState
                       : ""
                   }
                   onChange={onChange}
@@ -338,7 +320,7 @@ const AddressCmp = (props) => {
                       .filter(
                         (x) =>
                           x.name ===
-                          profileData?.universityLocalBranchAddressCountry
+                          profileData?.corporateLocalBranchAddressCountry
                       )[0]
                       ?.states?.map((item, i) => (
                         <MenuItem key={i} value={item.name}>
@@ -362,11 +344,11 @@ const AddressCmp = (props) => {
                 <Select
                   labelId="demo-simple-select-filled-label6"
                   id="demo-simple-select-filled6"
-                  name="universityLocalBranchAddressCity"
+                  name="corporateLocalBranchAddressCity"
                   required
                   value={
-                    profileData?.universityLocalBranchAddressCity
-                      ? profileData?.universityLocalBranchAddressCity
+                    profileData?.corporateLocalBranchAddressCity
+                      ? profileData?.corporateLocalBranchAddressCity
                       : ""
                   }
                   onChange={onChange}
@@ -387,14 +369,14 @@ const AddressCmp = (props) => {
               <TextField
                 label="District"
                 type="text"
-                name="universityLocalBranchAddressDistrict"
+                name="corporateLocalBranchAddressDistrict"
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
                 onChange={onChange}
                 value={
-                  profileData?.universityLocalBranchAddressDistrict
-                    ? profileData?.universityLocalBranchAddressDistrict
+                  profileData?.corporateLocalBranchAddressDistrict
+                    ? profileData?.corporateLocalBranchAddressDistrict
                     : ""
                 }
               />
@@ -403,14 +385,14 @@ const AddressCmp = (props) => {
               <TextField
                 label="Zipcode"
                 type="text"
-                name="universityLocalBranchAddressZipcode"
+                name="corporateLocalBranchAddressZipcode"
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
                 onChange={onChange}
                 value={
-                  profileData?.universityLocalBranchAddressZipcode
-                    ? profileData?.universityLocalBranchAddressZipcode
+                  profileData?.corporateLocalBranchAddressZipCode
+                    ? profileData?.corporateLocalBranchAddressZipCode
                     : ""
                 }
               />
@@ -419,14 +401,14 @@ const AddressCmp = (props) => {
               <TextField
                 label="Phone Number"
                 type="text"
-                name="universityLocalBranchAddressPhone"
+                name="corporateLocalBranchAddressPhone"
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
                 onChange={onChange}
                 value={
-                  profileData?.universityLocalBranchAddressPhone
-                    ? profileData?.universityLocalBranchAddressPhone
+                  profileData?.corporateLocalBranchAddressPhone
+                    ? profileData?.corporateLocalBranchAddressPhone
                     : ""
                 }
               />
@@ -435,14 +417,14 @@ const AddressCmp = (props) => {
               <TextField
                 label="Office Mail"
                 type="text"
-                name="universityLocalBranchAddressemail"
+                name="corporateLocalBranchAddressemail"
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
                 onChange={onChange}
                 value={
-                  profileData?.universityLocalBranchAddressemail
-                    ? profileData?.universityLocalBranchAddressemail
+                  profileData?.corporateLocalBranchAddressEmail
+                    ? profileData?.corporateLocalBranchAddressEmail
                     : ""
                 }
               />
