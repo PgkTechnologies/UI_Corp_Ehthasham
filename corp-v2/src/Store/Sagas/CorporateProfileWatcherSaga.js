@@ -8,10 +8,11 @@ import { actionGetCorporateProfileResponse, actionGetCorporateProfileSagaAction 
 
  
 const token = localStorage.getItem('AUTH');
+console.log(token , 'TOKENZZ')
 
 const getCorporateProfileRequest = () => {
   const URL = "/u/profile/";
-  
+  const token = localStorage.getItem('AUTH');
         const header = {
             headers: {
                 'Authorization': `Bearer ${token}`,
