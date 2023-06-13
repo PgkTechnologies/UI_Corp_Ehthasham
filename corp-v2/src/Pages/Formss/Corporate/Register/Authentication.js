@@ -84,6 +84,7 @@ switch (name)   {
         const { otpErr, otp2Err } = errors;
         const { phoneOtp, emailOtp } = otp;
         let data = JSON.parse(localStorage.getItem('regStatus'));
+        localStorage.setItem('stakeholderID' , data?.platformUID);
         if (phoneOtp) {// Removed email otp validation
             if (!otpErr && !otp2Err) {
                 const model = {

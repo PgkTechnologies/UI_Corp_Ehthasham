@@ -2,6 +2,7 @@
 import { put, call, takeLatest, select } from "redux-saga/effects";
 import Axios from "../../utils/Axios";
 import { toast } from "react-toastify";
+import axios from 'axios';
 
 import {
     ACTION_GET_DEPENDENCY_LOOKUPS_REQUEST,
@@ -12,8 +13,12 @@ import {
     ACTION_GET_BULK_TOKEN_NUMBER_REQUEST,
     ACTION_GET_S3_ATTACH_REQUEST,
     ACTION_GET_STUDENT_NOTIFICATIONS_INFO_REQUEST,
-    PATCH_NOTIFICATIONS
+    PATCH_NOTIFICATIONS,
+    ACTION_CREATE_PAYMENT_REQUEST
 } from '../Actions/SagaActions/SagaActionTypes';
+
+import * as actionTypes from '../Actions/CorporateActions/actionTypes';
+
 
 import { actionUpdateGlobalLoaderSagaAction } from '../Actions/SagaActions/CommonSagaActions';
 
@@ -259,6 +264,53 @@ function* pathchNotificationsSaga(action) {
 
 }
 
+
+
+const CreatePaymentToken = (action) => {
+    const data = action.payload;
+    console.log(data, "ACTION");
+    let formData = new FormData();
+  
+    for (const key in data) {
+      formData.append(key, data[key]);
+    }
+  
+    const URL = "/pg/createPayment";
+    return Axios.post(URL, formData)
+      .then((res) => {
+        return res.data;
+      });
+  };
+  
+  
+  
+
+
+
+
+function* CratePaymentRequest(action) {
+    yield put(actionUpdateGlobalLoaderSagaAction(true));
+    try {
+      const response = yield call(CreatePaymentToken, action);
+      console.log(response, 'SAGA')
+      const resp = response;
+      sessionStorage.setItem('orderID', resp.orderID);
+      action.payload.callback(response);
+      yield put({ type: actionTypes.PAYMENTORDER, payload: response });
+    } catch (err) {
+      if (err?.response) {
+        toast.error(err?.response?.data?.errors[0]?.message);
+      } else {
+        //toast.error("Something Wrong!", err?.message);
+      }
+    } finally {
+      yield put(actionUpdateGlobalLoaderSagaAction(false));
+    }
+  }
+
+
+
+
 const getStudentNotificationsRequest = (size, page) => {
     const URL = `/nft/all/${size}/${page}`;
     return Axios.get(URL).then(resp => resp.data);
@@ -291,6 +343,7 @@ export default function* CommonWatcherSaga() {
     yield takeLatest(ACTION_GET_S3_ATTACH_REQUEST, getS3AttachRequestSaga);
     yield takeLatest(ACTION_GET_STUDENT_NOTIFICATIONS_INFO_REQUEST, getStudentNotificationsRequestSaga);
     yield takeLatest(PATCH_NOTIFICATIONS, pathchNotificationsSaga);
+    yield takeLatest(ACTION_CREATE_PAYMENT_REQUEST, CratePaymentRequest);
 
 
 }

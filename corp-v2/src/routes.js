@@ -25,9 +25,10 @@ const RegistrationCompleted = React.lazy(() =>
   import("./Pages/Formss/Corporate/Register/RegistrationCompleted")
 );
 
-// const CorporatePayment = React.lazy(() =>
-//   import("./Pages/Forms/Corporate/Register/CorporatePayment")
-// );
+
+const CorporatePayment = React.lazy(() =>
+  import("./Pages/Formss/Corporate/Register/CorporatePayment")
+);
 // const Payment = React.lazy(() => import("./Pages/Forms/Payment/"));
 // const StudentRegister = React.lazy(() =>
 //   import("./Pages/Forms/Student/StudentRegister")
@@ -160,14 +161,14 @@ const routes = [
     name: "RegistrationCompleted",
     component: <RegistrationCompleted/>,
   },
-  // {
-  //   path: "/register/payment",
-  //   strict: true,
-  //   exact: true,
-  //   role: "corporateReg",
-  //   name: "CorporatePayment",
-  //   component: <CorporatePayment/>,
-  // },
+  {
+    path: "/register/payment",
+    strict: true,
+    exact: true,
+    role: "corporateReg",
+    name: "CorporatePayment",
+    component: <CorporatePayment/>,
+  },
   {
     path: "/myl",
     strict: true,
