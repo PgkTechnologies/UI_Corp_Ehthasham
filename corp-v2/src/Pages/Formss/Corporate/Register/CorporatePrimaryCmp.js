@@ -117,7 +117,7 @@ const CorporatePrimaryCmp = (props) => {
                         >
                             {corporateTypeList ? (corporateTypeList?.map((item) => (
                                 <MenuItem
-                                    value={item?.label}
+                                    value={item?.value}
                                 >
                                     {item?.label}
                                 </MenuItem>))
@@ -151,7 +151,7 @@ const CorporatePrimaryCmp = (props) => {
                         >
                             {corporateCategoryList ? (corporateCategoryList?.map((item) => (
                                 <MenuItem
-                                    value={item?.label}
+                                    value={item?.value}
                                 >
                                     {item?.label}
                                 </MenuItem>))
@@ -185,7 +185,7 @@ const CorporatePrimaryCmp = (props) => {
                         >
                             {corporateIndustryList ? (corporateIndustryList?.map((item) => (
                                 <MenuItem
-                                    value={item?.label}
+                                    value={item?.value}
                                 >
                                     {item?.label}
                                 </MenuItem>))

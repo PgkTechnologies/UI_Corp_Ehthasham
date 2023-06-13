@@ -8,13 +8,16 @@ import {
   ACTION_GET_BULK_TOKEN_NUMBER_REQUEST,
   ACTION_GET_S3_ATTACH_REQUEST,
   ACTION_GET_STUDENT_NOTIFICATIONS_INFO_REQUEST,
-  PATCH_NOTIFICATIONS
+  PATCH_NOTIFICATIONS,
+  ACTION_CREATE_PAYMENT_REQUEST
 } from "./SagaActionTypes";
+
+// import * as actionType from '../SagaActions'
 
 export const actionGetDependencyLookUpsSagaAction = (payload) => {
   return {
     type: ACTION_GET_DEPENDENCY_LOOKUPS_REQUEST,
-    payload: payload,
+    payload: payload, 
   };
 };
 
@@ -85,4 +88,11 @@ export const actionGetS3AttachRequest = (payload)=>{
     type: ACTION_GET_S3_ATTACH_REQUEST,
     payload: payload
   }
+}
+
+export const actionCreatePaymentAction = (payload) => {
+    return {
+        type: ACTION_CREATE_PAYMENT_REQUEST,
+        payload: payload
+    }
 }
