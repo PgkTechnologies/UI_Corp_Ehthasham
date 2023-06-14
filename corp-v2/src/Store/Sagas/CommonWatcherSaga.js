@@ -236,8 +236,16 @@ function* getS3AttachRequestSaga(action) {
 
 const pathchNotifications = (selectedIDs) => {
 
-    const URL = '/nft/nftData'
-    return Axios.patch(URL, selectedIDs).then((res) => {
+    const URL = '/nft/nftData';
+    const token = localStorage.getItem('AUTH');
+    const header = {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            // 'Content-Type': 'application/json'
+        }
+    }
+
+    return Axios.patch(URL, selectedIDs,header).then((res) => {
         let resp = res.data;
     }
     )
@@ -313,7 +321,16 @@ function* CratePaymentRequest(action) {
 
 const getStudentNotificationsRequest = (size, page) => {
     const URL = `/nft/all/${size}/${page}`;
-    return Axios.get(URL).then(resp => resp.data);
+
+    const token = localStorage.getItem('AUTH');
+    const header = {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            // 'Content-Type': 'application/json'
+        }
+    }
+
+    return Axios.get(URL,header).then(resp => resp.data);
 }
 
 function* getStudentNotificationsRequestSaga(action) {
