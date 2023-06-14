@@ -79,9 +79,11 @@ const Dashboard = React.lazy(() => import("./Pages/DashBoard/Dashboard"));
 // const University = React.lazy(() =>
 //   import("./Pages/Dashboard/Subscribe/University/University")
 // );
-// const Notifications = React.lazy(() =>
-//   import("./Pages/Dashboard/Notifications/Notifications")
-// );
+
+
+const Notifications = React.lazy(() =>
+  import("./Pages/DashBoard/Notifications/Notifications")
+);
 // const Analytics = React.lazy(() => import("./Pages/Dashboard/Analytics/Analytics"));
 // const Requests = React.lazy(() => import("./Pages/Dashboard/Requests/Requests"));
 // const CampusDriveList = React.lazy(() => import("./Pages/Dashboard/CampusDrive/CampusDriveList"));
@@ -332,14 +334,14 @@ const routes = [
 //     name: "SubscriptionHistory",
 //     component: <SubscriptionHistory/>,
 //   },
-//   {
-//     path: "/dashboard/notifications",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Notifications",
-//     component: <Notifications/>,
-//   },
+  {
+    path: "/notifications",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "Notifications",
+    component: <Notifications/>,
+  },
 //   {
 //     path: "/dashboard/requests",
 //     strict: true,
