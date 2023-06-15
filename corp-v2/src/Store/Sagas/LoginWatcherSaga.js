@@ -30,6 +30,7 @@ function* validateReferralCodeRequestSaga(action) {
 }
 
 const loginRequest = (model) => {
+  console.log(model,'modelllll')
   const URL = "/o/login";
   let formData = new FormData();
   formData.append("stakeholder", model.stakeholder);

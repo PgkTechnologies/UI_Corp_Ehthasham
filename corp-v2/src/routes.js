@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const Login = React.lazy(() => import("./Pages/Formss/Corporate/Login"));
 
 const Register = React.lazy(() =>
@@ -96,9 +95,9 @@ const Notifications = React.lazy(() =>
 // const OffDefineJobs = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffDefineJobs/OffDefineJobs"))
 // const OffCommunication = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffCommunication/OffCommunication"))
 // const OffCampusInterviews = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffCampusInterviews/OffCampusInterviews"))
-// const TransactionHistory = React.lazy(() => import("./Pages/Dashboard/TransactionHistory/TransactionHistory"));
-// const Support = React.lazy(() => import("./Pages/Dashboard/Support/Support"));
-// const TicketChatCmp = React.lazy(() => import('./Components/Dashboard/SupportCmp/TicketChatCmp'));
+const TransactionHistory = React.lazy(() => import("./Pages/TransactionHistory/TransactionHistory"));
+ const Support = React.lazy(() => import("./Pages/DashBoard/Support/Support"));
+ const TicketChatCmp = React.lazy(() => import('./Pages/DashBoard/Support/TicketChatCmp'));
 // const UniversityStudents = React.lazy(() => import("./Pages/Dashboard/Subscribe/University/UniversityStudents/UniversityStudents"));
 const ForgotPassword = React.lazy(() => import("./Pages/Formss/Corporate/ForgotPassword/ForgotPassword"));
 const Mike = React.lazy(() => import("./Pages/Formss/Corporate/Login/LoginForm"));
@@ -438,30 +437,30 @@ const routes = [
 //     name: "Analytics",
 //     component: <Analytics/>,
 //   },
-//   {
-//     path: "/dashboard/transactionhistory",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Transaction History",
-//     component: <TransactionHistory/>,
-//   },
-//   {
-//     path: "/dashboard/support",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Support",
-//     component: <Support/>,
-//   },
-//   {
-//     path: "/dashboard/support/:ticketNo",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: 'Support',
-//     component: <TicketChatCmp />
-// },
+  {
+    path: "/transactionhistory",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "Transaction History",
+    component: <TransactionHistory/>,
+  },
+  {
+    path: "/support",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "Support",
+    component: <Support/>,
+  },
+  {
+    path: "/support/:ticketNo",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: 'Support',
+    component: <TicketChatCmp />
+},
 ];
 
 

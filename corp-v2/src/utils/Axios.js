@@ -15,11 +15,13 @@ instance.defaults.headers.common['Content-Type'] = 'multipart/form-data';
 // };
 
 instance.interceptors.request.use(
-    request => {
+    (request) => {
 
         const token = localStorage.getItem('token');
+        console.log(token,'tokkkkk')
+
         if (token && request?.url !== 'https://countriesnow.space/api/v0.1/countries/states') {
-            request.headers.common["Authorization"] = 'Bearer ' + token;
+            request.headers.Authorization = 'Bearer ' + token;
         }
 
         return request;

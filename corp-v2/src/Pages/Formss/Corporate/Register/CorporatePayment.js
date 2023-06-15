@@ -5,17 +5,16 @@ import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { CreatePaymentAction,ResetRdrAction, ValidatePaymentAction } from "../../../../Store/Actions/CorporateActions/CorporateAction";
-import { actionCreatePaymentAction } from "../../../../Store/Actions/SagaActions/CommonSagaActions";
+import { ResetRdrAction } from "../../../../Store/Actions/CorporateActions/CorporateAction";
+import { actionCreatePaymentAction, ValidatePaymentActions } from "../../../../Store/Actions/SagaActions/CommonSagaActions";
 import { actionGetCorporateProfileSagaAction, actionGetPaymentEmailDetailsRequest, actionPatchCorporateProfileSagaAction, actionPostInvoiceSagaAction } from "../../../../Store/Actions/SagaActions/CorporateProfileSagaActions";
 import CorporatePaymentCmp from "./CorporatePaymentCmp";
 import InvoicePdf from "./InvoicePDF";
 
-
 const $ = window.$;
 
 const CorporatePayment = () => {
-   
+
 
     const history = useNavigate();
     const initialState = {
@@ -53,26 +52,24 @@ const CorporatePayment = () => {
     let pathname = localStorage.getItem("pathname");
     // setspId(localStorage.getItem("stakeholderID"));
 
-  const click =() => {
-    dispatch(actionGetCorporateProfileSagaAction());
-    console.log('dfkjjb');
-  }
-        
 
 
-    // let profileView = true;
-        // useEffect(() => {
-        //     // if (profileView === true) {
-        //         dispatch(
-        //             actionGetCorporateProfileSagaAction({
-        //                 callback: onResponse,
-        //             })
-        //         );
-        //     }
-        //     // return () => {
-            //     profileView = false;
-            // };
-        // ,[]);
+    console.log(paymentOrder, "GET");
+
+    let profileView = true;
+    useEffect(() => {
+        if (profileView === true) {
+            dispatch(
+                actionGetCorporateProfileSagaAction({
+                    callback: onResponse,
+                })
+            );
+        }
+        return () => {
+            profileView = false;
+        };
+    }
+        , []);
 
 
 
@@ -102,17 +99,14 @@ const CorporatePayment = () => {
 
 
 
-    
+
 
     let payment = true; // Render once
 
     useEffect(() => {
         let model;
         if (payment === true) {
-            console.log('rhrhhberbreb')
-            if (tokensPurchase) 
-            {      // need to uncomment ehtasham commented
-                console.log('rhrhhberbreb111')
+            if (tokensPurchase) {      // need to uncomment ehtasham commented
                 model = {
                     payType: "ADD_TKN",
                     tokensToAdd: tokensPurchase,
@@ -121,7 +115,6 @@ const CorporatePayment = () => {
                 setPaymentModal("TOKEN");
                 dispatch(actionCreatePaymentAction(model));
             } else {
-                console.log('rhrhhberbreb22')
                 model = {
                     payType: "REG_FEE",
                 };
@@ -141,14 +134,14 @@ const CorporatePayment = () => {
             dispatch(ResetRdrAction());
             payment = false;
         };
-    }, [payment,dispatch]);
+    }, [payment, dispatch]);
 
-    
+
 
 
     const paymentSuccess = (invoice) => {
-        if (invoice.message.length) {
-            // console.log(localStorage.getItem("stakeholderID"), "---! Stackk")
+        console.log(invoice, 'dtaaddaa')
+        if (invoice?.messages?.length) {
             setShow(true);
         }
         else {
@@ -166,10 +159,11 @@ const CorporatePayment = () => {
             image: "https://cdn.razorpay.com/logos/7K3b6d18wHwKzL_medium.png",
             handler: function (response) {
                 dispatch(
-                    ValidatePaymentAction({
-                        apiPayload: { myOid, years },       // redownload pdf 
+                    ValidatePaymentActions({
+                        apiPalyoadRequest: myOid,       // redownload pdf 
                         callback: paymentSuccess,
                     })
+
                 );
                 // showPaymentSuccessModal();
                 // alert(response.razorpay_payment_id);
@@ -295,7 +289,7 @@ const CorporatePayment = () => {
 
     const onSucessSave = () => {
         const { name, email, contact, gstn } = paymentData;
-     
+
         const { nameErr, mobileErr, emailErr, amtErr, gstinErr } = errors;
         if (paymentData?.amount > 0) {
             if (
@@ -325,9 +319,8 @@ const CorporatePayment = () => {
             checkgstn === null ||
             checkgstn === undefined
         ) {
-            //console.log("G NO");
+
             localStorage.setItem("GST", paymentData?.gstn);
-            console.log(paymentData.gstn, 'jbdcjbjhdchbhjdchh gstn')
             setCheckgstn(paymentData.gstn);
 
 
@@ -345,11 +338,6 @@ const CorporatePayment = () => {
         }
     };
 
-    const showPaymentSuccessModal = () => {
-        // setOpen(props.isOpen);
-        $("#paymentSuccess").modal({ backdrop: "static", keyboard: false });
-        $("#paymentSuccess").modal("show");
-    };
 
     const cancelPayment = () => {
         setShow(false);
@@ -381,25 +369,7 @@ const CorporatePayment = () => {
 
     };
 
-    const CloseSuccessModal = (type) => {
-        $("#paymentSuccess").modal("hide");
-        // setOpen(false);
-        let navigateUrl = localStorage.getItem("navigateUrl");
-        // getInvoice(false);
-        if (
-            navigateUrl !== undefined &&
-            navigateUrl !== null &&
-            navigateUrl !== "undefined" &&
-            navigateUrl.length > 0
-        ) {
-            history(navigateUrl);
-            localStorage.removeItem("navigateUrl");
-        } else {
-            history("/dashboard");
-        }
-        getAllPaymentEmailDetailsAvailable(false);
-        getPaymentEmailDetailsAvailableBefore(type)
-    };
+
 
     const getInvoice = (type) => {
         //setsetContinue(false);
@@ -430,9 +400,8 @@ const CorporatePayment = () => {
 
 
     const getPaymentEmailDetailsAvailable = (data, invoice) => {
-        console.log(data, invoice, "setContinue");
         const viewData = invoice;
-        getPaymentEmailDetailsAvailableBefore(invoice);
+        // getPaymentEmailDetailsAvailableBefore(invoice);
         const paymentEmailDetails = data;
         localStorage.removeItem("tokensPurchase");
 
@@ -489,8 +458,10 @@ const CorporatePayment = () => {
                     ) {
                         history(redirectUrl);
                         localStorage.removeItem("redirectUrl");
+                        console.log('thiss')
                     } else {
-                        history("/dashboard");
+                        history("/profile");
+                        console.log('thatt')
                     }
                 },
                 function (e) { }
@@ -551,19 +522,19 @@ const CorporatePayment = () => {
 
     const onSuccesspayment = (invoice) => {
         const model = [{
-                stakeholderId: localStorage.getItem("stakeholderID"),
-                stakeholderType: "Corporate"
-            }]
-            dispatch(
-                actionGetPaymentEmailDetailsRequest({
-                    apiPayloadRequest: model,
-                    callback: (data) =>
-                        getPaymentEmailDetailsAvailable(data, invoice), //before removed
-                })
-            );
-      };
+            stakeholderId: localStorage.getItem("stakeholderID"),
+            stakeholderType: "Corporate"
+        }]
+        dispatch(
+            actionGetPaymentEmailDetailsRequest({
+                apiPayloadRequest: model,
+                callback: (data) =>
+                    getPaymentEmailDetailsAvailable(data, invoice), //before removed
+            })
+        );
+    };
 
-
+    
     return (
 
         <section className="container-fluid payment-main">
@@ -624,7 +595,6 @@ const CorporatePayment = () => {
                                             ></i>
                                             {gstCalc.total}
                                         </span>
-                                        <button onClick={() =>click()}>hiii</button>
                                     </li>
                                 </ul>
                             </div>
