@@ -9,11 +9,11 @@ import {
   ACTION_GET_S3_ATTACH_REQUEST,
   ACTION_GET_STUDENT_NOTIFICATIONS_INFO_REQUEST,
   PATCH_NOTIFICATIONS,
-  ACTION_CREATE_PAYMENT_REQUEST
+  ACTION_CREATE_PAYMENT_REQUEST,
+  VALIDATE_PAYMENT_ACTION_REQUEST
 } from "./SagaActionTypes";
 
 // import * as actionType from '../SagaActions'
-
 export const actionGetDependencyLookUpsSagaAction = (payload) => {
   return {
     type: ACTION_GET_DEPENDENCY_LOOKUPS_REQUEST,
@@ -96,3 +96,10 @@ export const actionCreatePaymentAction = (payload) => {
         payload: payload
     }
 }
+
+export const ValidatePaymentActions = (payload) => {
+  return {
+    type: VALIDATE_PAYMENT_ACTION_REQUEST,
+    payload: payload,
+  };
+};

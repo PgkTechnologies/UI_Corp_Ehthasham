@@ -7,18 +7,10 @@ import { actionUpdateGlobalLoaderSagaAction } from '../Actions/SagaActions/Commo
 import { actionGetCorporateProfileResponse, actionGetCorporateProfileSagaAction } from '../Actions/SagaActions/CorporateProfileSagaActions'
 
  
-const token = localStorage.getItem('AUTH');
-console.log(token , 'TOKENZZ')
 
 const getCorporateProfileRequest = () => {
   const URL = "/u/profile/";
-  const token = localStorage.getItem('AUTH');
-        const header = {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            }
-        }
-  return Axios.get(URL, header).then((res) => {
+  return Axios.get(URL).then((res) => {
     return res.data;
   });
 };

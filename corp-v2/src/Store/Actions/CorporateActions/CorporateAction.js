@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import * as actionTypes from './actionTypes';
 
 
-
 // RESET ALL REDUCERES
 export const ResetRdrAction = () => {
     return (dispatch) => {
@@ -76,7 +75,7 @@ export const SignupAction = (model, history, type) => {
                 localStorage.removeItem('imgpath');
                 localStorage.setItem('regStatus', JSON.stringify(resp));
                 sessionStorage.setItem('steps', 3);
-                dispatch({ type: actionTypes.STEPS, payload: 3 });               
+                dispatch({ type: actionTypes.STEPS, payload: 3 });
                 // toast.success(resp.message);
                 history('/register/authentication');
                 dispatch(APIStatus(false));
@@ -291,38 +290,35 @@ export const CreatePaymentAction = (model) => {
 }
 
 // VALIDATE PAYMENT
-export const ValidatePaymentAction = (model) => {
-    return (dispatch) => {
-        const URL = "/pg/verifyPayment";
-        let formData = new FormData();                      //new entey
-        formData.append('orderID', model.apiPayload.myOid);    //formData.append("orderID", model.apiPayload);
-        formData.append('renewalYears', parseInt(model.apiPayload.years))
-        const token = localStorage.getItem('token');
-        const header = {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                // 'Content-Type': 'application/json'
-            }
-        }
-        dispatch(APIStatus(true));
-        Axios.post(URL, formData, header)
-            .then((res) => {
-                let resp = res.data;
-                resp?.messages?.forEach(key => {
-                    toast.success(key);
-                });
-                dispatch(APIStatus(false));
-                dispatch({ type: actionTypes.REFERENCEOBJ, payload: JSON.parse(resp?.referenceObject) });
-                model.callback(resp); //  new entry 
-                // history('/register/completed');
-            })
-            .catch((err) => {
-                if (err.response) {
-                    toast.error(err.response.data.errors[0].message);
-                } else {
-                    //toast.error("Something Wrong!", err.message);
-                }
-                dispatch(APIStatus(false));
-            })
-    }
+export const ValidatePaymentToken = (model) => {
+    const URL = "/pg/verifyPayment";
+    let formData = new FormData();                      //new entey
+    formData.append('orderID', model);    //formData.append("orderID", model.apiPayload);
+    formData.append('renewalYears',1)
+    // dispatch(APIStatus(true));
+    return Axios.post(URL, formData).then((res) => {
+        return res.data;
+    });
+
+
+    // dispatch(APIStatus(true));
+    // axios.post(instance+URL, formData, header)
+    //     .then((res) => {
+    //         let resp = res.data;
+    //         resp?.messages?.forEach(key => {
+    //             toast.success(key);
+    //         });
+    //         dispatch(APIStatus(false));
+    //         dispatch({ type: actionTypes.REFERENCEOBJ, payload: JSON.parse(resp?.referenceObject) });
+    //         model.callback(resp); //  new entry 
+    //         // history('/register/completed');
+    //     })
+    //     .catch((err) => {
+    //         if (err.response) {
+    //             toast.error(err.response.data.errors[0].message);
+    //         } else {
+    //             //toast.error("Something Wrong!", err.message);
+    //         }
+    //         dispatch(APIStatus(false));
+    //     })
 }

@@ -57,8 +57,15 @@ const Header = (props) => {
   }, [auth.tokenPurchase]);
 
   useEffect (()=>{
-    dispatch(actionGetCorporateProfileSagaAction());
+    dispatch(actionGetCorporateProfileSagaAction({
+      callback : getResponse
+    }));
   },[])
+
+  const getResponse= (data) => {
+    console.log(data,'nowwwwwww')
+    localStorage.setItem('stakeholderID',data?.stakeholderID)
+  }
 
   const onChange = (name, value, errorMessage = undefined) => {
     switch (name) {
@@ -93,7 +100,7 @@ const Header = (props) => {
   };
 
   const onHistory = () => {
-    history('/history');
+    history('/transactionhistory');
     onMore();
   }
 

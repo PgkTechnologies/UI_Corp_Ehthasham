@@ -2,7 +2,6 @@
 import { put, call, takeLatest, select } from "redux-saga/effects";
 import Axios from "../../utils/Axios";
 import { toast } from "react-toastify";
-import axios from 'axios';
 
 import {
     ACTION_GET_DEPENDENCY_LOOKUPS_REQUEST,
@@ -14,13 +13,15 @@ import {
     ACTION_GET_S3_ATTACH_REQUEST,
     ACTION_GET_STUDENT_NOTIFICATIONS_INFO_REQUEST,
     PATCH_NOTIFICATIONS,
-    ACTION_CREATE_PAYMENT_REQUEST
+    ACTION_CREATE_PAYMENT_REQUEST,
+    VALIDATE_PAYMENT_ACTION_REQUEST
 } from '../Actions/SagaActions/SagaActionTypes';
 
 import * as actionTypes from '../Actions/CorporateActions/actionTypes';
 
 
 import { actionUpdateGlobalLoaderSagaAction } from '../Actions/SagaActions/CommonSagaActions';
+import { ValidatePaymentToken } from "../Actions/CorporateActions/CorporateAction";
 
 const fullState = (state) => state;
 
@@ -274,15 +275,12 @@ function* pathchNotificationsSaga(action) {
 
 
 
-const CreatePaymentToken = (action) => {
+const createPaymentToken = (action) => {
     const data = action.payload;
-    console.log(data, "ACTION");
     let formData = new FormData();
-  
     for (const key in data) {
       formData.append(key, data[key]);
     }
-  
     const URL = "/pg/createPayment";
     return Axios.post(URL, formData)
       .then((res) => {
@@ -290,20 +288,14 @@ const CreatePaymentToken = (action) => {
       });
   };
   
-  
-  
 
-
-
-
-function* CratePaymentRequest(action) {
+function* cratePaymentRequest(action) {
     yield put(actionUpdateGlobalLoaderSagaAction(true));
     try {
-      const response = yield call(CreatePaymentToken, action);
-      console.log(response, 'SAGA')
-      const resp = response;
-      sessionStorage.setItem('orderID', resp.orderID);
-      action.payload.callback(response);
+      const response = yield call(createPaymentToken, action);
+      sessionStorage.setItem('orderID', response.orderID);
+    //   action.payload.callback(response);
+    console.log(response,'respponseee')
       yield put({ type: actionTypes.PAYMENTORDER, payload: response });
     } catch (err) {
       if (err?.response) {
@@ -312,6 +304,30 @@ function* CratePaymentRequest(action) {
         //toast.error("Something Wrong!", err?.message);
       }
     } finally {
+      yield put(actionUpdateGlobalLoaderSagaAction(false));
+    }
+  }
+
+  //Payment validate 
+  
+  function* ValidatePaymentAction(action) {
+    yield put(actionUpdateGlobalLoaderSagaAction(true));
+    try {
+      const response = yield call(ValidatePaymentToken, action.payload.apiPalyoadRequest);
+      console.log(response,'my response')
+      action.payload.callback(response)
+      console.log(response.messages[1],'my response111')
+      toast.success(response.messages[1]);
+      toast.success(response.messages[2]);
+    } catch (err) {
+      if (err?.response) {
+        
+        toast.error(err?.response?.data?.errors[0]?.message);
+      } else {
+        //toast.error("Something Wrong!", err?.message);
+      }
+    } 
+    finally {
       yield put(actionUpdateGlobalLoaderSagaAction(false));
     }
   }
@@ -360,7 +376,8 @@ export default function* CommonWatcherSaga() {
     yield takeLatest(ACTION_GET_S3_ATTACH_REQUEST, getS3AttachRequestSaga);
     yield takeLatest(ACTION_GET_STUDENT_NOTIFICATIONS_INFO_REQUEST, getStudentNotificationsRequestSaga);
     yield takeLatest(PATCH_NOTIFICATIONS, pathchNotificationsSaga);
-    yield takeLatest(ACTION_CREATE_PAYMENT_REQUEST, CratePaymentRequest);
+    yield takeLatest(ACTION_CREATE_PAYMENT_REQUEST, cratePaymentRequest);
+    yield takeLatest(VALIDATE_PAYMENT_ACTION_REQUEST, ValidatePaymentAction);
 
 
 }
