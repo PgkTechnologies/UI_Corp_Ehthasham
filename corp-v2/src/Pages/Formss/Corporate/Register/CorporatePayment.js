@@ -54,7 +54,7 @@ const CorporatePayment = () => {
 
 
 
-    console.log(paymentOrder, "GET");
+   
 
     let profileView = true;
     useEffect(() => {
@@ -140,7 +140,7 @@ const CorporatePayment = () => {
 
 
     const paymentSuccess = (invoice) => {
-        console.log(invoice, 'dtaaddaa')
+      
         if (invoice?.messages?.length) {
             setShow(true);
         }
@@ -312,7 +312,7 @@ const CorporatePayment = () => {
     };
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('rjhbhrrjrnrkjrnt')
+       
         if (
             checkgstn === "undefined" ||
             checkgstn === "" ||
@@ -332,7 +332,7 @@ const CorporatePayment = () => {
             );
             localStorage.removeItem("tokensPurchase");
         } else {
-            console.log("G YES");
+          
             onSucessSave();
             //
         }
@@ -393,7 +393,6 @@ const CorporatePayment = () => {
 
 
     const getPaymentEmailDetailsAvailableBefore = (data) => {
-        console.log(data, " change in functanlity ");
         setPaymentSuccessModel(data);
 
     }
@@ -405,7 +404,7 @@ const CorporatePayment = () => {
         const paymentEmailDetails = data;
         localStorage.removeItem("tokensPurchase");
 
-        console.log(paymentEmailDetails, "1111111")
+       
         if (paymentEmailDetails) {
             const blobData = pdf(
                 <InvoicePdf
@@ -428,7 +427,7 @@ const CorporatePayment = () => {
                             // let blob = new Blob([customJsonFile], {type: "application/pdf;charset=utf-8"});
                             // saveAs(blob, 'myfile.pdf');
                         }
-                        console.log(paymentEmailDetails[0]?.PaymentID, "-----!idddddd4")
+                      
                         //localStorage.setItem("Invoice", customJsonFile.base64StringFile);
                         const model = [{
                             attachment: customJsonFile.base64StringFile,
@@ -458,10 +457,10 @@ const CorporatePayment = () => {
                     ) {
                         history(redirectUrl);
                         localStorage.removeItem("redirectUrl");
-                        console.log('thiss')
+                        
                     } else {
                         history("/profile");
-                        console.log('thatt')
+                       
                     }
                 },
                 function (e) { }

@@ -295,7 +295,7 @@ function* cratePaymentRequest(action) {
       const response = yield call(createPaymentToken, action);
       sessionStorage.setItem('orderID', response.orderID);
     //   action.payload.callback(response);
-    console.log(response,'respponseee')
+   
       yield put({ type: actionTypes.PAYMENTORDER, payload: response });
     } catch (err) {
       if (err?.response) {
@@ -314,9 +314,9 @@ function* cratePaymentRequest(action) {
     yield put(actionUpdateGlobalLoaderSagaAction(true));
     try {
       const response = yield call(ValidatePaymentToken, action.payload.apiPalyoadRequest);
-      console.log(response,'my response')
+      
       action.payload.callback(response)
-      console.log(response.messages[1],'my response111')
+     
       toast.success(response.messages[1]);
       toast.success(response.messages[2]);
     } catch (err) {

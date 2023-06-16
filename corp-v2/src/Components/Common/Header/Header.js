@@ -63,7 +63,6 @@ const Header = (props) => {
   },[])
 
   const getResponse= (data) => {
-    console.log(data,'nowwwwwww')
     localStorage.setItem('stakeholderID',data?.stakeholderID)
   }
 
@@ -95,7 +94,6 @@ const Header = (props) => {
   };
 
   const getSeachDataResult = (data) => {
-    console.log(data, "SEARCH");
     setSearchList(data);
   };
 

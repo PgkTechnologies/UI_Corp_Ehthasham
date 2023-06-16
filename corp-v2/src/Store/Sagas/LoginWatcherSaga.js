@@ -30,7 +30,7 @@ function* validateReferralCodeRequestSaga(action) {
 }
 
 const loginRequest = (model) => {
-  console.log(model,'modelllll')
+ 
   const URL = "/o/login";
   let formData = new FormData();
   formData.append("stakeholder", model.stakeholder);
@@ -51,9 +51,7 @@ function* loginRequestSaga(action) {
       localStorage.setItem("AUTH", response.token);
       yield put(actionGetCorporateProfileSagaAction());
       toast.success("Login successful");
-      console.log(response.token, 'TOKENNNNNN RESPONSE')
       localStorage.setItem("token", response.token);
-      console.log(response, "Srini");
     } else {
       localStorage.setItem("regStatus", JSON.stringify(response));
       sessionStorage.setItem("steps", 3);
@@ -92,7 +90,6 @@ function* logoutRequestSaga(action) {
   yield put(actionUpdateGlobalLoaderSagaAction(true));
   try {
     const response = yield call(logoutRequest);
-    console.log(response, "RED")
     toast.success("Logout successful");
     if (response) {
       localStorage.clear();

@@ -93,7 +93,6 @@ function* posNewOffCampusDriveRequest(action) {
         for (const key in action.payload.newDriveInformation) {
             formData.append(key, action.payload.newDriveInformation[key]);
         }
-        console.log(formData)
         const response = yield call(postNewOffCampusDrive, formData);
 
         if (action?.payload?.callback) {

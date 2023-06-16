@@ -25,7 +25,7 @@ function* getJobsSaga(action) {
   try {
     const resp = yield call(getJobs);
     action.payload.callback(resp);
-    console.log(resp);
+    
   } catch (err) {
     if (err?.response) {
       toast.error(err?.response?.data?.errors[0]?.message);
@@ -120,7 +120,6 @@ function* addJobsSaga(action) {
 //Edit Job for offcampus and Job create
 
 const editJobs = (jobID, hcID, payload) => {
-  console.log(payload, jobID, hcID, "EDITDATA");
   //const URL = `/p/crp/createJob/job/${id}`;
   const URL = `p/crp/createJobHc/${jobID}/${hcID}`;
   //const URL = `p/cdj/job/jobHc/${jobID}/${hcID}`;
@@ -131,7 +130,7 @@ const editJobs = (jobID, hcID, payload) => {
     },
   };
   return Axios.patch(URL, payload, header).then((res) => {
-    console.log(payload, "HHHHHH");
+   
     return res.data;
   });
 };
@@ -155,7 +154,7 @@ function* editJobsSaga(action) {
 
 //CampusDrive Patch
 const editCampusDriveJobs = (jobID, hcID, payload) => {
-  console.log(payload, "API");
+  
   //const URL = `p/crp/createJobHc/${jobID}/${hcID}`;
   const URL = `cdj/job/jobHc`;
   const header = {
@@ -173,7 +172,7 @@ function* editCampusDriveJobsSaga(action) {
   try {
     const { req, jobID, hcID } = action.payload.apiPayloadRequest;
     const resp = yield call(editCampusDriveJobs, jobID, hcID, req);
-    console.log(resp, "DONEEEEEEEEEE");
+    
     if (resp.status === 200) {
       toast.success("Successfully Updated");
     } else {
@@ -203,7 +202,7 @@ const postJobs = (payload) => {
 function* postJobsSaga(action) {
   try {
     const req = action.payload.apiPayloadRequest;
-    console.log(req, "SAGA");
+   
     // let formData = new FormData();
     // for (const key in model) {
     //     formData.append(key, model[key]);
@@ -211,7 +210,7 @@ function* postJobsSaga(action) {
     const resp = yield call(postJobs, req[0]);
     toast.success(resp.message);
     action.payload.callback(resp);
-    console.log(resp, "POST-Resp");
+    
   } catch (err) {
     if (err?.response) {
       toast.error(err?.response?.data?.errors[0]?.message);
@@ -223,12 +222,12 @@ function* postJobsSaga(action) {
 
 const postPublishCorporateJobs = (formData) => {
   const offCampus = formData.cdID.slice(0, 2);
-  console.log(formData, "CDID");
+
   let data;
   let URL = "";
   if (offCampus === "CF") {
     data = { publishJobs: [{ jobID: formData.jobIds[0] }] };
-    console.log(data, "IDD");
+   
     URL = "/p/crp/publishJob/jobHc";
   } else {
     URL = "/cdj/job/publish";

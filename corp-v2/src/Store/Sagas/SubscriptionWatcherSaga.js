@@ -29,7 +29,6 @@ function* getSearchDataSaga(action) {
         const page = action.payload.page;
         const size = action.payload.size;
         const resp = yield call(getSearchData, params, page, size);
-        console.log(resp, "API")
         action.payload.callback(resp);
     } catch (err) {
         if (err?.response) {

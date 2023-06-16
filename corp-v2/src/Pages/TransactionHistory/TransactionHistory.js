@@ -22,7 +22,7 @@ const TransactionHistory = () => {
 
 
     const getResponse = (dataList) => {
-        console.log(dataList, "datta lisstssss");
+
         if (dataList?.transactionsHistory?.length) {
             setTransactions(dataList?.transactionsHistory);
         }
@@ -57,13 +57,13 @@ const TransactionHistory = () => {
         if (path.includes(".pdf") || path.length <= 500) {
             downloadPDF(path, (base64) => {
                 const file = `data:application/pdf;base64,${base64}`;
-                console.log(file, "filee");
+               
                 const downloadLink = document.createElement("a");
-                console.log(downloadLink, "filee");
+              
                 downloadLink.href = file;
-                console.log(file, "filee");
+              
                 downloadLink.download = "invoice.pdf";
-                console.log(downloadLink.download, "fileesssaarr");
+              
                 downloadLink.click();
             });
         } else {

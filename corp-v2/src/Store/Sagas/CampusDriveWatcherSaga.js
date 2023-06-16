@@ -25,7 +25,7 @@ function* postRespondToCampusDriveRequestRequest(action) {
     try {
         const model = action.payload.apiPayloadRequest;
         let formData = new FormData();
-        console.log(formData);
+        
         for (const key in model) {
             formData.append(key, model[key]);
         }
