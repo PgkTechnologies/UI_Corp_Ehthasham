@@ -436,7 +436,7 @@ const ContactPersonnelCmp = (props) => {
             </div>
 
             <div className="row-container row">
-                <div className="row-container">
+                <div className="row-container" >
                     <Checkbox
                         // checked={universityPrimaryData.attribute6 || ""}
                         onClick={onCheckboxClick}
@@ -446,8 +446,9 @@ const ContactPersonnelCmp = (props) => {
                         // }
                         required
                     />
-                    <div><p>I hereby accept the
-                    <span onClick={()=>{handleShow(true)}} style={{ color: "#0291ff", cursor: "pointer" }}>Terms and Conditions</span> of C2Hire</p> </div>
+                    <div style={{marginTop:'10px'}}>
+                    <p>I hereby accept the
+                    <span onClick={()=>{handleShow(true)}} style={{ color: "blue", cursor: "pointer",fontWeight:'bold' }}> Terms and Conditions </span>  of C2Hire</p></div>
                 </div>
             </div>
 
