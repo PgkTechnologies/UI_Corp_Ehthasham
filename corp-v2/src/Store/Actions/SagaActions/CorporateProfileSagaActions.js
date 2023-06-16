@@ -3,7 +3,7 @@ import { ACTION_GET_CORPORATE_PROFILE_REQUEST, ACTION_PATCH_CORPORATE_PROFILE_RE
 export const actionGetCorporateProfileSagaAction = (payload) => {
     return {
         type: ACTION_GET_CORPORATE_PROFILE_REQUEST,
-        payload: payload
+        payload: payload,
     }
 }
 

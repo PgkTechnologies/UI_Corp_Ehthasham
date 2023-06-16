@@ -42,7 +42,7 @@ const Login = () => {   //same as login Form and cmp
     //storeAuthToken();
     localStorage.removeItem("amount");
     localStorage.removeItem("regStatus");
-    localStorage.removeItem("token");
+    // localStorage.removeItem("token");
     localStorage.removeItem("email");
     localStorage.removeItem("orderID");
 

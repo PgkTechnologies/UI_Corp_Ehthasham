@@ -1,7 +1,5 @@
 import React from "react";
 
-
-
 const Login = React.lazy(() => import("./Pages/Formss/Corporate/Login"));
 
 const Register = React.lazy(() =>
@@ -26,9 +24,10 @@ const RegistrationCompleted = React.lazy(() =>
   import("./Pages/Formss/Corporate/Register/RegistrationCompleted")
 );
 
-// const CorporatePayment = React.lazy(() =>
-//   import("./Pages/Forms/Corporate/Register/CorporatePayment")
-// );
+
+const CorporatePayment = React.lazy(() =>
+  import("./Pages/Formss/Corporate/Register/CorporatePayment")
+);
 // const Payment = React.lazy(() => import("./Pages/Forms/Payment/"));
 // const StudentRegister = React.lazy(() =>
 //   import("./Pages/Forms/Student/StudentRegister")
@@ -80,11 +79,13 @@ const Subscription = React.lazy(() =>
 // const University = React.lazy(() =>
 //   import("./Pages/Dashboard/Subscribe/University/University")
 // );
-// const Notifications = React.lazy(() =>
-//   import("./Pages/Dashboard/Notifications/Notifications")
-// );
-const Analytics = React.lazy(() => import("./Pages/Analytics/Analytics"));
-const Requests = React.lazy(() => import("./Pages/Requests/Requests"));
+
+
+const Notifications = React.lazy(() =>
+  import("./Pages/DashBoard/Notifications/Notifications")
+);
+// const Analytics = React.lazy(() => import("./Pages/Dashboard/Analytics/Analytics"));
+// const Requests = React.lazy(() => import("./Pages/Dashboard/Requests/Requests"));
 // const CampusDriveList = React.lazy(() => import("./Pages/Dashboard/CampusDrive/CampusDriveList"));
 // const CampusDrive = React.lazy(() => import("./Pages/Dashboard/CampusDrive/CampusDrive"));
 // const DefineJobs = React.lazy(() => import("./Pages/Dashboard/CampusDrive/DefineJobs/DefineJobs"));
@@ -95,9 +96,9 @@ const Requests = React.lazy(() => import("./Pages/Requests/Requests"));
 // const OffDefineJobs = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffDefineJobs/OffDefineJobs"))
 // const OffCommunication = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffCommunication/OffCommunication"))
 // const OffCampusInterviews = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffCampusInterviews/OffCampusInterviews"))
-// const TransactionHistory = React.lazy(() => import("./Pages/Dashboard/TransactionHistory/TransactionHistory"));
-// const Support = React.lazy(() => import("./Pages/Dashboard/Support/Support"));
-// const TicketChatCmp = React.lazy(() => import('./Components/Dashboard/SupportCmp/TicketChatCmp'));
+const TransactionHistory = React.lazy(() => import("./Pages/TransactionHistory/TransactionHistory"));
+ const Support = React.lazy(() => import("./Pages/DashBoard/Support/Support"));
+ const TicketChatCmp = React.lazy(() => import('./Pages/DashBoard/Support/TicketChatCmp'));
 // const UniversityStudents = React.lazy(() => import("./Pages/Dashboard/Subscribe/University/UniversityStudents/UniversityStudents"));
 const ForgotPassword = React.lazy(() => import("./Pages/Formss/Corporate/ForgotPassword/ForgotPassword"));
 const Mike = React.lazy(() => import("./Pages/Formss/Corporate/Login/LoginForm"));
@@ -162,14 +163,14 @@ const routes = [
     name: "RegistrationCompleted",
     component: <RegistrationCompleted/>,
   },
-  // {
-  //   path: "/register/payment",
-  //   strict: true,
-  //   exact: true,
-  //   role: "corporateReg",
-  //   name: "CorporatePayment",
-  //   component: <CorporatePayment/>,
-  // },
+  {
+    path: "/register/payment",
+    strict: true,
+    exact: true,
+    role: "corporateReg",
+    name: "CorporatePayment",
+    component: <CorporatePayment/>,
+  },
   {
     path: "/myl",
     strict: true,
@@ -325,30 +326,30 @@ const routes = [
 //     name: "University",
 //     component: <UniversityStudents/>,
 //   },
-  {
-    path: "/subscription",
-    strict: true,
-    exact: true,
-    role: "dashboard",
-    name: "SubscriptionHistory",
-    component: <Subscription/>,
-  },
 //   {
-//     path: "/dashboard/notifications",
+//     path: "/dashboard/subscribe/subscriptionhistory",
 //     strict: true,
 //     exact: true,
 //     role: "dashboard",
-//     name: "Notifications",
-//     component: <Notifications/>,
+//     name: "SubscriptionHistory",
+//     component: <SubscriptionHistory/>,
 //   },
   {
-    path: "/requests",
+    path: "/notifications",
     strict: true,
     exact: true,
     role: "dashboard",
-    name: "Requests",
-    component: <Requests/>,
+    name: "Notifications",
+    component: <Notifications/>,
   },
+//   {
+//     path: "/dashboard/requests",
+//     strict: true,
+//     exact: true,
+//     role: "dashboard",
+//     name: "Requests",
+//     component: <Requests/>,
+//   },
 //   {
 //     path: "/dashboard/campus-drive",
 //     strict: true,
@@ -429,38 +430,38 @@ const routes = [
 //     name: "OffCampusInterviews",
 //     component: <OffCampusInterviews/>,
 //   },
+//   {
+//     path: "/dashboard/analytics",
+//     strict: true,
+//     exact: true,
+//     role: "dashboard",
+//     name: "Analytics",
+//     component: <Analytics/>,
+//   },
   {
-    path: "/analytics",
+    path: "/transactionhistory",
     strict: true,
     exact: true,
     role: "dashboard",
-    name: "Analytics",
-    component: <Analytics/>,
+    name: "Transaction History",
+    component: <TransactionHistory/>,
   },
-//   {
-//     path: "/dashboard/transactionhistory",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Transaction History",
-//     component: <TransactionHistory/>,
-//   },
-//   {
-//     path: "/dashboard/support",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Support",
-//     component: <Support/>,
-//   },
-//   {
-//     path: "/dashboard/support/:ticketNo",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: 'Support',
-//     component: <TicketChatCmp />
-// },
+  {
+    path: "/support",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "Support",
+    component: <Support/>,
+  },
+  {
+    path: "/support/:ticketNo",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: 'Support',
+    component: <TicketChatCmp />
+},
 ];
 
 
