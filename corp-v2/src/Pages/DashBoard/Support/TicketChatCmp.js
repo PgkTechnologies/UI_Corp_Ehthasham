@@ -19,17 +19,13 @@ const TicketChatCmp = () => {
 
     const bottomRef = useRef(null);
 
-    console.log(ticketInfo, 'new');
 
     const tpID = localStorage.getItem("stakeholderID");
 
-    console.log(tpID, 'ID')
 
     const getAllTickets = (data) => {
         setAllTickets(data);
     };
-
-    console.log(allTickets, "TicketData");
 
     useEffect(() => {
         dispatch(
@@ -117,7 +113,6 @@ const TicketChatCmp = () => {
             ['ticketID']: response.data.id,
         }));
 
-        console.log(response,'responseee');
     }
 
     const handleSubmit = (event) => {
@@ -175,9 +170,7 @@ const TicketChatCmp = () => {
   })
 
   const closedTkt = closedTicket !== undefined ? closedTicket?.filter((item) => item.ticketID === ticketNo) : ''
-  console.log(closedTicket, 'chatclosedTkt')
-
-    
+   
 
     const Reopen = () => {
         dispatch(

@@ -57,7 +57,7 @@ const Login = () => {   //same as login Form and cmp
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name, value, "LOGIN");
+   
     switch (name) {
       case "email":
         if (value) {
@@ -116,7 +116,7 @@ const Login = () => {   //same as login Form and cmp
           callback: onSuccess,
         })
       );
-      console.log("Login");
+      
     } else {
       toast.error("Please enter all input fields");
     }
@@ -124,11 +124,11 @@ const Login = () => {   //same as login Form and cmp
 
   const redirectPath = location.state?.path || "/";
 
-  console.log(auth,'OOOTH')
+  
 
   useEffect(() => {
     const authCheck = localStorage.getItem("AUTH");
-    console.log(authCheck,'authCHECK')
+    
     if (authCheck) {
       auth.logIn(authCheck); 
       history(redirectPath, { replace: true });
@@ -138,7 +138,7 @@ const Login = () => {   //same as login Form and cmp
 
   const onSuccess = (navigateUrl) => {
 
-    console.log(navigateUrl,"RESPONSE__TOKENS")
+  
 
     const authCheck = localStorage.getItem("AUTH");
     if (navigateUrl) {
@@ -148,7 +148,7 @@ const Login = () => {   //same as login Form and cmp
     }
 
     if (navigateUrl === "/dashboard") {
-      console.log(navigateUrl, "Srinuuuu")
+   
       history("/dashboard");
     } else if (navigateUrl === "/verify") {
       history("/register/authentication");

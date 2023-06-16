@@ -34,13 +34,13 @@ const Notifications = () => {
             );
         }
 
-        console.log(notifications);
+      
         // setSelectedOpt('ALL')
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page]);
 
     const getResponse = (dataList) => {
-        console.log(dataList, 'dataLittttts')
+        
         if (dataList?.getAllNotifications?.length) {
             setNotifications((prev) => [...prev, ...dataList.getAllNotifications]);
             setFilteredNtf((prev) => [...prev, ...dataList.getAllNotifications]);
@@ -77,17 +77,17 @@ const Notifications = () => {
         setSelectedOpt(selectedValue)
         SenderTFilter(selectedValue);
     }
-    console.log(selectedOpt, 'OnSelect')
+   
 
     useEffect(() => {
         if (selectedOpt === 'U') {
             const USender = notifications?.filter((sender) => sender.senderType === 'U')
-            console.log(USender, 'senderU')
+           
             setFilteredNtf(USender);
         }
         else if (selectedOpt === 'C') {
             const CSender = notifications?.filter((sender) => sender.senderType === 'C')
-            console.log(CSender, 'sendercc')
+           
             setFilteredNtf(CSender)
         }
         // else if (selectedOpt === 'ALL') {
@@ -99,20 +99,18 @@ const Notifications = () => {
     }, [selectedOpt])
 
     const USender = notifications?.filter((sender) => sender.senderType === 'U')
-    console.log(USender, 'senderU')
+   
 
     const SenderTFilter = (selectedOptv) => {
 
-        console.log(selectedOptv, 'senderSel')
-
         if (selectedOptv === 'U') {
             const USender = notifications?.filter((sender) => sender.senderType === 'U')
-            console.log(USender, 'senderUni')
+            
             setFilteredNtf(USender);
         }
         else if (selectedOptv === 'C') {
             const CSender = notifications?.filter((sender) => sender.senderType === 'C')
-            console.log(CSender, 'senderCorp')
+            
             setFilteredNtf(CSender);
         }
         // else if (selectedOptv === 'ALL') {
@@ -137,19 +135,13 @@ const Notifications = () => {
 
         setNftID([...nftID, ...filteredQ]);
 
-        console.log(myQ, 'NEWQmyq');
-        console.log(nftID, 'NEWQ');
-        console.log(notifications, 'NewNOTI');
-
         setSelectAll(!selectAll)
 
         if (selectAll === true) {
-            console.log(selectAll, 'NEWQsss')
+            
             setNftID([]);
         }
     };
-
-    console.log(selectAll, 'selectAll')
 
     const handleIndividualCheck = (notificationId) => {
         // const myQ = [...nftID, { notificationId: notificationInfo?.notificationID }];
@@ -163,10 +155,10 @@ const Notifications = () => {
         const updatedNftID = checked ? nftID.filter((item) => item.notificationId !== notificationId) : [...nftID, { notificationId }];
         setNftID(updatedNftID);
         setSelectAll(updatedNftID.length === notifications.length);
-        console.log(nftID, 'newFilter')
+       
 
     };
-    console.log(filterdNtf, 'nftID')
+
 
     const markAsRead = () => {
         dispatch(
@@ -194,7 +186,6 @@ const Notifications = () => {
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             const entry = entries[0];
-            console.log(entry, 'entryyy')
             if (entry.isIntersecting) {
                 setPage((prev) => prev + 0.5);
             }
@@ -211,7 +202,7 @@ const Notifications = () => {
     }
 
 
-console.log(page,'pageeees')
+
 
 
     return (

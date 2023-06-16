@@ -18,7 +18,7 @@ instance.interceptors.request.use(
     (request) => {
 
         const token = localStorage.getItem('token');
-        console.log(token,'tokkkkk')
+       
 
         if (token && request?.url !== 'https://countriesnow.space/api/v0.1/countries/states') {
             request.headers.Authorization = 'Bearer ' + token;

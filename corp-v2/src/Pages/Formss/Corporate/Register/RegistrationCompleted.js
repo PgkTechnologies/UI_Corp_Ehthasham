@@ -14,7 +14,7 @@ const RegistrationCompleted = () => {
         // history.replace('/')
     }, [])
 
-    console.log(data,'datatata')
+  
 
     return (
 

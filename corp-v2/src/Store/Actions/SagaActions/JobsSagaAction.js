@@ -68,7 +68,7 @@ export const actionDeleteJobByIdRequest = (payload) => {
 };
 
 export const actionPostCampusDriveJobRequestSaga = (payload) => {
-    console.log("1")
+  
   return {
     type: ACTION_POST_CORPORATE_JOBS_NEW,
     payload: payload,
