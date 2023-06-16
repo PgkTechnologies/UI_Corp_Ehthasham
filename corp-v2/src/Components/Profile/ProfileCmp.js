@@ -27,14 +27,14 @@ const ProfileCmp = (props) => {
             type="text"
             multiline
             minRows={4}
-            name="universityProfile"
+            name="corporateProfile"
             variant="filled"
             style={{ width: "100%", marginBottom: "15px" }}
             required={true}
             onChange={props?.onChange}
             value={
-              props?.profileData?.universityProfile
-                ? props?.profileData?.universityProfile
+              props?.profileData?.corporateProfile
+                ? props?.profileData?.corporateProfile
                 : ""
             }
           />
@@ -55,7 +55,7 @@ const ProfileCmp = (props) => {
             required
           />
           <p className="attach-inp_label">
-            {props?.profileData?.attachmentName}
+            {props?.profileData?.attachmentName !== undefined ? props?.profileData?.attachmentName : '' }
           </p>
         </div>
       </div>

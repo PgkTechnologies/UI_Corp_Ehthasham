@@ -41,13 +41,17 @@ const SideBar = () => {
     //   location.pathname.includes("/student-verification")
     // ) {
     //   setMenuType("StudentVerification");
-    // } else if (location.pathname.includes("/requests")) {
-    //   setMenuType("Requests");
-    // } else if (location.pathname.includes("/subscriptions")) {
-    //   setMenuType("Subscriptions");
-    // } else if (location.pathname.includes("/analytics")) {
-    //   setMenuType("Analytics");
-    // } else if (location.pathname.includes("/support")) {
+    // } 
+    else if (location.pathname.includes("/requests")) {
+      setMenuType("Requests");
+    } 
+    else if (location.pathname.includes("/subscription")) {
+      setMenuType("Subscription");
+    } 
+    else if (location.pathname.includes("/analytics")) {
+      setMenuType("Analytics");
+    } 
+    // else if (location.pathname.includes("/support")) {
     //   setMenuType("Support");
     // } else if (location.pathname.includes("/jobs")) {
     //   setMenuType("Jobs");
@@ -93,7 +97,6 @@ const SideBar = () => {
         <NavLink
           to="/profile"
           style={{ textDecoration: "none" }}
-        //activeClassName
         >
           <div
             className="menu"
@@ -103,9 +106,6 @@ const SideBar = () => {
           >
             <div
               className={
-                // menuType === "Dashboard"
-                //   ? "col-4 icon-box-body"
-                //   :
                 "col-12 icon-box-body"
               }
             >
@@ -157,14 +157,14 @@ const SideBar = () => {
           </div>
         </NavLink>
         <NavLink
-          to="/student-verification"
+          to="/OnCampusDrive"
           style={{ textDecoration: "none" }}
         //activeClassName
         >
           <div
             className="menu"
             onClick={() => {
-              setMenuType("StudentVerification");
+              setMenuType("OnCampusDrive");
             }}
           >
             <div
@@ -177,20 +177,47 @@ const SideBar = () => {
             >
               <div
                 className={
-                  menuType === "StudentVerification"
+                  menuType === "OnCampusDrive"
                     ? "icon-box-selected"
                     : "icon-box"
                 }
               >
                 <Badge>
                   <Tooltip
-                    title="Student Verication"
+                    title="ON-Campus Drive"
                     arrow
                     placement="left-start"
                   >
                     <SchoolRoundedIcon />
                   </Tooltip>
                 </Badge>
+              </div>
+            </div>
+          </div>
+        </NavLink>
+        <NavLink
+          to="/offCampus"
+          style={{ textDecoration: "none" }}
+        >
+          <div
+            className="menu"
+            onClick={() => {
+              setMenuType("offCampusDrive");
+            }}
+          >
+            <div
+              className={
+                "col-12 icon-box-body"
+              }
+            >
+              <div
+                className={
+                  menuType === "offCampusDrive" ? "icon-box-selected" : "icon-box"
+                }
+              >
+                <Tooltip title="OFF-Campus Drive" arrow placement="left-start">
+                  <WorkIcon />
+                </Tooltip>
               </div>
             </div>
           </div>
@@ -228,39 +255,35 @@ const SideBar = () => {
             </div>
           </div>
         </NavLink>
-        <NavLink
-          to="/jobs"
+        {/* <NavLink
+          to="/offCampus"
           style={{ textDecoration: "none" }}
-        //activeClassName
         >
           <div
             className="menu"
             onClick={() => {
-              setMenuType("Jobs");
+              setMenuType("offCampusDrive");
             }}
           >
             <div
               className={
-                // menuType === "Dashboard"
-                //   ? "col-4 icon-box-body"
-                //   :
                 "col-12 icon-box-body"
               }
             >
               <div
                 className={
-                  menuType === "Jobs" ? "icon-box-selected" : "icon-box"
+                  menuType === "offCampusDrive" ? "icon-box-selected" : "icon-box"
                 }
               >
-                <Tooltip title="Jobs" arrow placement="left-start">
+                <Tooltip title="OFF Campus Drive" arrow placement="left-start">
                   <WorkIcon />
                 </Tooltip>
               </div>
             </div>
           </div>
-        </NavLink>
+        </NavLink> */}
         <NavLink
-          to="/subscriptions"
+          to="/subscription"
           style={{ textDecoration: "none" }}
         //activeClassName
         >

@@ -1,6 +1,7 @@
 import React from "react";
 
 
+
 const Login = React.lazy(() => import("./Pages/Formss/Corporate/Login"));
 
 const Register = React.lazy(() =>
@@ -46,7 +47,7 @@ const RegistrationCompleted = React.lazy(() =>
 // );
 
 const Dashboard = React.lazy(() => import("./Pages/DashBoard/Dashboard"));
- const Profile = React.lazy(() => import("./Pages/Profile/Profile"));
+ const Profile = React.lazy(() => import("./Pages/Profile/ProfileMain"));
 
 
 // const HiringCriteria = React.lazy(() =>
@@ -69,9 +70,10 @@ const Dashboard = React.lazy(() => import("./Pages/DashBoard/Dashboard"));
 // const PublishHistory = React.lazy(() =>
 //   import("./Pages/Dashboard/Publish/PublishHistory/PublishHistory")
 // );
-// const SubscriptionHistory = React.lazy(() =>
-//   import("./Pages/Dashboard/Subscribe/SubscriptionHistory/SubscriptionHistory")
-// );
+
+const Subscription = React.lazy(() =>
+  import("./Pages/Subscribe/Subscription")
+);
 // const NewUniversity = React.lazy(() =>
 //   import("./Pages/Dashboard/Subscribe/NewUniversity/NewUniversity")
 // );
@@ -81,8 +83,8 @@ const Dashboard = React.lazy(() => import("./Pages/DashBoard/Dashboard"));
 // const Notifications = React.lazy(() =>
 //   import("./Pages/Dashboard/Notifications/Notifications")
 // );
-// const Analytics = React.lazy(() => import("./Pages/Dashboard/Analytics/Analytics"));
-// const Requests = React.lazy(() => import("./Pages/Dashboard/Requests/Requests"));
+const Analytics = React.lazy(() => import("./Pages/Analytics/Analytics"));
+const Requests = React.lazy(() => import("./Pages/Requests/Requests"));
 // const CampusDriveList = React.lazy(() => import("./Pages/Dashboard/CampusDrive/CampusDriveList"));
 // const CampusDrive = React.lazy(() => import("./Pages/Dashboard/CampusDrive/CampusDrive"));
 // const DefineJobs = React.lazy(() => import("./Pages/Dashboard/CampusDrive/DefineJobs/DefineJobs"));
@@ -323,14 +325,14 @@ const routes = [
 //     name: "University",
 //     component: <UniversityStudents/>,
 //   },
-//   {
-//     path: "/dashboard/subscribe/subscriptionhistory",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "SubscriptionHistory",
-//     component: <SubscriptionHistory/>,
-//   },
+  {
+    path: "/subscription",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "SubscriptionHistory",
+    component: <Subscription/>,
+  },
 //   {
 //     path: "/dashboard/notifications",
 //     strict: true,
@@ -339,14 +341,14 @@ const routes = [
 //     name: "Notifications",
 //     component: <Notifications/>,
 //   },
-//   {
-//     path: "/dashboard/requests",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Requests",
-//     component: <Requests/>,
-//   },
+  {
+    path: "/requests",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "Requests",
+    component: <Requests/>,
+  },
 //   {
 //     path: "/dashboard/campus-drive",
 //     strict: true,
@@ -427,14 +429,14 @@ const routes = [
 //     name: "OffCampusInterviews",
 //     component: <OffCampusInterviews/>,
 //   },
-//   {
-//     path: "/dashboard/analytics",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Analytics",
-//     component: <Analytics/>,
-//   },
+  {
+    path: "/analytics",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "Analytics",
+    component: <Analytics/>,
+  },
 //   {
 //     path: "/dashboard/transactionhistory",
 //     strict: true,

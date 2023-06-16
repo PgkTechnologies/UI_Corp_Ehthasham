@@ -77,9 +77,9 @@ const Profile = () => {
                                     }}
                                 >
                                     <p style={{ fontSize: "22px", fontWeight: "bold" }}>
-                                        {GetProfileData?.universityName} TOPG REGISTERED
+                                        {GetProfileData?.corporateName} 
                                     </p>
-                                    <p>{GetProfileData?.yearOfEstablishment} %$%@2001</p>
+                                    <p>{GetProfileData?.yearOfEstablishment}</p>
                                 </div>
                             </div>
                             <div className="col-lg-5 col-sm-6 d-flex align-items-center justify-content-end">
