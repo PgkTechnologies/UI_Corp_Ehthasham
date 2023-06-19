@@ -326,14 +326,14 @@ const routes = [
 //     name: "University",
 //     component: <UniversityStudents/>,
 //   },
-//   {
-//     path: "/dashboard/subscribe/subscriptionhistory",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "SubscriptionHistory",
-//     component: <SubscriptionHistory/>,
-//   },
+  {
+    path: "subscription",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "Subscription",
+    component: <Subscription/>,
+  },
   {
     path: "/notifications",
     strict: true,

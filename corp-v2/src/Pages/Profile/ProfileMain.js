@@ -25,7 +25,7 @@ const Profile = () => {
         }
     }
 
-    const handleTabChange = (Currentvalue) => {
+    const handleTabChange = (event , Currentvalue) => {
         setTabValue(Currentvalue);
     }
 
