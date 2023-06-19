@@ -77,7 +77,7 @@ const Register = () => {
     }, [errors, showError]);
 
     const dropdowns = (data) => {
-        console.log(data, 'dropdownss')
+       
         setLookUpData(data);
     }
 
@@ -128,7 +128,7 @@ const Register = () => {
     //     }
     //     return new File([u8arr], filename, { type: type });
     // }
-console.log(corporatePrimaryData.referral,'referallll')
+
     const handleSubmit = (event) => {
         event.preventDefault();
         if (corporatePrimaryData.referral.length > 0) {

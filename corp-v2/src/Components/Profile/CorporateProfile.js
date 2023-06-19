@@ -120,7 +120,7 @@ const CorporateProfile = () => {
             {apiStatus ? <PreLoader /> : null}
             <div className="modal-main">
                 <p className="modal-title"> Corporate Profile </p>
-                {profile.publishedFlag ? (
+                {profile?.publishedFlag ? (
                     <p
                         className="sub-title"
                         style={{

@@ -18,7 +18,7 @@ const InvoicePdf = (props) => {
   const { paymentModal } = props;
   const { paymentData } = props;
   const { tokensPurchase } = props;
-  console.log(props, "hereeedddd");
+ 
   const gst = "18%";
 
   // const corpgstn = localStorage.getItem("corpGST");
@@ -26,7 +26,7 @@ const InvoicePdf = (props) => {
   //Total Amount
 
   const totalAmount = data[0]?.Total + '.00';
-  console.log(totalAmount, 'total amountttttttt');
+
 
   //Base
   const actualAmount = (totalAmount / 1.18).toFixed(2);
@@ -83,7 +83,7 @@ const InvoicePdf = (props) => {
     wordsTax[i] = wordsTax[i][0].toUpperCase() + wordsTax[i].substr(1);
   }
 
-  console.log(words.join(" "), "SPLIT");
+
   const rupees =
     totalAmount.split(".").length > 1 ? totalAmount.split(".")[1] : "0";
   const paise = gstAll.split(".").length > 1 ? gstAll.split(".")[1] : "0";

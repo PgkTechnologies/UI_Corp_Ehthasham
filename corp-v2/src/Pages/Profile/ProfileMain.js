@@ -41,7 +41,7 @@ const Profile = () => {
 
     }, [GetProfileData]);
 
-    console.log(GetProfileData, 'Profile Reducer')
+
 
     return (
         <>

@@ -155,7 +155,6 @@ const CorporateContactPersonnel = () => {
 
     const handleChange = (event) => {
         const { name, value, error } = event.target;
-        console.log(name, value, 'RADIO')
 
 
         if (["primaryContactPhone", "secondaryContactPhone"].includes(name)) {
@@ -342,7 +341,6 @@ const CorporateContactPersonnel = () => {
     // console.log(contactPersonnel.primaryContactPhone, 'passswordcontactphone')
     // console.log(contactPersonnel.gstn, 'passswordgstn')
     // console.log(contactPersonnel.password, 'passsword')
-    console.log(repeatPassword, 'passswordrepaeta')
 
 
     const trimNumber = (number) => {
@@ -361,7 +359,7 @@ const CorporateContactPersonnel = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log(event ,'finall Dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+      
 
         const selectedName = "Corporate";
         const {
@@ -375,7 +373,6 @@ const CorporateContactPersonnel = () => {
         } = contactPersonnel;
          
 
-        console.log(contactPersonnel, 'CCCCP')
         if (
             primaryContactFirstName &&
             primaryContactLastName &&
@@ -389,7 +386,7 @@ const CorporateContactPersonnel = () => {
             
 
             const finalData = { ...storeData, ...contactPersonnel };
-            console.log(finalData, ' CORP FINALE ')
+           
             
 
             finalData.corporateHQAddressPhone =
@@ -427,11 +424,10 @@ const CorporateContactPersonnel = () => {
             // await dispatch(SignupAction(finalData, history));
             // history('/register/authentication');
             if (selectedName === "Corporate") {
-                console.log(selectedName,'NAMEEEE AAGAYA')
+            
                 await dispatch(SaveCoprorateData(contactPersonnel, 3));
                 await dispatch(SignupAction(finalData, history, selectedName));
                 setshowError(false);
-                console.log(history,' FIRED API')
 
             } else if (selectedName === "University") {
                 let iv = CryptoJS.enc.Utf8.parse("1234567812345678");

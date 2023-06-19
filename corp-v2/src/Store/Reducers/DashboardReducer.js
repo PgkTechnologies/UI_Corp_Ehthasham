@@ -13,7 +13,7 @@ const INITIAL = {
 }
 
 const DashboardReducer = (state = INITIAL, action) => {
-    console.log(action.type , 'DASH REDUCER');
+    
     switch (action.type) {
         // case actionTypes.BALANCE:
         //     return { ...state, balance: action.payload }

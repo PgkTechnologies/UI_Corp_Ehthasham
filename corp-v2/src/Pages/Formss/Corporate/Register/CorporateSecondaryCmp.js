@@ -10,7 +10,7 @@ const CorporateSecondaryCmp = (props) => {
         ? props.countryCodes?.map((item, i) => ({ value: item.value, label: item.label })) : (null);
     const history = useNavigate();
     const apiStatus = useSelector(state => state.DashboardReducer.apiStatus);
-    console.log(props.stateList, 'codesss')
+    
     return (
         <form onSubmit={props?.handleSubmit} className="d-flex justify-content-center align-items-center" style={{ flexDirection: 'column' }}>
             <div className="row cmp-register-main">

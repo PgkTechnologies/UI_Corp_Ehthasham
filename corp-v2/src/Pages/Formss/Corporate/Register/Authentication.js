@@ -41,8 +41,6 @@ const Authentication = () => {
     const handleChange = (event) => {
         const {name, value, errorMessage} = event.target;
 
-        console.log(name,value ,'handlechange')
-
         // setOtp(preState => ({
         //     ...preState,
         //     [name]: value

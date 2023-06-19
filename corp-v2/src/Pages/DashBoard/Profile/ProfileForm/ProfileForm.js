@@ -3,7 +3,6 @@ import PgkTextField from "../../../../Components/FormFields/PgkTextField";
 import Checkbox from "@material-ui/core/Checkbox";
 
 const ProfileForm = (props) => {
-  console.log(props?.profileData?.attribute7, "PROFILE");
 
   const openFileInBrowser = (data, fileName) => {
     if (data.length < 250) {
@@ -48,7 +47,6 @@ const ProfileForm = (props) => {
     }
   };
 
-  console.log(props?.profileData, "URL");
 
   return (
     <div className="profile-box">

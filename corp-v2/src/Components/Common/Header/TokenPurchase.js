@@ -34,7 +34,7 @@ const TokenPurchase = (props) => {
     props.handleClose();
     if (!amount) return;
     localStorage.setItem("tokensPurchase", amount);
-    history("/payment");
+    history("/register/payment");
   };
 
   useEffect(() => {
