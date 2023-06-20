@@ -1,9 +1,81 @@
-import React from "react";
-import { TextField } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import {
+  TextField,
+  InputLabel,
+  Select,
+  FormControl,
+  MenuItem,
+} from "@material-ui/core";
+import moment from "moment";
+import { actionGetDependencyLookUpsSagaAction } from "../../Store/Actions/SagaActions/CommonSagaActions";
+import { useDispatch } from "react-redux";
 
 const BasicCmp = (props) => {
+
+  const dispatch = useDispatch();
+  const [corporateTypes, setCorporateTypes] = useState([]);
+  const [corporateCategories, setCorporateCategories] = useState([]);
+  const [corporateIndustries, setCorporateIndustries] = useState([]);
+
+  const onGetDependencyLookUpsResponse = (response) => {
+    console.log(response,'ressppiii')
+    setCorporateTypes(
+      response?.corporateType?.length
+        ? response.corporateType.map((item) => {
+          if (item?.corporateTypeCode) {
+            return {
+              value: item.corporateTypeCode,
+              label: item.corporateTypeName,
+            };
+          }
+        })
+        : []
+    );
+
+    setCorporateCategories(
+      response?.corporateCategory?.length
+        ? response.corporateCategory.map((item) => {
+          if (item?.categoryName) {
+            return {
+              value: item.categoryCode,
+              label: item.categoryName,
+            };
+          }
+        })
+        : []
+    );
+
+    setCorporateIndustries(
+      response?.corporateIndustry?.length
+        ? response.corporateIndustry.map((item) => {
+          if (item?.industryName) {
+            return {
+              value: item.industryCode,
+              label: item.industryName,
+            };
+          }
+        })
+        : []
+    );
+  };
+
+
+  useEffect(() => {
+    dispatch(
+      actionGetDependencyLookUpsSagaAction({
+        apiPayloadRequest: [
+          "corporateType",
+          "corporateCategory",
+          "corporateIndustry",
+        ],
+        callback: onGetDependencyLookUpsResponse,
+      })
+    );
+  }, []);
+
+ 
   //console.log(props, "BASIC")
-  localStorage.setItem('tpID', props?.profileData?.stakeholderID);
+  localStorage.setItem('tpID', props?.profileData?.stakeholderID?.value);
   return (
     <div className="cmp-main">
       <p className="cmp-head">Basic</p>
@@ -12,12 +84,12 @@ const BasicCmp = (props) => {
           <TextField
             label="Stakeholder ID"
             type="text"
-            name="stackholderId"
+            name="stakeholderID"
             variant="filled"
             style={{ width: "100%", marginBottom: "15px" }}
             value={
               props?.profileData?.stakeholderID
-                ? props?.profileData?.stakeholderID
+                ? props?.profileData?.stakeholderID?.value
                 : ""
             }
             required={true}
@@ -37,27 +109,27 @@ const BasicCmp = (props) => {
               shrink: true,
             }}
             value={
-              props?.profileData?.dateOfJoining
-                ? new Date(props?.profileData?.dateOfJoining)
-                  .toISOString()
-                  .substring(0, 10)
-                : undefined
+              props?.profileInfo?.dateOfJoining ?  moment(props?.profileInfo?.dateOfJoining).format("DD-MM-YYYY")
+              : "-"
             }
           />
         </div>
+
         <div className="col-3">
           <TextField
             label="Corporate Sector"
             type="text"
-            name="CorporateSector"
+            name="corporateType"
             variant="filled"
             style={{ width: "100%", marginBottom: "15px" }}
+            onChange={props?.onChange}
             InputLabelProps={{
               shrink: true
             }}
             required={true}
             disabled={true}
-            value={props?.profileData?.corporateType}
+            value={props?.profileData?.corporateType?.value ? props?.profileData?.corporateType?.value : ''}
+            
           />
         </div>
         <div className="col-3">
@@ -67,10 +139,13 @@ const BasicCmp = (props) => {
             name="yearOfEstablishment"
             variant="filled"
             style={{ width: "100%", marginBottom: "15px" }}
+            onChange={props?.onChange}
             InputLabelProps={{
               shrink: true
             }}
-            value={props?.profileData?.yearOfEstablishment}
+            value={ props?.profileData?.yearOfEstablishment?.value !== undefined
+                    ? parseInt(props?.profileData?.yearOfEstablishment?.value)
+                    : ""}
             required={true}
             disabled={true}
           />
@@ -87,7 +162,7 @@ const BasicCmp = (props) => {
             }}
             required={true}
             disabled={true}
-            value={props?.profileData?.corporateName}
+            value={props?.profileInfo?.corporateName}
           />
         </div>
         <div className="col-6">
@@ -101,7 +176,8 @@ const BasicCmp = (props) => {
               shrink: true
             }}
             required={true}
-            value={props?.profileData?.CIN }
+            value={props?.profileInfo?.CIN }
+            onChange = {props?.onChange}
             disabled={true}
           />
         </div>
@@ -117,7 +193,7 @@ const BasicCmp = (props) => {
           }}
             required={true}
             disabled={true}
-            value={props?.profileData?.corporateCategory}
+            value={props?.profileInfo?.corporateCategory}
           />
         </div>
         <div className="col-6">
@@ -132,10 +208,10 @@ const BasicCmp = (props) => {
           }}
             required={true}
             disabled={true}
-            value={props?.profileData?.corporateIndustry}
+            value={props?.profileInfo?.corporateIndustry}
           />
         </div>
-        <div className="col-6">
+        {/* <div className="col-6">
           <TextField
             label="Email"
             type="text"
@@ -149,8 +225,8 @@ const BasicCmp = (props) => {
             disabled={true}
             value={props?.profileData?.primaryContactEmail}
           />
-        </div>
-        <div className="col-6">
+        </div> */}
+        <div className="col-6" style={{width:'100%'}}>
           <TextField
             label="GSTN"
             type="text"
@@ -162,7 +238,7 @@ const BasicCmp = (props) => {
             }}
             required={true}
             disabled={true}
-            value={props?.profileData?.gstn }
+            value={props?.profileInfo?.gstn }
           />
         </div>
       </div>
