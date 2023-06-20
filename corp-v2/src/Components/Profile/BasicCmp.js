@@ -16,17 +16,17 @@ const BasicCmp = (props) => {
   const [corporateTypes, setCorporateTypes] = useState([]);
   const [corporateCategories, setCorporateCategories] = useState([]);
   const [corporateIndustries, setCorporateIndustries] = useState([]);
+  const [corpSector , setCorpSector] = useState([]);
+  const [corpCategory , setCorpCategory] = useState([]);
+  const [corpIndustry , setCorpIndustry] = useState([]);
 
   const onGetDependencyLookUpsResponse = (response) => {
     console.log(response,'ressppiii')
     setCorporateTypes(
       response?.corporateType?.length
-        ? response.corporateType.map((item) => {
-          if (item?.corporateTypeCode) {
-            return {
-              value: item.corporateTypeCode,
-              label: item.corporateTypeName,
-            };
+        ? response?.corporateType?.map((item) => {
+          if (item?.corporateTypeCode === props?.profileData?.corporateType?.value) {
+            setCorpSector(item?.corporateTypeName)
           }
         })
         : []
@@ -34,12 +34,9 @@ const BasicCmp = (props) => {
 
     setCorporateCategories(
       response?.corporateCategory?.length
-        ? response.corporateCategory.map((item) => {
-          if (item?.categoryName) {
-            return {
-              value: item.categoryCode,
-              label: item.categoryName,
-            };
+        ? response?.corporateCategory?.map((item) => {
+          if (item?.categoryCode === props?.profileInfo?.corporateCategory) {
+            setCorpCategory(item?.categoryName) 
           }
         })
         : []
@@ -47,12 +44,9 @@ const BasicCmp = (props) => {
 
     setCorporateIndustries(
       response?.corporateIndustry?.length
-        ? response.corporateIndustry.map((item) => {
-          if (item?.industryName) {
-            return {
-              value: item.industryCode,
-              label: item.industryName,
-            };
+        ? response?.corporateIndustry?.map((item) => {
+          if (item?.industryCode === props?.profileInfo?.corporateIndustry) {
+            setCorpIndustry(item?.industryName)
           }
         })
         : []
@@ -128,7 +122,7 @@ const BasicCmp = (props) => {
             }}
             required={true}
             disabled={true}
-            value={props?.profileData?.corporateType?.value ? props?.profileData?.corporateType?.value : ''}
+            value={props?.profileData?.corporateType?.value ? corpSector : ''}
             
           />
         </div>
@@ -193,7 +187,7 @@ const BasicCmp = (props) => {
           }}
             required={true}
             disabled={true}
-            value={props?.profileInfo?.corporateCategory}
+            value={props?.profileInfo?.corporateCategory ? corpCategory : ''}
           />
         </div>
         <div className="col-6">
@@ -208,7 +202,7 @@ const BasicCmp = (props) => {
           }}
             required={true}
             disabled={true}
-            value={props?.profileInfo?.corporateIndustry}
+            value={props?.profileInfo?.corporateIndustry ? corpIndustry : ''}
           />
         </div>
         {/* <div className="col-6">

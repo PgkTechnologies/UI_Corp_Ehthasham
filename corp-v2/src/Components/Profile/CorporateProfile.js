@@ -12,7 +12,10 @@ import PasswordForm from "./Password";
 import { actionGetCitiesByStateNameRequest, actionGetCountryCodesSagaAction, actionGetS3AttachRequest } from "../../Store/Actions/SagaActions/CommonSagaActions";
 import moment from "moment";
 import CryptoJS from "crypto-js";
-import { actionPatchCorporateProfileSagaAction } from "../../Store/Actions/SagaActions/CorporateProfileSagaActions";
+import { actionPatchCorporateProfileSagaAction, actionPostPublishCorporateProfileSagaAction } from "../../Store/Actions/SagaActions/CorporateProfileSagaActions";
+import Publish from "../../Pages/DashBoard/Publish/Publish";
+import { toast } from "react-toastify";
+
 
 
 const requiredFields = [
@@ -78,7 +81,7 @@ const formFields = [
 
 
 
-const CorporateProfile = () => {
+const CorporateProfile = ({setShowPublish ,showPublish}) => {
 
     // const dispatch = useDispatch();
     const handleShow = () => setShowTermsAndConditions(true);
@@ -182,7 +185,9 @@ const CorporateProfile = () => {
 
     // console.log(profileInfo, 'REDUCER PRO');
 
-
+    const initialData = {  
+        universityProfile: false,
+      };
 
     const [profile, setProfile] = useState();
     const [checkStatus, setCheckStatus] = useState(false);
@@ -194,8 +199,13 @@ const CorporateProfile = () => {
         attachmentName: undefined,
         attachmentError: undefined,
     });
-    const [isTermsAndConditionsChecked, setIsTermsAndConditionsChecked] =
-        useState(true);
+    const [isTermsAndConditionsChecked, setIsTermsAndConditionsChecked] = useState(true);
+
+    
+
+    const [postPublishProfile, setPostPublishProfile] = useState(initialData);
+
+    const [inputError, setInputError] = useState("");
 
     const [initHqAddress, setInitHqAddress] = useState({
         states: false,
@@ -776,6 +786,19 @@ const CorporateProfile = () => {
         }
     };
 
+    const addPublishProfileForm=(data) => {
+    dispatch(
+        actionPostPublishCorporateProfileSagaAction({
+          apiPayloadRequest: data,
+          callback: getResponse,
+        })
+      );
+    }
+
+    const getResponse=(data) => {
+  console.log(data,'getresponse')
+    }
+
     const isFormValid = () => {
         if (
             (profile &&
@@ -791,9 +814,52 @@ const CorporateProfile = () => {
         }
     };
 
-    console.log(profile, "TOT");
+    const publishData = () => {
+        const publishData = {};
+    
+        if (postPublishProfile.universityProfile) {
+          publishData.profile = profileInfo ;
+        }
+        
+    
+        const finalModel = {
+        //   infoPublished: false,
+          profilePublished: postPublishProfile.universityProfile,         
+        //   otherPublished: false,
+         
+        };
+        addPublishProfileForm(finalModel);
+        setShowPublish(false);
+        toast.success('Data published Successfully')
+      };
+    
+
+
+
+    const handleChange = (event) => {
+        const { name, checked } = event.target;
+        setPostPublishProfile((preState) => ({
+          ...preState,
+          [name]: checked,
+        }));
+        setInputError("");
+      };
+
+
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        if (postPublishProfile.universityProfile ) {
+          setInputError("");
+          publishData();
+        } else {
+          setInputError("Select atleast one profile to publish");
+        }
+      };
+
+
+    console.log(profile,profileInfo, "TOT");
     console.log(profile?.companyProfile, "direc corp msu");
-    localStorage.setItem("stakeholderID", profileInfo.stakeholderID);
+   
 
 
 
@@ -915,6 +981,20 @@ const CorporateProfile = () => {
                     </button>
                 </div>
             </div>
+
+            {showPublish ? (
+            <Publish
+              showPublish={showPublish}
+              handleClose={() => {
+                setShowPublish(!showPublish);
+              }}
+              allProfiles={profileInfo}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+              inputError={inputError}
+            />
+          ) : null}
+
 
             <Modal show={showTermsAndConditions} onHide={handleClose}>
                 <Modal.Header closeButton>

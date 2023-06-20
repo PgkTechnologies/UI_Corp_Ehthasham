@@ -11,9 +11,10 @@ const Profile = () => {
     const dispatch = useDispatch();
     const [allData, setAllData] = useState([]);
     const [showAnnouncement, setShowAnnouncement] = useState(false);
-    const [showPublish, setShowPublish] = useState(false);
+   
     const [tabValue, setTabValue] = useState(0);
     const [profileCheck, setProfileCheck] = useState(null);
+    const [showPublish, setShowPublish] = useState(false);
 
     const getProfilePublishData = () => {
 
@@ -126,6 +127,9 @@ const Profile = () => {
                                 <CorporateProfile
                                     allData={allData}
                                     wholeProfile={allData?.profile}
+                                    setShowPublish = {setShowPublish}
+                                    showPublish={showPublish}
+
                                 />
                             )
                         }
