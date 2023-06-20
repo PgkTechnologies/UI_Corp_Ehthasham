@@ -14,12 +14,12 @@ const PasswordForm = (props) => {
                                 label="Old Password"
                                 type="password"
                                 name="oldPassword"
-                                onChange={props?.handlePasswordChange}
-                                value={props?.oldPassword}
+                                onChange={props?.onChange}
+                                value={props?.profileData?.oldPassword}
                                 variant="filled"
                                 margin="dense"
                                 style={{ width: "100%" }}
-                                required={props?.password?.length > 0 || props?.reenterPassword?.length > 0 ? true : false}
+                                required={props?.profileData?.password?.length > 0 || props?.profileData?.reenterPassword?.length > 0 ? true : false}
                             />
                         </div>
                     </div>
@@ -29,14 +29,14 @@ const PasswordForm = (props) => {
                                 label="New Password"
                                 type="password"
                                 name="password"
-                                onChange={props?.handlePasswordChange}
-                                value={props?.password}
-                                helperText={props?.errors?.passwordErr}
-                                error={props?.errors?.passwordErr ? true : false}
+                                onChange={props?.onChange}
+                                value={props?.profileData?.password}
+                                helperText={props?.passwordErr}
+                                error={props?.passwordErr ? true : false}
                                 variant="filled"
                                 margin="dense"
                                 style={{ width: "100%" }}
-                                required={props?.oldPassword?.length > 0 ? true : false}
+                                required={props?.profileData?.oldPassword?.length > 0 ? true : false}
                             />
                         </div>
                     </div>
@@ -46,14 +46,14 @@ const PasswordForm = (props) => {
                                 label="Re-Enter New Password"
                                 type="password"
                                 name="reenterPassword"
-                                onChange={props?.handlePasswordChange}
-                                value={props?.reenterPassword}
-                                helperText={props?.errors?.passwordErr}
-                                error={props?.errors?.passwordErr ? true : false}
+                                onChange={props?.onChange}
+                                value={props?.profileData?.reenterPassword}
+                                helperText={props?.passwordErr}
+                                error={props?.passwordErr ? true : false}
                                 variant="filled"
                                 margin="dense"
                                 style={{ width: "100%" }}
-                                required={props?.password?.length > 0 ? true : false}
+                                required={props?.profileData?.password?.length > 0 ? true : false}
                             />
                         </div>
                     </div>

@@ -9,15 +9,22 @@ import {
 import { useSelector } from "react-redux";
 import PreLoader from "../../utils/PreLoader";
 
+
 const AddressCmp = (props) => {
-  const { profileData, countries, cityListHQ, onChange, cityListLocal } = props;
+  const { profileData, countries, cityListHQ, onChange, cityListLocal,toggleCorporateHeadQuarters } = props;
   const [age, setAge] = React.useState("");
   const apiStatus = useSelector((state) => state.loginReducer?.apiStatus);
   const handleChange = (event) => {
     setAge(event.target.value);
   };
 
-  //console.log(profileData?.corporateHQAddressCountry, countries, cityListLocal, "CHECK");
+  console.log(props?.profileData?.corporateHQAddressCity?.value,cityListLocal, "CHECK");
+  console.log(countries,'oiiii')
+    // console.log(
+  // const model = 
+  //   props?.hqStates?.map((item, i) => console.log(item,'temii'))
+
+  // console.log(model,'check88')
 
   return (
     <>
@@ -36,12 +43,14 @@ const AddressCmp = (props) => {
                 name="corporateHQAddressLine1"
                 variant="filled"
                 helperText={props?.errors?.hAddressLine1}
-                error={props?.errors?.hAddressLine1 ? true : false}
+                // error={props?.errors?.hAddressLine1 ? true : false}
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
-                onChange={onChange}
+                onChange={props?.onChange}
                 value={
-                  profileData?.corporateHQAddressLine1 ? profileData?.corporateHQAddressLine1 : '' }
+                  props?.profileData?.corporateHQAddressLine1?.value
+                    ? props?.profileData?.corporateHQAddressLine1?.value
+                    : ""}
               />
             </div>
             <div className="col-12">
@@ -52,9 +61,11 @@ const AddressCmp = (props) => {
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
-                onChange={onChange}
+                onChange={props?.onChange}
                 value={
-                  profileData?.corporateHQAddressLine2 ?  profileData?.corporateHQAddressLine2 : ''  }
+                  props?.profileData?.corporateHQAddressLine2?.value
+                    ? props?.profileData?.corporateHQAddressLine2?.value
+                    : "" }
               />
             </div>
             <div className="col-6">
@@ -70,13 +81,14 @@ const AddressCmp = (props) => {
                   id="demo-simple-select-filled17"
                   name="corporateHQAddressCountry"
                   required
-                  value={profileData?.corporateHQAddressCountry ? profileData?.corporateHQAddressCountry :'' }
-                  onChange={onChange}
+                  value={props?.profileData?.corporateHQAddressCountry ? props?.profileData?.corporateHQAddressCountry?.value :'' }
+                  onChange={props?.onChange}
+                  disabled
                 >
                   {countries?.length > 0 ? (
-                    countries.map((item, i) => (
-                      <MenuItem key={i} value={item.name}>
-                        {item.name}
+                    countries?.map((item, i) => (
+                      <MenuItem key={i} value={item?.value}>
+                        {item?.value}
                       </MenuItem>
                     ))
                   ) : (
@@ -99,18 +111,15 @@ const AddressCmp = (props) => {
                   name="corporateHQAddressState"
                   required
                   value={
-                    profileData?.corporateHQAddressState ? profileData?.corporateHQAddressState : ''  }
-                  onChange={onChange}
+                    props?.profileData?.corporateHQAddressState ? props?.profileData?.corporateHQAddressState?.value : ''  }
+                  onChange={props?.onChange}
                 >
-                  {countries?.length > 0 ? (
-                    countries
-                      .filter(
-                        (x) =>
-                          x.name === profileData?.corporateHQAddressCountry
-                      )[0]
-                      ?.states?.map((item, i) => (
-                        <MenuItem key={i} value={item.name}>
-                          {item.name}
+                  {props?.hqStates?.length > 0 ? (
+                    props?.hqStates
+                      ?.map((item, i) => (
+                        <MenuItem key={i} value={item?.value}>
+                          {item?.value}
+                          
                         </MenuItem>
                       ))
                   ) : (
@@ -133,13 +142,13 @@ const AddressCmp = (props) => {
                   name="corporateHQAddressCity"
                   required
                   value={
-                    profileData?.corporateHQAddressCity ?  profileData?.corporateHQAddressCity : ''}
-                  onChange={onChange}
+                    props?.profileData?.corporateHQAddressCity ?  props?.profileData?.corporateHQAddressCity?.value : ''}
+                  onChange={props?.onChange}
                 >
-                  {cityListHQ?.length > 0 ? (
-                    cityListHQ.map((item, i) => (
-                      <MenuItem key={i} value={item}>
-                        {item}
+                  {props?.hqCities?.length > 0 ? (
+                    props?.hqCities?.map((item, i) => (
+                      <MenuItem key={i} value={item?.value}>
+                        {item?.value}
                       </MenuItem>
                     ))
                   ) : (
@@ -156,9 +165,9 @@ const AddressCmp = (props) => {
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
-                onChange={onChange}
+                onChange={props?.onChange}
                 value={
-                  profileData?.corporateHQAddressDistrict ? profileData?.corporateHQAddressDistrict : '' }
+                  props?.profileData?.corporateHQAddressDistrict ? props?.profileData?.corporateHQAddressDistrict?.value : '' }
               />
             </div>
             <div className="col-4">
@@ -169,9 +178,9 @@ const AddressCmp = (props) => {
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
-                onChange={onChange}
+                onChange={props?.onChange}
                 value={
-                  profileData?.corporateHQAddressZipCode ? profileData?.corporateHQAddressZipCode : ''}
+                  props?.profileData?.corporateHQAddressZipCode ? props?.profileData?.corporateHQAddressZipCode?.value : ''}
               />
             </div>
             <div className="col-12">
@@ -182,10 +191,10 @@ const AddressCmp = (props) => {
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
-                onChange={onChange}
+                onChange={props?.onChange}
                 value={
-                  profileData?.primaryContactPhone
-                    ? profileData?.primaryContactPhone
+                  props?.profileData?.primaryContactPhone
+                    ? props?.profileData?.primaryContactPhone?.value
                     : ""
                 }
               />
@@ -198,10 +207,10 @@ const AddressCmp = (props) => {
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
-                onChange={onChange}
+                onChange={props?.onChange}
                 value={
                   profileData?.corporateHQAddressEmail
-                    ? profileData?.corporateHQAddressEmail
+                    ? profileData?.corporateHQAddressEmail?.value
                     : ""
                 }
               />
@@ -239,10 +248,10 @@ const AddressCmp = (props) => {
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
-                onChange={onChange}
+                onChange={props?.onChange}
                 value={
                   profileData?.corporateLocalBranchAddressLine1
-                    ? profileData?.corporateLocalBranchAddressLine1
+                    ? profileData?.corporateLocalBranchAddressLine1?.value
                     : ""
                 }
               />
@@ -255,10 +264,10 @@ const AddressCmp = (props) => {
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
-                onChange={onChange}
+                onChange={props?.onChange}
                 value={
                   profileData?.corporateLocalBranchAddressLine2
-                    ? profileData?.corporateLocalBranchAddressLine2
+                    ? profileData?.corporateLocalBranchAddressLine2?.value
                     : ""
                 }
               />
@@ -278,15 +287,16 @@ const AddressCmp = (props) => {
                   required
                   value={
                     profileData?.corporateLocalBranchAddressCountry
-                      ? profileData?.corporateLocalBranchAddressCountry
+                      ? profileData?.corporateLocalBranchAddressCountry?.value
                       : ""
                   }
-                  onChange={onChange}
+                  onChange={props?.onChange}
+                  disabled
                 >
                   {countries?.length > 0 ? (
                     countries.map((item, i) => (
-                      <MenuItem key={i} value={item.name}>
-                        {item.name}
+                      <MenuItem key={i} value={item.value}>
+                        {item.value}
                       </MenuItem>
                     ))
                   ) : (
@@ -310,23 +320,17 @@ const AddressCmp = (props) => {
                   required
                   value={
                     profileData?.corporateLocalBranchAddressState
-                      ? profileData?.corporateLocalBranchAddressState
+                      ? profileData?.corporateLocalBranchAddressState?.value
                       : ""
                   }
-                  onChange={onChange}
+                  onChange={props?.onChange}
                 >
-                  {countries?.length > 0 ? (
-                    countries
-                      .filter(
-                        (x) =>
-                          x.name ===
-                          profileData?.corporateLocalBranchAddressCountry
-                      )[0]
-                      ?.states?.map((item, i) => (
-                        <MenuItem key={i} value={item.name}>
-                          {item.name}
-                        </MenuItem>
-                      ))
+                  {props?.hqStates?.length > 0 ? (
+                    props?.hqStates?.map((item, i) => (
+                      <MenuItem key={i} value={item?.value}>
+                        {item?.value}
+                      </MenuItem>
+                    ))
                   ) : (
                     <MenuItem></MenuItem>
                   )}
@@ -348,15 +352,15 @@ const AddressCmp = (props) => {
                   required
                   value={
                     profileData?.corporateLocalBranchAddressCity
-                      ? profileData?.corporateLocalBranchAddressCity
+                      ? profileData?.corporateLocalBranchAddressCity?.value
                       : ""
                   }
-                  onChange={onChange}
+                  onChange={props?.onChange}
                 >
-                  {cityListLocal?.length > 0 ? (
-                    cityListLocal.map((item, i) => (
-                      <MenuItem key={i} value={item}>
-                        {item}
+                  {props?.hqCities?.length > 0 ? (
+                    props?.hqCities?.map((item, i) => (
+                      <MenuItem key={i} value={item?.value}>
+                        {item?.value}
                       </MenuItem>
                     ))
                   ) : (
@@ -373,10 +377,10 @@ const AddressCmp = (props) => {
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
-                onChange={onChange}
+                onChange={props?.onChange}
                 value={
                   profileData?.corporateLocalBranchAddressDistrict
-                    ? profileData?.corporateLocalBranchAddressDistrict
+                    ? profileData?.corporateLocalBranchAddressDistrict?.value
                     : ""
                 }
               />
@@ -389,11 +393,10 @@ const AddressCmp = (props) => {
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
-                onChange={onChange}
+                onChange={props?.onChange}
                 value={
                   profileData?.corporateLocalBranchAddressZipCode
-                    ? profileData?.corporateLocalBranchAddressZipCode
-                    : ""
+                    ? profileData?.corporateLocalBranchAddressZipCode?.value                    : ""
                 }
               />
             </div>
@@ -405,10 +408,10 @@ const AddressCmp = (props) => {
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
-                onChange={onChange}
+                onChange={props?.onChange}
                 value={
                   profileData?.corporateLocalBranchAddressPhone
-                    ? profileData?.corporateLocalBranchAddressPhone
+                    ? profileData?.corporateLocalBranchAddressPhone?.value
                     : ""
                 }
               />
@@ -421,10 +424,10 @@ const AddressCmp = (props) => {
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
-                onChange={onChange}
+                onChange={props?.onChange}
                 value={
                   profileData?.corporateLocalBranchAddressEmail
-                    ? profileData?.corporateLocalBranchAddressEmail
+                    ? profileData?.corporateLocalBranchAddressEmail?.value
                     : ""
                 }
               />

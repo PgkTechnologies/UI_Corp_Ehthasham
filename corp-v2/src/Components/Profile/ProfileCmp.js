@@ -1,7 +1,29 @@
 import React from "react";
 import { TextField, Button } from "@material-ui/core";
 
+
 const ProfileCmp = (props) => {
+
+  const handleDownload = (path, fileName) => {
+    if (path.includes(".pdf") || path.length <= 500) {
+      props?.downloadPDF(path, (base64) => {
+        const file = `data:application/pdf;base64,${base64}`;
+        const downloadLink = document.createElement("a");
+        downloadLink.href = file;
+        downloadLink.download = fileName;
+        downloadLink.click();
+      });
+    } else {
+      //here by default path is base64
+      const file = `data:application/pdf;base64,${path}`;
+      const downloadLink = document.createElement("a");
+      downloadLink.href = file;
+      downloadLink.download = fileName;
+      downloadLink.click();
+    }
+  };
+
+
   return (
     <div className="cmp-main">
       <p className="cmp-head">Profile</p>
@@ -15,8 +37,8 @@ const ProfileCmp = (props) => {
             style={{ width: "100%", marginBottom: "15px" }}
             onChange={props?.onChange}
             value={
-              props?.profileData?.attribute7
-                ? props?.profileData?.attribute7
+              props?.profileData?.attribute7?.value
+                ? props?.profileData?.attribute7?.value
                 : ""
             }
           />
@@ -27,36 +49,50 @@ const ProfileCmp = (props) => {
             type="text"
             multiline
             minRows={4}
-            name="corporateProfile"
+            name="companyProfile"
             variant="filled"
             style={{ width: "100%", marginBottom: "15px" }}
             required={true}
             onChange={props?.onChange}
             value={
-              props?.profileData?.corporateProfile
-                ? props?.profileData?.corporateProfile
-                : ""
+              props?.profileData?.companyProfile?.value
+                ? props?.profileData?.companyProfile?.value
+                : ''
             }
           />
         </div>
         <div className="col-2">
-          <label htmlFor="accredationfile" className="file_label">
-            Attach File
-          </label>
-          <p>{props?.fileSizeErr}</p>
-          <input
-            type="file"
-            onChange={props?.handleChangeImg}
-            className="attach-inp"
-            accept=".pdf"
-            name="attachment"
-            id="accredationfile"
-            alt=""
-            required
-          />
-          <p className="attach-inp_label">
-            {props?.profileData?.attachmentName !== undefined ? props?.profileData?.attachmentName : '' }
-          </p>
+          
+            <label htmlFor="accredationfile" className="file_label">
+              Attach File
+            </label>
+            <p>{props?.fileSizeErr}</p>
+            <div style={{display:'flex' }}>
+            <div>
+            <input
+              type="file"
+              onChange={props?.fileHandler}
+              className="attach-inp"
+              accept=".pdf"
+              name="attachment"
+              id="accredationfile"
+              alt=""
+              required
+            />
+          </div>
+          <div>
+            <p className="attach-inp_label"
+              style={{ color: 'blue', cursor: 'pointer' }}
+              onClick={() => {
+                handleDownload(
+                  props?.tempAttachment?.attachment,
+                  props?.tempAttachment?.attachmentName
+                );
+              }}>
+              {props?.tempAttachment?.attachmentName}
+            </p>
+          </div>
+          </div>
         </div>
       </div>
     </div>
