@@ -76,6 +76,7 @@ const CorporatePayment = () => {
     const onResponse = (data) => {
         // setprofileInfo(data)
         //console.log(data, "GET");
+        localStorage.setItem("stakeholderID",data?.stakeholderID)
         setCheckgstn(data.gstn);
         setpaymentData((preState) => ({
             ...preState,
