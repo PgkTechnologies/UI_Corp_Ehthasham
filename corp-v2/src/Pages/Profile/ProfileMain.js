@@ -3,7 +3,7 @@ import { AccountCircle } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CorporateProfile from "../../Components/Profile/CorporateProfile";
-
+import PublishOtherInformation from "../DashBoard/Publish/OtherInformation/PublishOtherInformation";
 
 
 const Profile = () => {
@@ -104,6 +104,7 @@ const Profile = () => {
                             variant="scrollable"
                             onChange={handleTabChange}
                         >
+                        {/* needto add pub;is oter info */}
                             <Tab
                                 icon={
                                     <Badge color="error" variant={profileCheck === 'n' ? 'dot' : ''} >
@@ -111,6 +112,22 @@ const Profile = () => {
                                     </Badge>
                                 }
                                 label={tabValue === 0 ? "Profile" : ""}
+                                wrapped
+                                style={{
+                                    outline: "none",
+                                    minwidth: '12%'
+                                }}
+                            >
+
+                            </Tab>
+
+                            <Tab
+                                icon={
+                                    <Badge color="error" variant={profileCheck === 'n' ? 'dot' : ''} >
+                                        <AccountCircle />
+                                    </Badge>
+                                }
+                                label={tabValue === 1 ? "Other Information" : ""}
                                 wrapped
                                 style={{
                                     outline: "none",
@@ -133,7 +150,24 @@ const Profile = () => {
                                 />
                             )
                         }
+
+
                     </div>
+
+                    <div className="student-content">
+                        {
+                            tabValue === 1 && (
+                                <PublishOtherInformation
+                                    
+
+                                />
+                            )
+                        }
+
+                        
+                    </div>
+
+
                 </div>
             </div>
         </>
