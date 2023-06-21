@@ -98,8 +98,8 @@ const Header = (props) => {
   };
 
   const onHistory = () => {
-    history('/transactionhistory');
-    onMore();
+    history('/history');
+    onMore(); 
   }
 
   return (

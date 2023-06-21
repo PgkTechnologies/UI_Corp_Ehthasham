@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const Login = React.lazy(() => import("./Pages/Formss/Corporate/Login"));
 
 const Register = React.lazy(() =>
@@ -80,6 +81,8 @@ const Subscription = React.lazy(() =>
 //   import("./Pages/Dashboard/Subscribe/University/University")
 // );
 
+const TransactionHistory =React.lazy(() =>
+import("./Pages/TransactionHistory/TransactionHistory"));
 
 const Notifications = React.lazy(() =>
   import("./Pages/DashBoard/Notifications/Notifications")
@@ -100,9 +103,9 @@ const Requests = React.lazy(() =>
 // const OffDefineJobs = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffDefineJobs/OffDefineJobs"))
 // const OffCommunication = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffCommunication/OffCommunication"))
 // const OffCampusInterviews = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffCampusInterviews/OffCampusInterviews"))
-const TransactionHistory = React.lazy(() => import("./Pages/TransactionHistory/TransactionHistory"));
-const Support = React.lazy(() => import("./Pages/DashBoard/Support/Support"));
-const TicketChatCmp = React.lazy(() => import('./Pages/DashBoard/Support/TicketChatCmp'));
+const History = React.lazy(() => import("./Pages/TransactionHistory/History"));
+ const Support = React.lazy(() => import("./Pages/DashBoard/Support/Support"));
+ const TicketChatCmp = React.lazy(() => import('./Pages/DashBoard/Support/TicketChatCmp'));
 // const UniversityStudents = React.lazy(() => import("./Pages/Dashboard/Subscribe/University/UniversityStudents/UniversityStudents"));
 const ForgotPassword = React.lazy(() => import("./Pages/Formss/Corporate/ForgotPassword/ForgotPassword"));
 const Mike = React.lazy(() => import("./Pages/Formss/Corporate/Login/LoginForm"));
@@ -443,7 +446,16 @@ const routes = [
     component: <Analytics />,
   },
   {
-    path: "/transactionhistory",
+    path: "/history",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "History",
+    component: <History/>,
+  },
+
+  {
+    path: "/history/transactions",
     strict: true,
     exact: true,
     role: "dashboard",
