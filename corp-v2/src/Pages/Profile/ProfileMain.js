@@ -7,7 +7,7 @@ import PublishOtherInformation from "../DashBoard/Publish/OtherInformation/Publi
 
 
 const Profile = () => {
-     
+
     const dispatch = useDispatch();
     const [allData, setAllData] = useState([]);
     const [showAnnouncement, setShowAnnouncement] = useState(false);
@@ -26,7 +26,7 @@ const Profile = () => {
         }
     }
 
-    const handleTabChange = (event , Currentvalue) => {
+    const handleTabChange = (event, Currentvalue) => {
         setTabValue(Currentvalue);
     }
 
@@ -78,7 +78,7 @@ const Profile = () => {
                                     }}
                                 >
                                     <p style={{ fontSize: "22px", fontWeight: "bold" }}>
-                                        {GetProfileData?.corporateName} 
+                                        {GetProfileData?.corporateName}
                                     </p>
                                     <p>{GetProfileData?.yearOfEstablishment}</p>
                                 </div>

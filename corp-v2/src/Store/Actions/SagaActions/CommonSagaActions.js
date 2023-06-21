@@ -1,3 +1,4 @@
+import { PROPOSALDATA } from "../CorporateActions/actionTypes";
 import {
   ACTION_GET_DEPENDENCY_LOOKUPS_REQUEST,
   ACTION_GET_COUNTRY_CODES_REQUEST, 
@@ -10,10 +11,40 @@ import {
   ACTION_GET_STUDENT_NOTIFICATIONS_INFO_REQUEST,
   PATCH_NOTIFICATIONS,
   ACTION_CREATE_PAYMENT_REQUEST,
-  VALIDATE_PAYMENT_ACTION_REQUEST
+  VALIDATE_PAYMENT_ACTION_REQUEST,
+  ACTION_GET_UNIVERSITY_LIST_REQUEST,
+  ACTION_GET_CORPORATE_LIST_REQUEST,
+  ACTION_GET_PROPOSAL_DATA_AVAILABLE_REQUEST,
 } from "./SagaActionTypes";
 
-// import * as actionType from '../SagaActions'
+export const actionGetUniversityListRequest = (payload) => {
+  return{
+      type: ACTION_GET_UNIVERSITY_LIST_REQUEST,
+      payload: payload
+  }
+}
+
+export const actionGetCorporateListRequest = (payload) => {
+  return{
+      type: ACTION_GET_CORPORATE_LIST_REQUEST,
+      payload: payload
+  }
+}
+
+//Store Proposal Data
+export const ProposalStoreData = (payload) => {
+  return {
+    type: PROPOSALDATA,
+    payload: payload,
+  };
+};
+
+export const actionGetProposalData = (request) => {
+  return {
+      type:  ACTION_GET_PROPOSAL_DATA_AVAILABLE_REQUEST,
+      payload: request,
+  };
+};
 export const actionGetDependencyLookUpsSagaAction = (payload) => {
   return {
     type: ACTION_GET_DEPENDENCY_LOOKUPS_REQUEST,
