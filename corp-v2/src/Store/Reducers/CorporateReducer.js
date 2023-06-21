@@ -10,6 +10,7 @@ const INITIAL = {
     countryCodes: [],
     paymentOrder: {},
     referenceObject: undefined,
+    proposalData: [],
 }
 
 const CorporateReducer = (state = INITIAL, action) => {
@@ -52,6 +53,9 @@ const CorporateReducer = (state = INITIAL, action) => {
 
         case actionTypes.REFERENCEOBJ:
             return { ...state, referenceObject: action.payload }
+
+            case actionTypes.PROPOSALDATA:
+                return { ...state, proposalData: action.payload };
 
         default:
             return state;

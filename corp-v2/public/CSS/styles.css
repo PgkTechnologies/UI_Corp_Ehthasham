@@ -244,6 +244,21 @@ p {
   font-family: "Poppins", sans-serif;
 }
 
+.analytics-reports-style {
+  height: 100vh;
+}
+
+.analytics-reports-style-dash{
+  height: 200vh; 
+}
+
+.vertical-border {
+  width: 1px;
+  background-color: #d8d8d8;
+  min-height: 60px;
+  max-height: 60px;
+}
+
 .log-in-main-container .logo-container {
   width: 100%;
   margin-bottom: 30px;
@@ -758,6 +773,14 @@ p {
   color: rgb(252, 50, 50);
   background: rgba(252, 50, 50, 0.142);
   margin-left: 5px;
+}
+
+.choice-btns .pending {
+  float: left;
+  border: 2px solid rgb(224, 235, 9);
+  color:  rgb(0, 0, 0);
+  background:#FFFF00;
+  margin-right: 5px;
 }
 
 .choice-btns .rejected {

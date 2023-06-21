@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import PortalModal from "./../Portals/PortalModal";
+// import PortalModal from "./../Portals/PortalModal";
+import PortalModal from "../../src/Portals/PortalModal"
 const $ = window.$;
 
 const CustomModal = (props) => {

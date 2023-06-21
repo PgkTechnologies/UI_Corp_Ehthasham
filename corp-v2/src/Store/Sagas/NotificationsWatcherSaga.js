@@ -66,7 +66,8 @@ function* getCorporateSingleNotificationRequest(action) {
     action.payload.callback(resp);
   } catch (err) {
     if (err?.response) {
-      toast.error(err?.response?.data?.errors[0]?.message);
+      // toast.error(err?.response?.data?.errors[0]?.message);
+      toast.warning('unprocessed Data')
     } else {
       //toast.error("Something Wrong!", err?.message);
     }

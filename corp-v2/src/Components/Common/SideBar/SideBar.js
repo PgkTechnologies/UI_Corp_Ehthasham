@@ -13,7 +13,7 @@ import { Badge, Tooltip } from "@material-ui/core";
 
 const SideBar = () => {
   const main = useRef();
-  const [menuType, setMenuType] = useState("Dashboard");
+  const [menuType, setMenuType] = useState("Profile");
   const location = useLocation();
   const [animation, setAnimation] = useState(true);
 

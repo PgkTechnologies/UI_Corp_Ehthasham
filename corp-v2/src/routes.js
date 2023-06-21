@@ -46,7 +46,7 @@ const CorporatePayment = React.lazy(() =>
 // );
 
 const Dashboard = React.lazy(() => import("./Pages/DashBoard/Dashboard"));
- const Profile = React.lazy(() => import("./Pages/Profile/ProfileMain"));
+const Profile = React.lazy(() => import("./Pages/Profile/ProfileMain"));
 
 
 // const HiringCriteria = React.lazy(() =>
@@ -84,8 +84,12 @@ const Subscription = React.lazy(() =>
 const Notifications = React.lazy(() =>
   import("./Pages/DashBoard/Notifications/Notifications")
 );
-// const Analytics = React.lazy(() => import("./Pages/Dashboard/Analytics/Analytics"));
-// const Requests = React.lazy(() => import("./Pages/Dashboard/Requests/Requests"));
+const Analytics = React.lazy(() =>
+  import("./Pages/Analytics/Analytics"));
+
+const Requests = React.lazy(() =>
+  import("./Pages/Requests/Requests"));
+
 // const CampusDriveList = React.lazy(() => import("./Pages/Dashboard/CampusDrive/CampusDriveList"));
 // const CampusDrive = React.lazy(() => import("./Pages/Dashboard/CampusDrive/CampusDrive"));
 // const DefineJobs = React.lazy(() => import("./Pages/Dashboard/CampusDrive/DefineJobs/DefineJobs"));
@@ -97,8 +101,8 @@ const Notifications = React.lazy(() =>
 // const OffCommunication = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffCommunication/OffCommunication"))
 // const OffCampusInterviews = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffCampusInterviews/OffCampusInterviews"))
 const TransactionHistory = React.lazy(() => import("./Pages/TransactionHistory/TransactionHistory"));
- const Support = React.lazy(() => import("./Pages/DashBoard/Support/Support"));
- const TicketChatCmp = React.lazy(() => import('./Pages/DashBoard/Support/TicketChatCmp'));
+const Support = React.lazy(() => import("./Pages/DashBoard/Support/Support"));
+const TicketChatCmp = React.lazy(() => import('./Pages/DashBoard/Support/TicketChatCmp'));
 // const UniversityStudents = React.lazy(() => import("./Pages/Dashboard/Subscribe/University/UniversityStudents/UniversityStudents"));
 const ForgotPassword = React.lazy(() => import("./Pages/Formss/Corporate/ForgotPassword/ForgotPassword"));
 const Mike = React.lazy(() => import("./Pages/Formss/Corporate/Login/LoginForm"));
@@ -106,14 +110,14 @@ const Mike = React.lazy(() => import("./Pages/Formss/Corporate/Login/LoginForm")
 
 const routes = [
 
- 
+
   {
     path: "/",
     strict: true,
     exact: true,
     role: "corporateReg",
     name: "Login",
-    component: <Login/>,
+    component: <Login />,
   },
   {
     path: "/forgotPassword",
@@ -121,7 +125,7 @@ const routes = [
     exact: true,
     role: "corporateReg",
     name: "forgotPassword",
-    component: <ForgotPassword/>,
+    component: <ForgotPassword />,
   },
   {
     path: "/register",
@@ -129,7 +133,7 @@ const routes = [
     exact: true,
     role: "corporateReg",
     name: "Register",
-    component: <Register/>,
+    component: <Register />,
   },
   {
     path: "/register/CorporateSecondary",
@@ -137,7 +141,7 @@ const routes = [
     exact: true,
     role: "corporateReg",
     name: "CorporateSecondary",
-    component: <CorporateSecondary/>,
+    component: <CorporateSecondary />,
   },
   {
     path: "/register/contactPersonnel",
@@ -145,7 +149,7 @@ const routes = [
     exact: true,
     role: "corporateReg",
     name: "CorporateContactPersonnel",
-    component: <CorporateContactPersonnel/>,
+    component: <CorporateContactPersonnel />,
   },
   {
     path: "/register/authentication",
@@ -153,7 +157,7 @@ const routes = [
     exact: true,
     role: "corporateReg",
     name: "Authentication",
-    component: <Authentication/>,
+    component: <Authentication />,
   },
   {
     path: "/register/completed",
@@ -161,7 +165,7 @@ const routes = [
     exact: true,
     role: "corporateReg",
     name: "RegistrationCompleted",
-    component: <RegistrationCompleted/>,
+    component: <RegistrationCompleted />,
   },
   {
     path: "/register/payment",
@@ -169,7 +173,7 @@ const routes = [
     exact: true,
     role: "corporateReg",
     name: "CorporatePayment",
-    component: <CorporatePayment/>,
+    component: <CorporatePayment />,
   },
   {
     path: "/myl",
@@ -179,54 +183,54 @@ const routes = [
     name: "Login",
     component: <Mike />,
   },
-//   {
-//     path: "/payment",
-//     strict: true,
-//     exact: true,
-//     role: "corporate",
-//     name: "Payment",
-//     component: <Payment/>,
-//   },
-//   {
-//     path: "/register/studentRegister",
-//     strict: true,
-//     exact: true,
-//     role: "corporateReg",
-//     name: "StudentRegister",
-//     component: <StudentRegister/>,
-//   },
-//   {
-//     path: "/register/studentSecondary",
-//     strict: true,
-//     exact: true,
-//     role: "corporateReg",
-//     name: "StudentSecondary",
-//     component: <StudentSecondary/>,
-//   },
-//   {
-//     path: "/register/studentAuthentication",
-//     strict: true,
-//     exact: true,
-//     role: "corporateReg",
-//     name: "StudentAuthentication",
-//     component: <StudentAuthentication/>,
-//   },
-//   {
-//     path: "/register/studentRegisterCompleted",
-//     strict: true,
-//     exact: true,
-//     role: "corporateReg",
-//     name: "StudentRegCompleted",
-//     component: <StudentRegCompleted/>,
-//   },
-//   {
-//     path: "/register/studentPayment",
-//     strict: true,
-//     exact: true,
-//     role: "corporateReg",
-//     name: "StudentPayment",
-//     component: <StudentPayment/>,
-//   },
+  //   {
+  //     path: "/payment",
+  //     strict: true,
+  //     exact: true,
+  //     role: "corporate",
+  //     name: "Payment",
+  //     component: <Payment/>,
+  //   },
+  //   {
+  //     path: "/register/studentRegister",
+  //     strict: true,
+  //     exact: true,
+  //     role: "corporateReg",
+  //     name: "StudentRegister",
+  //     component: <StudentRegister/>,
+  //   },
+  //   {
+  //     path: "/register/studentSecondary",
+  //     strict: true,
+  //     exact: true,
+  //     role: "corporateReg",
+  //     name: "StudentSecondary",
+  //     component: <StudentSecondary/>,
+  //   },
+  //   {
+  //     path: "/register/studentAuthentication",
+  //     strict: true,
+  //     exact: true,
+  //     role: "corporateReg",
+  //     name: "StudentAuthentication",
+  //     component: <StudentAuthentication/>,
+  //   },
+  //   {
+  //     path: "/register/studentRegisterCompleted",
+  //     strict: true,
+  //     exact: true,
+  //     role: "corporateReg",
+  //     name: "StudentRegCompleted",
+  //     component: <StudentRegCompleted/>,
+  //   },
+  //   {
+  //     path: "/register/studentPayment",
+  //     strict: true,
+  //     exact: true,
+  //     role: "corporateReg",
+  //     name: "StudentPayment",
+  //     component: <StudentPayment/>,
+  //   },
 
   // DASHBOARD
   {
@@ -235,7 +239,7 @@ const routes = [
     exact: true,
     role: "dashboard",
     name: "Dashboard",
-    component: <Dashboard/>,
+    component: <Dashboard />,
   },
   {
     path: "/profile",
@@ -243,96 +247,96 @@ const routes = [
     exact: true,
     role: "dashboard",
     name: "Profile",
-    component: <Profile/>,
+    component: <Profile />,
   },
 
-//   {
-//     path: "/dashboard/createjob/hiring",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "HiringCriteria",
-//     component: <HiringCriteria/>,
-//   },
-//   {
-//     path: "/dashboard/createjob/jobs",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Jobs",
-//     component: <NewJob/>,
-//   },
-//   {
-//     path: "/dashboard/publish/profile",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Publish Profile",
-//     component: <PublishProfile/>,
-//   },
-//   {
-//     path: "/dashboard/publish/otherinformation",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Publish Other Information",
-//     component: <PublishOtherInformation/>,
-//   },
-//   {
-//     path: "/dashboard/publish/hiring-criteria",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Publish Hiring Criteria",
-//     component: <PublishHiringCriteria/>,
-//   },
-//   {
-//     path: "/dashboard/publish/jobs",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Publish Jobs",
-//     component: <PublishJobs/>,
-//   },
-//   {
-//     path: "/dashboard/publish-history",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Publish History",
-//     component: <PublishHistory/>,
-//   },
-//   {
-//     path: "/dashboard/subscribe/newuniversity",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "NewUniversity",
-//     component: <NewUniversity/>,
-//   },
-//   {
-//     path: "/dashboard/subscribe/newuniversity/:id",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "University",
-//     component:<University/>,
-//   },
-//   {
-//     path: "/dashboard/subscribe/students/:id",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "University",
-//     component: <UniversityStudents/>,
-//   },
+  //   {
+  //     path: "/dashboard/createjob/hiring",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "HiringCriteria",
+  //     component: <HiringCriteria/>,
+  //   },
+  //   {
+  //     path: "/dashboard/createjob/jobs",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "Jobs",
+  //     component: <NewJob/>,
+  //   },
+  //   {
+  //     path: "/dashboard/publish/profile",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "Publish Profile",
+  //     component: <PublishProfile/>,
+  //   },
+  //   {
+  //     path: "/dashboard/publish/otherinformation",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "Publish Other Information",
+  //     component: <PublishOtherInformation/>,
+  //   },
+  //   {
+  //     path: "/dashboard/publish/hiring-criteria",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "Publish Hiring Criteria",
+  //     component: <PublishHiringCriteria/>,
+  //   },
+  //   {
+  //     path: "/dashboard/publish/jobs",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "Publish Jobs",
+  //     component: <PublishJobs/>,
+  //   },
+  //   {
+  //     path: "/dashboard/publish-history",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "Publish History",
+  //     component: <PublishHistory/>,
+  //   },
+  //   {
+  //     path: "/dashboard/subscribe/newuniversity",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "NewUniversity",
+  //     component: <NewUniversity/>,
+  //   },
+  //   {
+  //     path: "/dashboard/subscribe/newuniversity/:id",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "University",
+  //     component:<University/>,
+  //   },
+  //   {
+  //     path: "/dashboard/subscribe/students/:id",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "University",
+  //     component: <UniversityStudents/>,
+  //   },
   {
     path: "subscription",
     strict: true,
     exact: true,
     role: "dashboard",
     name: "Subscription",
-    component: <Subscription/>,
+    component: <Subscription />,
   },
   {
     path: "/notifications",
@@ -340,111 +344,111 @@ const routes = [
     exact: true,
     role: "dashboard",
     name: "Notifications",
-    component: <Notifications/>,
+    component: <Notifications />,
   },
-//   {
-//     path: "/dashboard/requests",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Requests",
-//     component: <Requests/>,
-//   },
-//   {
-//     path: "/dashboard/campus-drive",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "CampusDriveList",
-//     component: <CampusDriveList/>,
-//   },
-//   {
-//     path: "/dashboard/campus-drive/:campusDriveId/home/:universityId",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "CampusDrive",
-//     component: <CampusDrive/>,
-//   },
-//   {
-//     path: "/dashboard/campus-drive/:campusDriveId/define-jobs/:universityId",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "DefineJobs",
-//     component: <DefineJobs/>,
-//   },
-//   {
-//     path: "/dashboard/campus-drive/:campusDriveId/communication/:universityId",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Communication",
-//     component: <Communication/>,
-//   },
-//   {
-//     path: "/dashboard/campus-drive/:campusDriveId/campus-interviews/:universityId",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "CampusInterviews",
-//     component: <CampusInterviews/>,
-//   },
-//   {
-//     path: "/dashboard/off-campus-drive",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "OffCampusDrive",
-//     component: <OffCampusDrive/>,
-//   },
-//   {
-//     path: "/dashboard/off-campus-drive/:offCampusDriveId/home/:universityId",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "OffCampusDriveHomePage",
-//     component: <OffCampusDriveHomePage/>,
-//   },
-//   {
-//     path: "/dashboard/off-campus-drive/:offCampusDriveId/off-define-jobs/:universityId",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "OffDefineJobs",
-//     component: <OffDefineJobs/>,
-//   },
-//   {
-//     path: "/dashboard/off-campus-drive/:offCampusDriveId/off-communication/:universityId",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "OffCommunication",
-//     component: <OffCommunication/>,
-//   },
-//   {
-//     path: "/dashboard/off-campus-drive/:offCampusDriveId/off-campus-interviews/:universityId",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "OffCampusInterviews",
-//     component: <OffCampusInterviews/>,
-//   },
-//   {
-//     path: "/dashboard/analytics",
-//     strict: true,
-//     exact: true,
-//     role: "dashboard",
-//     name: "Analytics",
-//     component: <Analytics/>,
-//   },
+  {
+    path: "/requests",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "Requests",
+    component: <Requests />,
+  },
+  //   {
+  //     path: "/dashboard/campus-drive",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "CampusDriveList",
+  //     component: <CampusDriveList/>,
+  //   },
+  //   {
+  //     path: "/dashboard/campus-drive/:campusDriveId/home/:universityId",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "CampusDrive",
+  //     component: <CampusDrive/>,
+  //   },
+  //   {
+  //     path: "/dashboard/campus-drive/:campusDriveId/define-jobs/:universityId",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "DefineJobs",
+  //     component: <DefineJobs/>,
+  //   },
+  //   {
+  //     path: "/dashboard/campus-drive/:campusDriveId/communication/:universityId",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "Communication",
+  //     component: <Communication/>,
+  //   },
+  //   {
+  //     path: "/dashboard/campus-drive/:campusDriveId/campus-interviews/:universityId",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "CampusInterviews",
+  //     component: <CampusInterviews/>,
+  //   },
+  //   {
+  //     path: "/dashboard/off-campus-drive",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "OffCampusDrive",
+  //     component: <OffCampusDrive/>,
+  //   },
+  //   {
+  //     path: "/dashboard/off-campus-drive/:offCampusDriveId/home/:universityId",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "OffCampusDriveHomePage",
+  //     component: <OffCampusDriveHomePage/>,
+  //   },
+  //   {
+  //     path: "/dashboard/off-campus-drive/:offCampusDriveId/off-define-jobs/:universityId",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "OffDefineJobs",
+  //     component: <OffDefineJobs/>,
+  //   },
+  //   {
+  //     path: "/dashboard/off-campus-drive/:offCampusDriveId/off-communication/:universityId",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "OffCommunication",
+  //     component: <OffCommunication/>,
+  //   },
+  //   {
+  //     path: "/dashboard/off-campus-drive/:offCampusDriveId/off-campus-interviews/:universityId",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "OffCampusInterviews",
+  //     component: <OffCampusInterviews/>,
+  //   },
+  {
+    path: "/analytics",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "Analytics",
+    component: <Analytics />,
+  },
   {
     path: "/transactionhistory",
     strict: true,
     exact: true,
     role: "dashboard",
     name: "Transaction History",
-    component: <TransactionHistory/>,
+    component: <TransactionHistory />,
   },
   {
     path: "/support",
@@ -452,7 +456,7 @@ const routes = [
     exact: true,
     role: "dashboard",
     name: "Support",
-    component: <Support/>,
+    component: <Support />,
   },
   {
     path: "/support/:ticketNo",
@@ -461,7 +465,7 @@ const routes = [
     role: "dashboard",
     name: 'Support',
     component: <TicketChatCmp />
-},
+  },
 ];
 
 
