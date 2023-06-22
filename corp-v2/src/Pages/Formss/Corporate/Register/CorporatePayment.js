@@ -340,7 +340,8 @@ const CorporatePayment = () => {
     };
 
 
-    const cancelPayment = () => {
+    const cancelPayment = () => 
+    {
         setShow(false);
         // $("#paymentSuccess").modal("hide");
         let navigateUrl = localStorage.getItem("navigateUrl");
@@ -364,7 +365,7 @@ const CorporatePayment = () => {
                 history(navigateUrl);
                 localStorage.removeItem("navigateCancelUrl");
             } else {
-                history("/register/payment");
+                history("/register/payment");    
             }
         }
 
@@ -517,7 +518,7 @@ const CorporatePayment = () => {
         console.log("POSTED");
     };
 
-    const mode = localStorage.getItem('tokensPurchase'); //Updates by MSU
+    const payMode = localStorage.getItem('tokensPurchase'); //Updates by MSU
     // console.log(paymentOrder, 'pmode');
 
     const onSuccesspayment = (invoice) => {
@@ -539,10 +540,14 @@ const CorporatePayment = () => {
 
         <section className="container-fluid payment-main">
             <div className="row m-0">
-                <div className="col p-0">
+                <div className="col p-0"> 
+                {payMode ?        
+                    <h4 className="login-title">
+                        Tokens <span>Payment</span>
+                    </h4> :
                     <h4 className="login-title">
                         Fee <span>Payment</span>
-                    </h4>
+                    </h4> }
                     <div className="line" />
 
 
@@ -577,7 +582,8 @@ const CorporatePayment = () => {
                                 <h5 className="payment-summary-header">Fee Summary</h5>
                                 <ul className="payment-data">
                                     <li className="payment-data-li">
-                                        <p className="payment-data-name">Registration Fee</p>
+                                        {payMode ? <p className="payment-data-name">Token Purchase Fee</p> :
+                                        <p className="payment-data-name">Registration Fee</p> }
                                         <span>{gstCalc.amount}</span>
                                     </li>
                                     <li className="payment-data-li">

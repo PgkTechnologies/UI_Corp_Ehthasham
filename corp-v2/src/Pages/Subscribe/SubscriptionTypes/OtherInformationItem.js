@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import moment from "moment";
 import { useDispatch } from 'react-redux';
 import { actionSagaGetCorporateSingleSubscriptionRequest } from "../../../Store/Actions/SagaActions/SubscriptionSagaAction";
-import { Modal } from "reactstrap";
-// import CustomModal from "../../../../Components/CustomModal";
-// import PgkTextField from '../../../../Components/FormFields/PgkTextField';
-// import { actionSagaGetCorporateSingleSubscriptionRequest } from '../../../../Store/Actions/SagaActions/SubscriptionSagaAction';
+import { Modal, ModalBody } from "reactstrap";
+import { AccountBalance } from "@mui/icons-material";
+import DatasetLinkedSharpIcon from '@mui/icons-material/DatasetLinkedSharp';
+ 
 
 const OtherInformationItem = (props) => {
     console.log(props,'OTHErzz ')
@@ -28,7 +28,7 @@ const OtherInformationItem = (props) => {
 
   return (
     <>
-      <div
+      {/* <div
         className="univ-sub-item d-flex justify-content-between align-items-center"
         key={props?.index}
         style={{padding:15}}
@@ -73,9 +73,67 @@ const OtherInformationItem = (props) => {
         >
           View Information
         </button>
-      </div>
+      </div> */}
+        <div className="cards-border" key={props.index}>
+            <div className="col-lg-9 col-sm-12 card-content">
+                <div className="icon" style={{ marginRight: "20px" }}>
+                    <AccountBalance />
+                </div>
+                <div>
+                    <span style={{ paddingRight: '55px' }} >
+                        {props?.item?.generalNote}
+                    </span>
 
-      {showModal && <Modal show={showModal}>
+                    <span style={{ color: 'gray', paddingLeft: '155px', paddingRight: '35px' }}>|</span>
+
+                    <span style={{ fontWeight: "bold" }}>
+                        {props?.item?.publisherName}  {" "}
+                    </span>
+
+                    <span style={{ color: 'gray', paddingRight: '100px', paddingLeft: '35px' }}>|</span>
+                    <span style={{ fontWeight: "bold", paddingRight: '7px' }}>
+                        UniversityID:  {""}</span> <span> {props?.item?.publisher}{" "}
+                    </span>
+
+                    <div style={{ marginLeft: '1000px' }}
+                    //    style={{marginTop:'5px' , display:"70px"}} 
+                    >  <span className="btn"
+                        //     style={{
+                        //         padding: '15px',
+                        //         background: "#044071",
+                        //         borderRadius: '7px',
+                        //         marginTop:'0px',
+                        //         color: '#e6e6e6',
+                        //         fontWeight: 'normal',
+                        //         fontSize:' 13px',
+                        //         border: 'none',
+                        //         cursor:'pointer',
+
+                        // }}
+                        onClick={() => {
+                          if(props?.item?.isSubscribed) {
+                            getPublishedData(props?.item?.publishID);
+                          } else if(props?.getDetails) {
+                            getPublishedData(props?.item?.publishID ? props?.item?.publishID : props?.item?.publishId);
+                          } else {
+                            if(props?.subscribeHandler) {
+                              props.subscribeHandler();
+                            }
+                          }
+                          // setShowModal(true);
+                        }}
+                    >
+                            view More
+                        </span>
+                    </div>
+                    <br />
+                    <span style={{ paddingLeft: '450px', marginTop: '55px' }} > {props?.item?.location} </span>
+
+                </div>
+            </div>
+            </div>
+      {showModal && <Modal  isOpen={showModal}>
+        <ModalBody>
         <div className="hiring-modal">
           <div className="modal-header hiring-modal-header">
             <h5
@@ -96,46 +154,54 @@ const OtherInformationItem = (props) => {
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          {/* <form className="hiring-modal-form">
+          <form className="hiring-modal-form">
             <div className="row">
               <div className="col-md">
                 <div className="modal-grp">
-                  <PgkTextField
+                  {/* <input
                       value={otherInfo?.publishID}
                       label={'Publish ID'}
                       inputLabelProps={{style:{fontSize: '.800rem'}}}
                       inputProps={{style:{fontSize: '.800rem'}}}
                       disabled
-                  />
+                  /> */}
+                  <div>
+                  Publish ID: {otherInfo?.publishID}
+                  </div>
                 </div>
               </div>
               <div className="col-md">
                 <div className="modal-grp">
-                  <PgkTextField 
+                  {/* <input 
                       value={otherInfo?.dateOfPublish ? `Published on ${moment(otherInfo?.dateOfPublish).format("DD-MM-YYYY")}`: ''}
                       label={'Published Date & Time'}
                       inputLabelProps={{style:{fontSize: '.800rem'}}}
                       inputProps={{style:{fontSize: '.800rem'}}}
                       disabled
-                  />
+                  /> */}
+                  <div>
+                  Published Date & Time:  {otherInfo?.dateOfPublish ? `Published on ${moment(otherInfo?.dateOfPublish).format("DD-MM-YYYY")}`: ''}
+                  </div>
                 </div>
               </div>
               <div className="w-100"></div>
               <div className="col-md">
                 <div className="modal-grp">
-                  <PgkTextField 
+                  {/* <input 
                       value={otherInfo?.title ? otherInfo?.title : ''}
                       label={'Title'}
                       inputLabelProps={{style:{fontSize: '.800rem'}}}
                       inputProps={{style:{fontSize: '.800rem'}}}
                       disabled
-                  />
+                  /> */}
+                Title:  {otherInfo?.title ? otherInfo?.title : ''}
                 </div>
               </div>
+              <hr></hr>
               <div className="w-100"></div>
               <div className="col-md">
                 <div className="modal-grp">
-                  <PgkTextField
+                  {/* <input
                     value={otherInfo?.information ? otherInfo?.information : ''}
                     label={"Content"}
                     disabled
@@ -143,24 +209,31 @@ const OtherInformationItem = (props) => {
                     minRows={6}
                     inputLabelProps={{style:{fontSize: '.800rem'}}}
                     inputProps={{style:{fontSize: '.800rem'}}}
-                  />
+                  /> */}
+                Content:  {otherInfo?.information ? otherInfo?.information : ''}
                 </div>
               </div>
               <div className="w-100"></div>
               {(otherInfo?.attachment && otherInfo?.attachment?.trim()!=='' && otherInfo?.attachmentName?.trim()!=='') ?
                 <div className="d-flex justify-content-between align-items-center attachmentStripeContainer w-full">
-                <p className="label">Attachment Present (if any)</p>
+                <p className="label">Attachment Present <br/>
+                (if any):</p>
+                <br/>
+ 
                 <a href={'data:application/pdf;base64,'+otherInfo?.attachment} style={{textDecoration:'none', outline:'none', width:'70%'}} download>
                   <div className="attachmentStripe d-flex justify-content-between align-items-center">
+                <span style={{padding:'5px' , paddingRight:'10px'}} >  <DatasetLinkedSharpIcon/>  </span>
                       <p>{otherInfo?.attachmentName}</p>
-                      <i className="fas fa-paperclip"></i>
+ 
                   </div>
                 </a>
               </div> : null}
             </div>
-          </form> */}
+          </form>
         </div>
+        </ModalBody>
       </Modal>}
+    
     </>
   );
 };
