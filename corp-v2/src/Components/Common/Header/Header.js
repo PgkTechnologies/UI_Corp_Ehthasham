@@ -35,7 +35,7 @@ const Header = (props) => {
   const [searchList, setSearchList] = useState([]);
   const [searchInputs, setSearchInputs] = useState({});
   const [corporateName, setCorporateName] = useState("");
- 
+  const [tokensData, settokensData] = useState([]);
 
   const [more, setMore] = useState(false);
   const [show, setShow] = useState(false);
@@ -80,7 +80,30 @@ const Header = (props) => {
     }
   };
 
+  let tokesDataView = true;
 
+  useEffect(()=>{
+    dispatch(actionGetBulkTokenNumberRequest({callback: tokensCount}))
+  },[])
+ 
+  const tokensCount = (data) =>{
+ console.log(data, 'dataTOKENnUm')
+  }
+
+  useEffect(() => {
+    if (tokesDataView) {
+      dispatch( getTokensSagaAction({ callback: tokenBalance }));
+      //dispatch(actionGetSearchCorporates({ apiPayloadRequest: searchInputs, callback: getSeachDataResult }))
+    }
+    return () => {
+      tokesDataView = false;
+    };
+  }, []);
+
+  const tokenBalance = (data) => {
+    console.log(data , 'CorpBalance')
+    data ? settokensData(data) : settokensData([]);
+  };
 
   const getSeachDataResult = (data) => {
     setSearchList(data);
