@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { actionGetBulkTokenNumberRequest } from "../../../Store/Actions/SagaActions/CommonSagaActions";
 // import { actionGetBulkTokenNumberRequest } from "../../../Store/Sagas/CommonSagaAction";
 
 const TokenPurchase = (props) => {
@@ -18,15 +19,15 @@ const TokenPurchase = (props) => {
   };
 
   const getBulkTokens = () => {
-    // dispatch(
-    //   actionGetBulkTokenNumberRequest({
-    //     callback: (response) => {
-    //       setTokensCount(parseInt(response.bulkCount));
-    //       setBulkPrice(parseInt(response.bulkPrice));
-    //       //setTokensCount(response);
-    //     },
-    //   })
-    // );
+    dispatch(
+      actionGetBulkTokenNumberRequest({
+        callback: (response) => {
+          setTokensCount(parseInt(response.bulkCount));
+          setBulkPrice(parseInt(response.bulkPrice));
+          //setTokensCount(response);
+        },
+      })
+    );
   };
 
   const handleSubmit = (event) => {
@@ -34,6 +35,7 @@ const TokenPurchase = (props) => {
     props.handleClose();
     if (!amount) return;
     localStorage.setItem("tokensPurchase", amount);
+    localStorage.setItem("navigateUrl", `/profile`);
     history("/register/payment");
   };
 

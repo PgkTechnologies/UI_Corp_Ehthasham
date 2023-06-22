@@ -17,6 +17,8 @@ import { useNavigate } from 'react-router-dom';
 import SearchBar from "./SearchBar/SearchBar";
 import TokenPurchase from "./TokenPurchase";
 import { actionGetCorporateProfileSagaAction } from "../../../Store/Actions/SagaActions/CorporateProfileSagaActions";
+import { getTokensSagaAction } from "../../../Store/Actions/SagaActions/DashboardSagaAction";
+import { actionGetBulkTokenNumberRequest } from "../../../Store/Actions/SagaActions/CommonSagaActions";
 
 const Header = (props) => {
   const dispatch = useDispatch();
@@ -26,7 +28,8 @@ const Header = (props) => {
     (state) => state.loginReducer?.universityProfile
   );
 
-  
+  const balance = useSelector((state) => state.DashboardReducer.balance);
+  console.log(balance , 'Selectorx');
   const auth = useAuth();
 
   const [searchList, setSearchList] = useState([]);
@@ -78,18 +81,27 @@ const Header = (props) => {
   };
 
   let tokesDataView = true;
-//   //useeff xx *
-//   // useEffect(() => {
-//   //   if (tokesDataView) {
-//   //     dispatch(getUserTokenData({ callback: tokenBalance }));
-//   //     //dispatch(actionGetSearchCorporates({ apiPayloadRequest: searchInputs, callback: getSeachDataResult }))
-//   //   }
-//   //   return () => {
-//   //     tokesDataView = false;
-//   //   };
-//   // }, []);
+
+  useEffect(()=>{
+    dispatch(actionGetBulkTokenNumberRequest({callback: tokensCount}))
+  },[])
+ 
+  const tokensCount = (data) =>{
+ console.log(data, 'dataTOKENnUm')
+  }
+
+  useEffect(() => {
+    if (tokesDataView) {
+      dispatch( getTokensSagaAction({ callback: tokenBalance }));
+      //dispatch(actionGetSearchCorporates({ apiPayloadRequest: searchInputs, callback: getSeachDataResult }))
+    }
+    return () => {
+      tokesDataView = false;
+    };
+  }, []);
 
   const tokenBalance = (data) => {
+    console.log(data , 'CorpBalance')
     data ? settokensData(data) : settokensData([]);
   };
 
@@ -140,7 +152,7 @@ const Header = (props) => {
           }}
         >
           <button className="btn-t" onClick={handleShow}>
-            Tokens: {tokensData?.paidTokenBalance + tokensData?.bonusTokenBalance}
+            Tokens: {balance?.paidTokenBalance + balance?.bonusTokenBalance}
             <AddCircleIcon
               style={{
                 fontSize: "15px",
@@ -263,11 +275,11 @@ const Header = (props) => {
         <Modal.Body>
           <div className="col-md-8">
             Token Balance: &nbsp;
-            {tokensData.paidTokenBalance}
+            {balance?.paidTokenBalance}
           </div>
           <div className="col-md-8">
             Bonus Tokens: &nbsp;
-            {tokensData.bonusTokenBalance}
+            {balance?.bonusTokenBalance}
           </div>
 
           <TokenPurchase handleClose={handleClose} />
