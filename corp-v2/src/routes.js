@@ -29,6 +29,8 @@ const RegistrationCompleted = React.lazy(() =>
 const CorporatePayment = React.lazy(() =>
   import("./Pages/Formss/Corporate/Register/CorporatePayment")
 );
+
+
 // const Payment = React.lazy(() => import("./Pages/Forms/Payment/"));
 // const StudentRegister = React.lazy(() =>
 //   import("./Pages/Forms/Student/StudentRegister")
@@ -77,9 +79,9 @@ const Subscription = React.lazy(() =>
 // const NewUniversity = React.lazy(() =>
 //   import("./Pages/Dashboard/Subscribe/NewUniversity/NewUniversity")
 // );
-// const University = React.lazy(() =>
-//   import("./Pages/Dashboard/Subscribe/University/University")
-// );
+const University = React.lazy(() =>
+  import("./Pages/DashBoard/Subscribe/University/University")
+);
 
 const TransactionHistory =React.lazy(() =>
 import("./Pages/TransactionHistory/TransactionHistory"));
@@ -317,14 +319,14 @@ const routes = [
   //     name: "NewUniversity",
   //     component: <NewUniversity/>,
   //   },
-  //   {
-  //     path: "/dashboard/subscribe/newuniversity/:id",
-  //     strict: true,
-  //     exact: true,
-  //     role: "dashboard",
-  //     name: "University",
-  //     component:<University/>,
-  //   },
+    {
+      path: "/dashboard/subscribe/newuniversity/:id",
+      strict: true,
+      exact: true,
+      role: "dashboard",
+      name: "University",
+      component:<University/>,
+    },
   //   {
   //     path: "/dashboard/subscribe/students/:id",
   //     strict: true,
