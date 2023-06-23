@@ -6,6 +6,7 @@ import { checkObjectProperties } from "../../../../utils/utils";
 import ContactPersonnelCmp from "./CorporateContactPersonnelCmp";
 import CryptoJS from "crypto-js";
 import { Checkbox } from "@material-ui/core";
+import PreLoader from "../../../../utils/PreLoader";
 
 
 
@@ -547,6 +548,7 @@ const CorporateContactPersonnel = () => {
                                     setDisable={setDisable}
                                     handleShow={handleShow}
                                 />
+                                 {apiStatus ? <PreLoader /> : null}
                             </div>
                         </div>
                     </div>
