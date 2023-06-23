@@ -156,7 +156,7 @@ const SideBar = () => {
             </div>
           </div>
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="/OnCampusDrive"
           style={{ textDecoration: "none" }}
         //activeClassName
@@ -194,15 +194,15 @@ const SideBar = () => {
               </div>
             </div>
           </div>
-        </NavLink>
+        </NavLink> */}
         <NavLink
-          to="/offCampus"
+          to="/jobs"
           style={{ textDecoration: "none" }}
         >
           <div
             className="menu"
             onClick={() => {
-              setMenuType("offCampusDrive");
+              setMenuType("jobs");
             }}
           >
             <div
@@ -212,10 +212,10 @@ const SideBar = () => {
             >
               <div
                 className={
-                  menuType === "offCampusDrive" ? "icon-box-selected" : "icon-box"
+                  menuType === "jobs" ? "icon-box-selected" : "icon-box"
                 }
               >
-                <Tooltip title="OFF-Campus Drive" arrow placement="left-start">
+                <Tooltip title="JOBS" arrow placement="left-start">
                   <WorkIcon />
                 </Tooltip>
               </div>

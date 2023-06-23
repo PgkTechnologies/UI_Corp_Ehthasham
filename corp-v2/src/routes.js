@@ -50,7 +50,7 @@ const CorporatePayment = React.lazy(() =>
 
 const Dashboard = React.lazy(() => import("./Pages/DashBoard/Dashboard"));
 const Profile = React.lazy(() => import("./Pages/Profile/ProfileMain"));
-
+const Jobs = React.lazy(() => import("./Pages/Jobs/Jobs"));
 
 // const HiringCriteria = React.lazy(() =>
 //   import("./Pages/Dashboard/CreateJob/HiringCriteria/index")
@@ -254,7 +254,13 @@ const routes = [
     name: "Profile",
     component: <Profile />,
   },
-
+  {
+    path:"/jobs",
+    strict:true,
+    role:"dashboard",
+    name:"jobs",
+    component: <Jobs/>
+  },
   //   {
   //     path: "/dashboard/createjob/hiring",
   //     strict: true,
