@@ -173,8 +173,8 @@ const AddressCmp = (props) => {
             <div className="col-4">
               <TextField
                 label="Zipcode"
-                type="text"
-                name="corporateHQAddressZipcode"
+                type="number"
+                name="corporateHQAddressZipCode"
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
@@ -186,15 +186,15 @@ const AddressCmp = (props) => {
             <div className="col-12">
               <TextField
                 label="Phone Number"
-                type="text"
+                type="number"
                 name="corporateHQAddressPhone"
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
                 onChange={props?.onChange}
                 value={
-                  props?.profileData?.primaryContactPhone
-                    ? props?.profileData?.primaryContactPhone?.value
+                  props?.profileData?.corporateHQAddressPhone
+                    ? props?.profileData?.corporateHQAddressPhone?.value
                     : ""
                 }
               />
@@ -203,14 +203,14 @@ const AddressCmp = (props) => {
               <TextField
                 label="Office Mail"
                 type="text"
-                name="corporateHQAddressemail"
+                name="corporateHQAddressEmail"
                 variant="filled"
                 style={{ width: "100%", marginBottom: "15px" }}
                 required={true}
                 onChange={props?.onChange}
                 value={
-                  profileData?.corporateHQAddressEmail
-                    ? profileData?.corporateHQAddressEmail?.value
+                  props?.profileData?.corporateHQAddressEmail
+                    ? props?.profileData?.corporateHQAddressEmail?.value
                     : ""
                 }
               />
