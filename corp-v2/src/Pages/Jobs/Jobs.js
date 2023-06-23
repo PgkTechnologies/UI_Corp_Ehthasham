@@ -23,20 +23,19 @@ const Jobs = () => {
 
     return (
         <>
-            <div style={{ display: 'flex', width: '35%', alignItems: 'center', justifyContent: 'center', marginTop: '55px', position: 'relative' }}>
+            <div className={!goOnCampus && !goOffCampus ? 'jobs-main-full':"jobs-main "} >
+                 
                 <img src="/images/corporateIcons/JobsPage.svg" alt="Example" style={{ maxWidth: '100%', maxHeight: '100%', zIndex: '-1' }} />
 
-                <div style={{ position: 'absolute', bottom: '110px', left: '30px' }}>
+                <div className="jobs-main-button">
                     <button className="step-card tab-select"
-                        style={{ display: 'flex', marginLeft: '15px' }}
                         onClick={() => { handleCampusDrive('ONCAM') }}
                     >ON Campus Drive</button>
 
                 </div>
 
-                <div style={{ position: 'absolute', bottom: '110px', right: '30px' }}>
+                <div style={{ position: 'absolute', bottom: '110px', right: '45px' ,width:'20%',marginRight:'10px'}}>
                     <button className="step-card tab-select"
-                        style={{ display: 'flex' }}
                         onClick={() => { handleCampusDrive('OFFCAM') }}
                     >
                         OFF Campus Drive</button>

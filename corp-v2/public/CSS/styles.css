@@ -75,7 +75,7 @@ p {
   background: #6198f7;
   border: 2px solid #6198f7;
   border-radius: 5px;
-  padding : 10px;
+  padding: 10px;
 }
 
 .btn1 {
@@ -86,7 +86,7 @@ p {
   border-radius: 5px;
   background-color: rgb(49, 75, 100);
   cursor: pointer;
-} 
+}
 
 .btn1:hover {
   cursor: pointer;
@@ -229,7 +229,7 @@ p {
 .log-in-main-container {
   display: flex;
   width: 100%;
-  height: 100vh; 
+  height: 100vh;
   flex-direction: column;
   align-items: center;
 }
@@ -248,8 +248,8 @@ p {
   height: 100vh;
 }
 
-.analytics-reports-style-dash{
-  height: 200vh; 
+.analytics-reports-style-dash {
+  height: 200vh;
 }
 
 .vertical-border {
@@ -480,7 +480,7 @@ p {
   color: white;
 }
 
-.result .corp-search-logo{
+.result .corp-search-logo {
   position: absolute;
   top: 10px;
   right: 8px;
@@ -778,8 +778,8 @@ p {
 .choice-btns .pending {
   float: left;
   border: 2px solid rgb(224, 235, 9);
-  color:  rgb(0, 0, 0);
-  background:#FFFF00;
+  color: rgb(0, 0, 0);
+  background: #FFFF00;
   margin-right: 5px;
 }
 
@@ -803,6 +803,7 @@ p {
   justify-content: center;
   cursor: pointer;
   padding: 12px 25px 12px;
+  margin-left: 15px;
 }
 
 .step-card:hover {
@@ -811,13 +812,14 @@ p {
   background: #c3d7e368;
 }
 
- 
+
 
 .tab-select {
   background: #1ba4f968;
   border-radius: 50px;
   outline: 4px solid #03355b;
 }
+
 .more-detail {
   display: flex;
   justify-content: flex-end;
@@ -1432,12 +1434,12 @@ p {
   outline: none;
 }
 
-.history-container{
+.history-container {
   padding: 20px;
   display: flex;
 }
 
-.history-container .history-item{
+.history-container .history-item {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1454,7 +1456,7 @@ p {
   box-shadow: 1px 1px 12px 0px #0228449b;
 }
 
-.history-container .history-item:hover{
+.history-container .history-item:hover {
   box-shadow: none;
   cursor: pointer;
   border: 2px solid #030d41;
@@ -1463,14 +1465,14 @@ p {
 }
 
 
-.broadcast-history-container .broadcast-message-card{
+.broadcast-history-container .broadcast-message-card {
   padding: 20px;
   background: #dedcdc;
   margin-top: 25px;
   border-radius: 10px;
 }
 
-.broadcast-history-container .trans-token-card{
+.broadcast-history-container .trans-token-card {
   background: #dedcdc;
   margin-top: 15px;
   border-radius: 5px;
@@ -1480,7 +1482,7 @@ p {
   font-size: 15px;
 }
 
-.trans-token-card .token-logo{
+.trans-token-card .token-logo {
   color: white;
   background: #00d84c;
   position: absolute;
@@ -1496,7 +1498,7 @@ p {
   font-size: 10px;
 }
 
-.trans-token-card .bonus-token-logo{
+.trans-token-card .bonus-token-logo {
   color: white;
   background: #fbd61e;
   position: absolute;
@@ -1512,13 +1514,37 @@ p {
   font-size: 10px;
 }
 
-.transaction-item{
+.transaction-item {
   color: #156394;
   padding: 5px 15px 5px;
-  background: white; 
-  margin-left: 5px; 
-  border-radius: 5px; 
+  background: white;
+  margin-left: 5px;
+  border-radius: 5px;
   border: 1px solid #11689e8c;
   text-transform: none;
 }
 
+.jobs-main {
+  display: flex;
+  width: 35%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 55px;
+  position: relative;
+}
+
+.jobs-main-full {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 55px;
+  position: relative;
+}
+
+.jobs-main-button {
+  position: absolute;
+  bottom: 110px;
+  left: 30px;
+  width: 20%;
+}
