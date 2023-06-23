@@ -792,6 +792,32 @@ p {
   cursor: default;
 }
 
+.step-card {
+  background: none;
+  border: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 12px 25px 12px;
+}
+
+.step-card:hover {
+  outline: 4px solid #03355b;
+  border-radius: 50px;
+  background: #c3d7e368;
+}
+
+ 
+
+.tab-select {
+  background: #1ba4f968;
+  border-radius: 50px;
+  outline: 4px solid #03355b;
+}
 .more-detail {
   display: flex;
   justify-content: flex-end;
