@@ -1,7 +1,7 @@
 const RequestCmp = () => {
     return (
         <div>
-            <h5>REQUEST PAGE</h5>
+            <h5>REQUEST Component</h5>
         </div>
     );
 };

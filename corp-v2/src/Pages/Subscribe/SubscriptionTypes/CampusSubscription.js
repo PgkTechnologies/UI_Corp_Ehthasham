@@ -63,20 +63,22 @@ const CampusSubscription = (props) => {
           </span>
           <span style={{ color: 'gray', paddingRight: '35px', paddingLeft: '35px' }}>|</span>
           
-          <div style={{ marginTop: '5px', marginLeft: '900px' }} >  <span
-            style={{
-              paddingLeft: '35px',
-              padding: "7px",
-              background: "#044071",
-              borderRadius: '7px',
-              marginTop: '0px',
-              color: '#e6e6e6',
-              fontWeight: 'normal',
-              fontSize: ' 13px',
-              border: 'none',
-              cursor: 'pointer',
+          <div style={{ marginTop: '5px', marginLeft: '900px' }} > 
+           <span
+            className="btn"
+            // style={{
+            //   paddingLeft: '35px',
+            //   padding: "7px",
+            //   background: "#044071",
+            //   borderRadius: '7px',
+            //   marginTop: '0px',
+            //   color: '#e6e6e6',
+            //   fontWeight: 'normal',
+            //   fontSize: ' 13px',
+            //   border: 'none',
+            //   cursor: 'pointer',
 
-            }}
+            // }}
             onClick={() => {
               getHiringItemById(props?.item?.nftID);
             }}
