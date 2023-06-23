@@ -28,52 +28,7 @@ const OtherInformationItem = (props) => {
 
   return (
     <>
-      {/* <div
-        className="univ-sub-item d-flex justify-content-between align-items-center"
-        key={props?.index}
-        style={{padding:15}}
-      >
-        <div className="sub-type-container d-flex">
-          <i className="far fa-file-alt icon" />
-          <p className="sub-label" style={{fontWeight:'bold'}}>{props?.item?.generalNote}</p>
-        </div>
-        <div className="vertical-border" />
-        <div className="name-address d-flex flex-column align-items-start">
-          <p className="title">{props?.item?.publisherName}</p>
-          {props?.item?.location?.trim()!=='' && <p className="sub-title">
-            <i className="fas fa-map-marker-alt" /> {props?.item?.location}
-          </p>}
-        </div>
-        <div className="vertical-border" />
-        <div className="sub-item-container d-flex flex-column align-items-center">
-          <p className="sub-title">{props?.item?.info?.Title}</p>
-        </div>
-        <div className="vertical-border" />
-        <button
-          type="button"
-          className="view-info-btn btn d-flex justify-content-around align-items-center"
-          style={{
-            height: "20px",
-            maxWidth: "100px",
-            fontSize: ".600rem",
-            borderRadius: "4px",
-          }}
-          onClick={() => {
-            if(props?.item?.isSubscribed) {
-              getPublishedData(props?.item?.publishID);
-            } else if(props?.getDetails) {
-              getPublishedData(props?.item?.publishID ? props?.item?.publishID : props?.item?.publishId);
-            } else {
-              if(props?.subscribeHandler) {
-                props.subscribeHandler();
-              }
-            }
-            // setShowModal(true);
-          }}
-        >
-          View Information
-        </button>
-      </div> */}
+ 
         <div className="cards-border" key={props.index}>
             <div className="col-lg-9 col-sm-12 card-content">
                 <div className="icon" style={{ marginRight: "20px" }}>
@@ -95,8 +50,8 @@ const OtherInformationItem = (props) => {
                         UniversityID:  {""}</span> <span> {props?.item?.publisher}{" "}
                     </span>
 
-                    <div style={{ marginLeft: '1000px' }}
-                    //    style={{marginTop:'5px' , display:"70px"}} 
+                    <div style={{ 
+                      marginLeft: '1000px'}}                  
                     >  <span className="btn"
                         //     style={{
                         //         padding: '15px',
