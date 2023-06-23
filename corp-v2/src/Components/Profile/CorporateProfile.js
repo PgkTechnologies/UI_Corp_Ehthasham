@@ -81,7 +81,7 @@ const formFields = [
 
 
 
-const CorporateProfile = ({setShowPublish ,showPublish}) => {
+const CorporateProfile = ({ setShowPublish, showPublish }) => {
 
     // const dispatch = useDispatch();
     const handleShow = () => setShowTermsAndConditions(true);
@@ -93,7 +93,7 @@ const CorporateProfile = ({setShowPublish ,showPublish}) => {
 
     // const [show, setShow] = useState(false);
     // const handleClose = () => setShow(false);
-    
+
     // const [isTermsAndConditionsChecked, setIsTermsAndConditionsChecked] = useState(false);
     // const [smShow, setSmShow] = useState(false);
 
@@ -185,9 +185,9 @@ const CorporateProfile = ({setShowPublish ,showPublish}) => {
 
     // console.log(profileInfo, 'REDUCER PRO');
 
-    const initialData = {  
+    const initialData = {
         universityProfile: false,
-      };
+    };
 
     const [profile, setProfile] = useState();
     const [checkStatus, setCheckStatus] = useState(false);
@@ -201,7 +201,7 @@ const CorporateProfile = ({setShowPublish ,showPublish}) => {
     });
     const [isTermsAndConditionsChecked, setIsTermsAndConditionsChecked] = useState(true);
 
-    
+
 
     const [postPublishProfile, setPostPublishProfile] = useState(initialData);
 
@@ -241,7 +241,7 @@ const CorporateProfile = ({setShowPublish ,showPublish}) => {
 
     useEffect(() => {
         setIsTermsAndConditionsChecked(false);
-    },[])
+    }, [])
 
 
 
@@ -453,13 +453,29 @@ const CorporateProfile = ({setShowPublish ,showPublish}) => {
     }, [profileInfo]);
 
     const updateProfileData = (event) => {
-        const {name, value, errorMessage} = event.target;
-        console.log(name,value,'testing')
+        const { name, value, errorMessage } = event.target;
+        console.log(name, value, 'testing')
         let data = profile[name];
         data["value"] = value;
         data["errorMessage"] = errorMessage;
 
         let updatedProfile = { ...profile };
+
+        if (name === 'corporateHQAddressEmail') {
+            updatedProfile = {
+                ...updatedProfile,
+                corporateHQAddressEmail: {
+                        ...updatedProfile.corporateHQAddressEmail,
+                        value: value,
+                        errorMessage: updatedProfile.corporateHQAddressEmail.isRequired
+                            ? "Required"
+                            : "",
+                    
+                }
+            }
+        }
+
+        console.log(updatedProfile, 'testing1111')
 
         if (
             name === "corporateHQAddressCountry" ||
@@ -786,17 +802,17 @@ const CorporateProfile = ({setShowPublish ,showPublish}) => {
         }
     };
 
-    const addPublishProfileForm=(data) => {
-    dispatch(
-        actionPostPublishCorporateProfileSagaAction({
-          apiPayloadRequest: data,
-          callback: getResponse,
-        })
-      );
+    const addPublishProfileForm = (data) => {
+        dispatch(
+            actionPostPublishCorporateProfileSagaAction({
+                apiPayloadRequest: data,
+                callback: getResponse,
+            })
+        );
     }
 
-    const getResponse=(data) => {
-  console.log(data,'getresponse')
+    const getResponse = (data) => {
+        console.log(data, 'getresponse')
     }
 
     const isFormValid = () => {
@@ -816,50 +832,50 @@ const CorporateProfile = ({setShowPublish ,showPublish}) => {
 
     const publishData = () => {
         const publishData = {};
-    
+
         if (postPublishProfile.universityProfile) {
-          publishData.profile = profileInfo ;
+            publishData.profile = profileInfo;
         }
-        
-    
+
+
         const finalModel = {
-        //   infoPublished: false,
-          profilePublished: postPublishProfile.universityProfile,         
-        //   otherPublished: false,
-         
+            //   infoPublished: false,
+            profilePublished: postPublishProfile.universityProfile,
+            //   otherPublished: false,
+
         };
         addPublishProfileForm(finalModel);
         setShowPublish(false);
         toast.success('Data published Successfully')
-      };
-    
+    };
+
 
 
 
     const handleChange = (event) => {
         const { name, checked } = event.target;
         setPostPublishProfile((preState) => ({
-          ...preState,
-          [name]: checked,
+            ...preState,
+            [name]: checked,
         }));
         setInputError("");
-      };
+    };
 
 
-      const handleSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        if (postPublishProfile.universityProfile ) {
-          setInputError("");
-          publishData();
+        if (postPublishProfile.universityProfile) {
+            setInputError("");
+            publishData();
         } else {
-          setInputError("Select atleast one profile to publish");
+            setInputError("Select atleast one profile to publish");
         }
-      };
+    };
 
 
-    console.log(profile,profileInfo, "TOT");
+    console.log(profile, profileInfo, "TOT");
     console.log(profile?.companyProfile, "direc corp msu");
-   
+
 
 
 
@@ -906,7 +922,7 @@ const CorporateProfile = ({setShowPublish ,showPublish}) => {
                         profileData={profile}
                         onChange={updateProfileData}
                         profileInfo={profileInfo}
-                        moment = {moment}
+                        moment={moment}
                     />
                     <AddressCmp
                         profileData={profile}
@@ -983,17 +999,17 @@ const CorporateProfile = ({setShowPublish ,showPublish}) => {
             </div>
 
             {showPublish ? (
-            <Publish
-              showPublish={showPublish}
-              handleClose={() => {
-                setShowPublish(!showPublish);
-              }}
-              allProfiles={profileInfo}
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-              inputError={inputError}
-            />
-          ) : null}
+                <Publish
+                    showPublish={showPublish}
+                    handleClose={() => {
+                        setShowPublish(!showPublish);
+                    }}
+                    allProfiles={profileInfo}
+                    handleChange={handleChange}
+                    handleSubmit={handleSubmit}
+                    inputError={inputError}
+                />
+            ) : null}
 
 
             <Modal show={showTermsAndConditions} onHide={handleClose}>
@@ -1320,7 +1336,7 @@ const CorporateProfile = ({setShowPublish ,showPublish}) => {
                     <Button
                         variant="primary"
                         onClick={handleClose}
-                        style={{ color: "white", backgroundColor:'rgb(2, 145, 255)' }}
+                        style={{ color: "white", backgroundColor: 'rgb(2, 145, 255)' }}
                     >
                         Close
                     </Button>
