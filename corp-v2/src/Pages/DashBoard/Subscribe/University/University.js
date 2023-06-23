@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import PreLoader from "../../../../utils/PreLoader";
 import { Button, Modal } from "react-bootstrap";
 import { Tab, Tabs } from "@material-ui/core";
+import OtherInformationItems from "./OtherInformations";
 
 
 const University = (props) => {
@@ -19,7 +20,7 @@ const University = (props) => {
     );
 
 
-    console.log(TokenData,'tokeen daattta' )
+    console.log(TokenData, 'tokeen daattta')
 
 
     const apiStatus = useSelector((state) => state.CorporateReducer.apiStatus);
@@ -52,6 +53,15 @@ const University = (props) => {
 
     const [profileInfo, setProfileInfo] = useState();
     const [otherInfo, setOtherInfo] = useState();
+    const tokensrequired = tokens?.tokensrequired;
+
+    const bonusTokenBalance = TokenData?.bonusTokenBalance;
+    const paidTokenBalance = TokenData?.paidTokenBalance;
+    const isAdditionalTokensRequired =
+        TokenData?.paidTokenBalance < tokensrequired - bonusTokensUsed;
+    const additionalTOkens =
+        TokenData?.paidTokenBalance - (tokensrequired - bonusTokensUsed);
+
 
     const [sendMailObj, setSendMailObj] = useState({
         emailTo: "jaswanth@gmail.com",
@@ -73,7 +83,7 @@ const University = (props) => {
     const history = useNavigate();
     const { id: universityId } = useParams();
 
-    console.log(universityId,'resssa')
+    console.log(universityId, 'resssa')
 
     useEffect(() => {
         dispatch(
@@ -88,9 +98,7 @@ const University = (props) => {
         );
     }, []);
 
-    const balance = useSelector((state) => state.DashboardReducer.balance);
     const dispatch = useDispatch();
-    //const universityId = props.match?.params?.id;
     const email = corpProfileInfo?.primaryContactEmail;
 
     useEffect(() => {
@@ -134,36 +142,28 @@ const University = (props) => {
     };
 
     const getUniversityList = (data) => {
-        console.log(data,'1111111')
+        console.log(data, '1111111')
         setUniversityInfoSubscriptionsList(
             data?.subscriptions?.length ? data.subscriptions : []
         );
         setUniversityInfoPublishedList(
-            data?.publishedData?.length ? data.publishedData : []
+            data?.publishedData?.length ? data?.publishedData : []
         );
 
         setUniversityInfo(data);
         setSendMailObj((prevState) => ({
             ...prevState,
-            emailSubject: `R : ${data?.universityName}`,
-            emailBody: `Dear Sir/Madam,This is with regards to the subject line, we ${corpProfileInfo?.corporateName ? corpProfileInfo?.corporateName : ""
-                }, ${getCorporateAddress()} would be interested in conducting a recruitment drive in your organization to recruit the final / pre-final year students.\n\nAppreciate if you could revert with your interest to take the process forward using the below link:\n http://university.c2hire.com/university/dashboard/Subscribe/corporationInfo/${corpProfileInfo.stakeholderID
-                }Yours Sincerely,${corpProfileInfo?.primaryContactFirstName
-                    ? corpProfileInfo?.primaryContactFirstName
-                    : ""
-                } ${corpProfileInfo?.primaryContactLastName
-                    ? corpProfileInfo?.primaryContactLastName
-                    : ""
-                }${corpProfileInfo?.primaryContactDesignation
-                    ? corpProfileInfo?.primaryContactDesignation
-                    : ""
-                }${corpProfileInfo?.corporateName ? corpProfileInfo?.corporateName : ""
-                }Note: Please do not reply to this email as this is an unattended mail box.`,
+            emailSubject: ` Requesting for Campus Placements Hiring`,
+            emailBody: `This is with regards to the subject line, we ${corpProfileInfo?.corporateName ? corpProfileInfo?.corporateName : ""
+                }, ${getCorporateAddress()} would be interested in conducting a recruitment drive in your organization to recruit the final / pre-final year students.
+                Appreciate if you could revert with your interest to take the process forward using the below link:\n http://university.c2hire.com/university/dashboard
+                /Subscribe/corporationInfo/${corpProfileInfo.stakeholderID}`
+
         }));
     };
 
     const getUniversityHistoryList = (data) => {
-        console.log(data,'2222222')
+        console.log(data, '2222222')
         setUniversityHistoryInfoList(data);
     };
 
@@ -338,7 +338,7 @@ const University = (props) => {
 
     const handleTabChange = (event, newValue) => {
         setTabValue(newValue);
-      };
+    };
 
     const sendMail = (data) => {
         const model = {
@@ -355,8 +355,8 @@ const University = (props) => {
     const sendMailResp = (data) => {
         toast.success(data?.message);
         setIsSendOpen(false);
-        setIsSendMailSuccess(true);
         getUniversityById();
+        // toast.success('Successfully Send request')
     };
 
     const handleFilterChange = (name, value, errorMessage, type) => {
@@ -445,106 +445,124 @@ const University = (props) => {
         }
     };
 
+    const sendEMail = (event) => {
+        event.preventDefault();
+        const { emailTo, emailSubject, emailBody } = sendMailObj;
+        console.log('ET :', sendMailObj?.emailBody?.trim());
+        if (emailTo?.trim() == '' && emailSubject?.trim() == '' && emailBody?.trim() == '') {
+            toast.warning('Please enter all input fields')
+            return;
+        }
+        const model = {
+            emailTo: emailTo,
+            emailSubject: emailSubject ? emailSubject : 'Campus Hiring Request',
+            emailBody: emailBody
+        };
+        sendMail(model)
+    }
+
     // campusDrive
 
-    console.log(universityInfo,'infooooooo')
+    const model = universityInfoPublishedList?.filter(x => !x?.isSubscribed)
+
+    console.log(model, 'infooooooo')
 
     return (
         <>
 
-<div className="container-body">
+            <div className="container-body">
 
-            <div className="acc-main">
-                <div
-                    style={{ display: "flex", width: "100%", justifyContent: "flex-start" }}
-                >
-                </div>
-                <div className="row acc-card-container">
-                    <div className="col-8 acc-details">
-                        <div className="profile-picture">
-                            {universityInfo?.profilePicture ? (
-                                <img
-                                    src={
-                                        universityInfo?.profilePicture
-                                            ? "data:image/jpg;base64," +
-                                            universityInfo?.profilePicture
-                                            : null
-                                    }
-                                    className="profile-pic-img"
-                                    alt="no img"
-                                />
-                            ) : null}
-                        </div>
-                        <div className="acc-name-main">
-                            <p>{universityInfo?.universityName}</p>
-                            <button
-                                type="button"
-                                className="btn"
-                                style={{
-                                    fontSize: "10px",
-                                    fontWeight: "bold",
-                                    textTransform: "uppercase",
-                                }}
-                            onClick={() => subscribeModal("campusDrive")}
-                            >
-                                REQUEST FOR A CAMPUS DRIVE
-                            </button>
-                        </div>
-                    </div>
-                    <div className="col-4 d-flex justify-content-end align-items-center">
-                        <Button
-                            // disabled={disabled}
-                            type="button"
-                            className="acc-sub-btn"
-                        // onClick={() => handleShow(publishId)}
-                        >
-                            Subscribe
-                        </Button>
-                    </div>
-                </div>
-                
-                <div style={{ marginTop: "20px", width: "100%", marginBottom: "10px" }}>
-                    <Tabs
-                        value={tabValue}
-                        onChange={handleTabChange}
-                        indicatorColor={"primary"}
-                        textColor={"primary"}
-                        variant="scrollable"
+                <div className="acc-main">
+                    <div
+                        style={{ display: "flex", width: "100%", justifyContent: "flex-start" }}
                     >
-                        <Tab label="Profile" />
-                       
-                        <Tab label="Jobs" />
-                    </Tabs>
-                    <div className="tab-details">
-                        {tabValue === 0 ? (
+                    </div>
+                    <div className="row acc-card-container">
+                        <div className="col-8 acc-details">
+                            <div className="profile-picture">
+                                {universityInfo?.profilePicture ? (
+                                    <img
+                                        src={
+                                            universityInfo?.profilePicture
+                                                ? "data:image/jpg;base64," +
+                                                universityInfo?.profilePicture
+                                                : null
+                                        }
+                                        className="profile-pic-img"
+                                        alt="no img"
+                                    />
+                                ) : null}
+                            </div>
+                            <div className="acc-name-main">
+                                <p>{universityInfo?.universityName}</p>
+                                <button
+                                    type="button"
+                                    className="btn"
+                                    style={{
+                                        fontSize: "10px",
+                                        fontWeight: "bold",
+                                        textTransform: "uppercase",
+                                    }}
+                                    onClick={() => subscribeModal("campusDrive")}
+                                >
+                                    REQUEST FOR A CAMPUS DRIVE
+                                </button>
+                            </div>
+                        </div>
+                        <div className="col-4 d-flex justify-content-end align-items-center">
+                            <Button
+                                // disabled={disabled}
+                                type="button"
+                                className="acc-sub-btn"
+                            // onClick={() => handleShow(publishId)}
+                            >
+                                Subscribe
+                            </Button>
+                        </div>
+                    </div>
 
-                            <>
-                                {apiStatus ? <PreLoader /> : null}
-                                <div className="sub-profile-main">
-                                    <h3>Overview</h3>
-                                    <p style={{ color: "gray" }}>{universityInfo?.universityProfile}</p>
-                                    <div style={{ padding: "15px" }}>
-                                        <h4>Year of Establishment</h4>
-                                        <p style={{ color: "gray" }}>
-                                            {universityInfo?.yearOfEstablishment}
-                                        </p>
-                                        <h4>Accredations</h4>
-                                        <p style={{ color: "gray" }}>
-                                           {universityInfo?.accredations?.issuingAuthority}
-                                        </p>
-                                        <h4>NIRF Ranking</h4>
-                                        <p style={{ color: "gray" }}>{universityInfo?.ranking?.rank}</p>
+                    <div style={{ marginTop: "20px", width: "100%", marginBottom: "10px" }}>
+                        <Tabs
+                            value={tabValue}
+                            onChange={handleTabChange}
+                            indicatorColor={"primary"}
+                            textColor={"primary"}
+                            variant="scrollable"
+                        >
+                            <Tab label="Profile" />
 
-                                        <h4>Programs Offered</h4>
-                                        <p style={{ color: "gray" }}>
-                                           {universityInfo?.programsOffered}
-                                        </p>
+                            {/* <Tab label="Other information" /> */}
+                        </Tabs>
+                        <div className="tab-details">
+                            {tabValue === 0 ? (
 
-                                        <h4>Address</h4>
-                                        <p style={{ color: "gray" }}>
-                                           {universityInfo?.universityHQAddressCity}
-                                        </p>
-                                        {/* <p style={{ color: "gray" }}>
+                                <>
+                                    {apiStatus ? <PreLoader /> : null}
+                                    <div className="sub-profile-main">
+                                        <h3>Overview</h3>
+                                        <p style={{ color: "gray" }}>{universityInfo?.universityProfile}</p>
+                                        <div style={{ padding: "15px" }}>
+                                            <h4>Year of Establishment</h4>
+                                            <p style={{ color: "gray" }}>
+                                                {universityInfo?.yearOfEstablishment}
+                                            </p>
+                                            <h4>Accredations</h4>
+                                            <p style={{ color: "gray" }}>
+                                                {universityInfo?.accredations?.issuingAuthority}
+                                            </p>
+                                            <h4>NIRF Ranking</h4>
+                                            <p style={{ color: "gray" }}>{universityInfo?.ranking?.rank}</p>
+
+                                            <h4>Programs Offered</h4>
+                                            <p style={{ color: "gray" }}>
+                                                {universityInfo?.programsOffered}
+                                            </p>
+
+                                            <h4>Address</h4>
+                                            <p style={{ color: "gray" }}>
+                                                {universityInfo?.universityHQAddressCity}
+                                            </p>
+                                            {/* <p style={{ color: "gray" }}>
                                             <span style={{ fontWeight: "bold" }}>Headquarter : </span>
                                             {corporateInfoList?.corporateHQAddressLine1},{" "}
                                             {corporateInfoList?.corporateHQAddressLine2},{" "}
@@ -564,107 +582,198 @@ const University = (props) => {
                                             {corporateInfoList?.corporateLocalBranchAddressZipCode}
                                         </p> */}
 
-                                        
+
+                                        </div>
                                     </div>
-                                </div>
-                            </>
+                                </>
 
-                        ) : null}
+                            ) : null}
+                        </div>
+
+
+                        <div className="tab-details">
+                            {tabValue === 1 ? (
+
+                                <>
+                                    {apiStatus ? <PreLoader /> : null}
+                                            <OtherInformationItems
+                                                subscribeHandler={() => {
+                                                    subscribeModal("UO", model?.publishID)
+                                                }}
+
+                                                universityInfo = {universityInfo}
+
+                                                // index={index}
+
+                                                item={{
+                                                    ...model,
+                                                    publisherName: universityInfo?.universityName,
+                                                    location: universityInfo?.universityHQAddressCity
+                                                }}
+                                            />
+
+
+
+
+                                </>
+
+                            ) : null}
+                        </div>
+
                     </div>
+                </div>
+
+                {/* send request and py token modal */}
+
+                <Modal show={isSubscribe} onHide={closeSubModal}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            {publishId?.type !== "CR"
+                                ? "Subscription"
+                                : "Inviting for Campus Placements"}
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div className="row">
+                            <div className="col-md-8">
+                                <span>Subscription Cost to access</span>
+                                <li className="inner-list">
+                                    <span>{subscribeType === "unvInsight"
+                                        ? universityInfo?.universityName + " University Insights"
+                                        : subscribeType === "unvStuData"
+                                            ? "Students Data"
+                                            : subscribeType === "profileInfo"
+                                                ? "Profile information"
+                                                : subscribeType === "otherInfo"
+                                                    ? "Other information"
+                                                    : "Campus Hiring Request to " +
+                                                    universityInfo?.universityName
+                                    }</span>{" "}
+                                </li>
+                            </div>
+                            <div className="col-md-4">
+                                <strong>
+                                    {tokens?.tokensrequired}
+                                </strong>{" "}
+                                &nbsp; Tokens
+                            </div>
+                        </div>
+                        <div className="row ">
+                            <div className="col-md-8">
+                                <span>Available Tokens in the Wallet</span>
+                            </div>
+                            <div className="col-md-4">
+                                <strong>{TokenData?.paidTokenBalance}</strong> &nbsp; Token
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-8">
+                                <span>Available Bonus Tokens</span>
+                            </div>
+                            <div className="col-md-4">
+                                <strong>{TokenData?.bonusTokenBalance}</strong> &nbsp; Tokens
+                                <br />
+                            </div>
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button
+                            variant="outline-secondary"
+                            onClick={() => closeSubModal(additionalTOkens)}
+                        >
+                            Add Tokens
+                        </Button>
+                        {publishId?.type !== "CR" ? (
+                            <Button
+                                className="btnTwo"
+                                variant="outline-primary"
+                                onClick={subscribeUnv}
+                                disabled={isAdditionalTokensRequired}
+                            >
+                                Pay & Subscribe
+                            </Button>
+                        ) : (
+                            <Button
+                                className="btnTwo"
+                                variant="outline-primary"
+                            //   onClick={() =>
+                            //     onSubscribeInviteCampusPlacement(
+                            //       props?.corporateSelectionInformation?.tokensRequired
+                            //     )
+                            //   }
+                            >
+                                Pay & Send Request
+                            </Button>
+                        )}
+                    </Modal.Footer>
+                </Modal>
+
+                {/* send email modal */}
+
+                <Modal
+                    show={isSendOpen}
+                    onHide={closeSendModal}
+                    backdrop="static"
+                    keyboard={false}
+                    size="lg"
+                >
+                    <Modal.Header>
+                        <Modal.Title>
+                            Send Mail to: {universityInfo?.universityName}
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p className="to">
+                            <strong>Subject :</strong>{sendMailObj?.emailSubject}
+                        </p>
+                        <div className="hr"></div>
+                        <div style={{ marginTop: 10 }}>
+                            <p className="mailtext">Respected Sir/Madam,</p>
+                        </div>
+                        <div style={{ marginTop: 20 }}>
+                            <p className="mailtext">
+                                {sendMailObj?.emailBody}
+                            </p>
+                        </div>
+
+                        <div style={{ marginTop: 20 }}>
+                            <p className="mailtext">
+                                Looking forward to mutually benificial relationship.
+                            </p>
+                        </div>
+                        <div style={{ marginTop: 20 }}>
+                            <p className="mailtext">Thank You.</p>
+                        </div>
+                        <div style={{ marginTop: 20 }}>
+                            <p className="mailtext2">
+                                Your Sincerely,
+                                <br />
+                                <br />
+                                {corpProfileInfo?.corporateName}, <br />
+                                {corpProfileInfo?.corporateHQAddressPhone},<br />
+                                {corpProfileInfo?.corporateHQAddressEmail},<br />
+                                {corpProfileInfo?.corporateHQAddressCountry},<br />
+                            </p>
+                        </div>
+
+                        <div style={{ marginTop: 40 }}>
+                            <p className="mailtext">
+                                <strong>Note:</strong> Please do not reply to this email as this is an unattended mail box.
+                            </p>
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button
+                            className="btnTwo"
+                            variant="outline-primary"
+                            onClick={sendEMail}
+                        >
+                            Send Request
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
 
 
-                    <div className="tab-details">
-                        {tabValue === 1 ? (
-
-                            <>
-                                {apiStatus ? <PreLoader /> : null}
-                                
-                            </>
-
-                        ) : null}
-                    </div>
-
-                </div> 
-            </div>
-          
-
-            <Modal show={isSubscribe} onHide={closeSubModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>
-            {publishId?.type !== "CR"
-              ? "Subscription"
-              : "Inviting for Campus Placements"}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="row">
-            <div className="col-md-8">
-              <span>Subscription Cost to access</span>
-              <li className="inner-list">
-                <span>{props?.corporateSelectionInformation?.title}</span>{" "}
-              </li>
-            </div>
-            <div className="col-md-4">
-              <strong>
-                {props?.corporateSelectionInformation?.tokensRequired}
-              </strong>{" "}
-              &nbsp; Tokens
-            </div>
-          </div>
-          <div className="row ">
-            <div className="col-md-8">
-              <span>Available Tokens in the Wallet</span>
-            </div>
-            <div className="col-md-4">
-              <strong>{tokens?.paidTokenBalance}</strong> &nbsp; Token
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-8">
-              <span>Available Bonus Tokens</span>
-            </div>
-            <div className="col-md-4">
-              <strong>{tokens?.bonusTokenBalance}</strong> &nbsp; Tokens
-              <br />
-            </div>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="outline-secondary"
-            // onClick={() => handleOpenTokens()}
-          >
-            Add Tokens
-          </Button>
-          {publishId?.type !== "CR" ? (
-            <Button
-              className="btnTwo"
-              variant="outline-primary"
-            //   onClick={() =>
-            //     onSubscribe(
-            //       props?.corporateSelectionInformation?.title,
-            //       props?.corporateSelectionInformation?.tokensRequired,
-            //       publishId
-            //     )
-            //   }
-            >
-              Pay & Subscribe
-            </Button>
-          ) : (
-            <Button
-              className="btnTwo"
-              variant="outline-primary"
-            //   onClick={() =>
-            //     onSubscribeInviteCampusPlacement(
-            //       props?.corporateSelectionInformation?.tokensRequired
-            //     )
-            //   }
-            >
-              Pay & Send Request
-            </Button>
-          )}
-        </Modal.Footer>
-      </Modal>
 
             </div>
 
