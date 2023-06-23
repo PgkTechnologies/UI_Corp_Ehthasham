@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CorporateProfile from "../../Components/Profile/CorporateProfile";
 import PublishOtherInformation from "../DashBoard/Publish/OtherInformation/PublishOtherInformation";
-
+import AddchartSharpIcon from '@mui/icons-material/AddchartSharp';
 
 const Profile = () => {
 
@@ -124,7 +124,7 @@ const Profile = () => {
                             <Tab
                                 icon={
                                     <Badge color="error" variant={profileCheck === 'n' ? 'dot' : ''} >
-                                        <AccountCircle />
+                                        <AddchartSharpIcon />
                                     </Badge>
                                 }
                                 label={tabValue === 1 ? "Other Information" : ""}
