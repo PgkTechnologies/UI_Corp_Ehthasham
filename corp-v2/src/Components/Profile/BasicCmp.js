@@ -25,7 +25,7 @@ const BasicCmp = (props) => {
     setCorporateTypes(
       response?.corporateType?.length
         ? response?.corporateType?.map((item) => {
-          if (item?.corporateTypeCode === props?.profileData?.corporateType?.value) {
+          if (item?.corporateTypeCode === props?.profileInfo?.corporateType) {
             setCorpSector(item?.corporateTypeName)
           }
         })
@@ -122,7 +122,7 @@ const BasicCmp = (props) => {
             }}
             required={true}
             disabled={true}
-            value={props?.profileData?.corporateType?.value ? corpSector : ''}
+            value={props?.profileInfo?.corporateType ? corpSector : ''}
             
           />
         </div>

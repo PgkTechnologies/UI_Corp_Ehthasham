@@ -5,8 +5,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PreLoader from "../../../../utils/PreLoader";
+import { SubscribeSearchSagaAction } from "../../../../Store/Actions/SagaActions/SubscriptionSagaAction";
 
- 
+
 const SearchBar = (props) => {
   const [filterdValues, setFilteredValues] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
@@ -19,12 +20,12 @@ const SearchBar = (props) => {
     let getData;
     if (wordEntered.length > 0) {
       getData = setTimeout(() => {
-        // dispatch(
-        //   actionGetSearchCorporates({
-        //     apiPayloadRequest: wordEntered, page: page, size: size,
-        //     callback: getSeachDataResult,
-        //   })
-        // );
+        dispatch(
+          SubscribeSearchSagaAction({
+            apiPayloadRequest: wordEntered, page: page, size: size,
+            callback: getSeachDataResult,
+          })
+        );
       }, 500);
     }
 
@@ -35,7 +36,7 @@ const SearchBar = (props) => {
 
   const getSeachDataResult = (data) => {
     console.log(data, "SEARCH");
-    setFilteredValues(data?.corporates);
+    setFilteredValues(data?.universities);
   };
 
   const handleFilter = (event) => {
@@ -60,8 +61,8 @@ const SearchBar = (props) => {
     setWordEntered("");
   };
 
-  const gotoSubscriprtion = (corpId) => {
-    navigate(`/subscriptions/${corpId}`);
+  const gotoSubscriprtion = (UnvId) => {
+    navigate(`/dashboard/subscribe/newuniversity/${UnvId}`);
     clearInput();
   };
 
@@ -88,10 +89,10 @@ const SearchBar = (props) => {
               <div
                 className="result"
                 key={index}
-                onClick={() => gotoSubscriprtion(result.corporateID)}
+                onClick={() => gotoSubscriprtion(result?.universityID)}
               >
                 <div> {result.corporateName}</div>
-                <div style={{ fontSize: '10px' }}>{result.corporateIndustry}</div>
+                <div style={{ fontSize: '20px' }}>{result.universityName}</div>
                 <div className="corp-search-logo">
                   {
                     result?.profilePicture !== null ?
