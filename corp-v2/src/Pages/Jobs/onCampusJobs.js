@@ -127,12 +127,12 @@ const OnCampusJobs = (props) => {
                                     </span>
 
                                     {item?.campusDriveClosed ? (
-                                        <span style={{ paddingLeft: '900px' }}>
+                                        <span style={{ paddingLeft: '800px' }}>
                                             <LockRoundedIcon style={{ color: 'red' }} />
                                             <p style={{fontWeight:'bold' , color:'#FF2400'}} >Drive Closed</p>
                                         </span>
                                     ) : (
-                                        <span style={{ paddingLeft: '900px' }}>
+                                        <span style={{ paddingLeft: '800px' }}>
                                             <IoArrowForwardCircleSharp
                                                 size={35}
                                                 onClick={() => {
