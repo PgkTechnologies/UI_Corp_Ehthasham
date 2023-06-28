@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const Login = React.lazy(() => import("./Pages/Formss/Corporate/Login"));
 
 const Register = React.lazy(() =>
@@ -83,8 +82,8 @@ const University = React.lazy(() =>
   import("./Pages/DashBoard/Subscribe/University/University")
 );
 
-const TransactionHistory =React.lazy(() =>
-import("./Pages/TransactionHistory/TransactionHistory"));
+const TransactionHistory = React.lazy(() =>
+  import("./Pages/TransactionHistory/TransactionHistory"));
 
 const Notifications = React.lazy(() =>
   import("./Pages/DashBoard/Notifications/Notifications")
@@ -100,14 +99,15 @@ const Requests = React.lazy(() =>
 // const DefineJobs = React.lazy(() => import("./Pages/Dashboard/CampusDrive/DefineJobs/DefineJobs"));
 // const Communication = React.lazy(() => import("./Pages/Dashboard/CampusDrive/Communication/Communication"));
 // const CampusInterviews = React.lazy(() => import("./Pages/Dashboard/CampusDrive/CampusInterviews/CampusInterviews"));
-// const OffCampusDrive = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffCampusDrive"))
+const OffCampusDriveCmp = React.lazy(() => import("./Pages/DashBoard/OffCampusDrive/OffCampusDriveCmp"))
 // const OffCampusDriveHomePage = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffCampusDriveHomePage"))
-// const OffDefineJobs = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffDefineJobs/OffDefineJobs"))
+
+const OffDefineJobs = React.lazy(() => import("./Pages/DashBoard/OffCampusDrive/OffDefineJobs/OffDefineJobs"))
 // const OffCommunication = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffCommunication/OffCommunication"))
-// const OffCampusInterviews = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffCampusInterviews/OffCampusInterviews"))
+const OffCampusInterviews = React.lazy(() => import("./Pages/DashBoard/OffCampusDrive/OffCampusInterviews/OffCampusInterviews"))
 const History = React.lazy(() => import("./Pages/TransactionHistory/History"));
- const Support = React.lazy(() => import("./Pages/DashBoard/Support/Support"));
- const TicketChatCmp = React.lazy(() => import('./Pages/DashBoard/Support/TicketChatCmp'));
+const Support = React.lazy(() => import("./Pages/DashBoard/Support/Support"));
+const TicketChatCmp = React.lazy(() => import('./Pages/DashBoard/Support/TicketChatCmp'));
 // const UniversityStudents = React.lazy(() => import("./Pages/Dashboard/Subscribe/University/UniversityStudents/UniversityStudents"));
 const ForgotPassword = React.lazy(() => import("./Pages/Formss/Corporate/ForgotPassword/ForgotPassword"));
 const Mike = React.lazy(() => import("./Pages/Formss/Corporate/Login/LoginForm"));
@@ -255,11 +255,11 @@ const routes = [
     component: <Profile />,
   },
   {
-    path:"/jobs",
-    strict:true,
-    role:"dashboard",
-    name:"jobs",
-    component: <Jobs/>
+    path: "/jobs",
+    strict: true,
+    role: "dashboard",
+    name: "jobs",
+    component: <Jobs />
   },
   //   {
   //     path: "/dashboard/createjob/hiring",
@@ -325,14 +325,14 @@ const routes = [
   //     name: "NewUniversity",
   //     component: <NewUniversity/>,
   //   },
-    {
-      path: "/dashboard/subscribe/newuniversity/:id",
-      strict: true,
-      exact: true,
-      role: "dashboard",
-      name: "University",
-      component:<University/>,
-    },
+  {
+    path: "/dashboard/subscribe/newuniversity/:id",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "University",
+    component: <University />,
+  },
   //   {
   //     path: "/dashboard/subscribe/students/:id",
   //     strict: true,
@@ -405,30 +405,30 @@ const routes = [
   //     name: "CampusInterviews",
   //     component: <CampusInterviews/>,
   //   },
-  //   {
-  //     path: "/dashboard/off-campus-drive",
-  //     strict: true,
-  //     exact: true,
-  //     role: "dashboard",
-  //     name: "OffCampusDrive",
-  //     component: <OffCampusDrive/>,
-  //   },
-  //   {
-  //     path: "/dashboard/off-campus-drive/:offCampusDriveId/home/:universityId",
-  //     strict: true,
-  //     exact: true,
-  //     role: "dashboard",
-  //     name: "OffCampusDriveHomePage",
-  //     component: <OffCampusDriveHomePage/>,
-  //   },
-  //   {
-  //     path: "/dashboard/off-campus-drive/:offCampusDriveId/off-define-jobs/:universityId",
-  //     strict: true,
-  //     exact: true,
-  //     role: "dashboard",
-  //     name: "OffDefineJobs",
-  //     component: <OffDefineJobs/>,
-  //   },
+  {
+    path: "/dashboard/off-campus-drive",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "OffCampusDrive",
+    component: <OffCampusDriveCmp />,
+  },
+  {
+    path: "/dashboard/off-campus-drive/:offCampusDriveId/home/:universityId",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "OffCampusDriveHomePage",
+    component: <OffDefineJobs/>,
+  },
+    {
+      path: "/dashboard/off-campus-drive/:offCampusDriveId/off-define-jobs/:universityId",
+      strict: true,
+      exact: true,
+      role: "dashboard",
+      name: "OffDefineJobs",
+      component: <OffDefineJobs/>,
+    },
   //   {
   //     path: "/dashboard/off-campus-drive/:offCampusDriveId/off-communication/:universityId",
   //     strict: true,
@@ -437,14 +437,14 @@ const routes = [
   //     name: "OffCommunication",
   //     component: <OffCommunication/>,
   //   },
-  //   {
-  //     path: "/dashboard/off-campus-drive/:offCampusDriveId/off-campus-interviews/:universityId",
-  //     strict: true,
-  //     exact: true,
-  //     role: "dashboard",
-  //     name: "OffCampusInterviews",
-  //     component: <OffCampusInterviews/>,
-  //   },
+  // {
+  //   path: "/dashboard/off-campus-drive/:offCampusDriveId/off-campus-interviews/:universityId",
+  //   strict: true,
+  //   exact: true,
+  //   role: "dashboard",
+  //   name: "OffCampusInterviews",
+  //   component: <OffCampusInterviews />,
+  // },
   {
     path: "/analytics",
     strict: true,
@@ -459,7 +459,7 @@ const routes = [
     exact: true,
     role: "dashboard",
     name: "History",
-    component: <History/>,
+    component: <History />,
   },
 
   {
