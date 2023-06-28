@@ -1,9 +1,11 @@
 import { useState } from "react";
 import OnCampusJobs from "./onCampusJobs";
 import OffCampusJobs from "./offCampusJobs";
+import { useNavigate } from "react-router-dom";
 
 
 const Jobs = () => {
+    const navigate = useNavigate()
 
     const [goOnCampus, setGoOnCampus] = useState(false);
     const [goOffCampus, setGoOffCampus] = useState(false);
@@ -35,8 +37,8 @@ const Jobs = () => {
                 </div>
 
                 <div style={{ position: 'absolute', bottom: '110px', right: '45px' ,width:'20%',marginRight:'10px'}}>
-                    <button className="campus-jobs tab-select"
-                        onClick={() => { handleCampusDrive('OFFCAM') }}
+                    <button className="step-card tab-select"
+                        onClick={() => { navigate("/dashboard/off-campus-drive") }}
                     >
                         OFF Campus Drive</button>
 

@@ -20,7 +20,7 @@
   overflow-y: auto;
   font-family: "Poppins", sans-serif;
   border-radius: 5px;
-  padding-top: 100px;
+  padding-top: 5px;
 }
 
 .center-style {
@@ -719,7 +719,7 @@ p {
   align-items: center;
   justify-content: center;
   background: #39bdf60b;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 10px;
   border-radius: 5px;
   padding: 10px;
@@ -1115,7 +1115,7 @@ p {
 .job-card-main {
   display: flex;
   background: white;
-  padding: 25px;
+  padding: 15px;
   width: 100%;
   margin-bottom: 10px;
   border-radius: 10px;
