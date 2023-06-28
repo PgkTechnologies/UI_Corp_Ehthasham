@@ -56,7 +56,35 @@ label {
 p {
   line-height: 1.4rem;
 }
+.d-grp {
+  position: relative;
+  margin-bottom: 18px;
+}
+.d-grp .d-inp {
+  width: 100%;
+  border-radius: 4px;
+  height: 45px;
+  padding: 10px 12px;
+  border: 1px solid #D1D1D1;
+  outline: none;
+  font-size: 14px;
+  color: #000000;
+  -webkit-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
 
+.d-grp .d-inp.d-inp1 {
+  height: auto !important;
+}
+
+.d-grp .d-label {
+  color: #727272;
+  width: 100%;
+  font-family: Poppins-Semibold;
+  font-size: 13px;
+  margin-bottom: 4px;
+  line-height: 1;
+}
 .sub-title {
   padding: 20px;
   font-size: 16px;
@@ -708,6 +736,39 @@ p {
   margin-bottom: 5px;
   border-radius: 5px;
 }
+.jobs-list-item .item .job-label {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 500;
+  padding-left: 20px;
+}
+.jobs-cdx{
+  border: 0.5px solid rgba(2, 112, 131, 0.406);
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  padding: 25px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.card-Induction {
+  width: 100;
+  background-color: #f0f0f0;
+  min-height: 450px;
+}
+
+.cards-job {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 25px;
+  border: 3.5px solid rgba(241, 246, 247, 0.406);
+  margin-top: 25px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  margin-left: 15px;
+}
 
 .icon {
   display: flex;
@@ -718,6 +779,34 @@ p {
   color: white;
   background: linear-gradient(to bottom, #698fff 0%, #03b5b5 100%);
   border-radius: 50%;
+}
+
+.Jobs-Add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-top: 190px; */
+  width: 100%;
+}
+
+.CD-define-jobs-list {
+  display: flex;
+  flex-direction: column;
+  height: 480px;
+  overflow: scroll;
+  justify-content: flex-start;
+}
+
+.bgWhite {
+  background-color: white;
+  overflow-y: auto;
+  min-height: 410px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .card-content {
@@ -792,7 +881,7 @@ p {
   cursor: default;
 }
 
-.step-card {
+.campus-jobs{
   background: none;
   border: none;
   text-transform: uppercase;
@@ -806,12 +895,11 @@ p {
   margin-left: 15px;
 }
 
-.step-card:hover {
+.campus-jobs:hover {
   outline: 4px solid #03355b;
   border-radius: 50px;
   background: #c3d7e368;
 }
-
 
 
 .tab-select {
@@ -1179,11 +1267,6 @@ p {
   outline: 3px solid #0c3343;
 }
 
-.tab-select {
-  background: #1ba4f968;
-  border-radius: 50px;
-  outline: 4px solid #03355b;
-}
 
 .job-display {
   position: relative;

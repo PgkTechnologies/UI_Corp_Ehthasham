@@ -94,13 +94,17 @@ const Analytics = React.lazy(() =>
 const Requests = React.lazy(() =>
   import("./Pages/Requests/Requests"));
 
+const DefineJobsMain = React.lazy(() => import("./Pages/CampusDrives/DefineJobs/DefineJobsMain"));
+
+const Communication = React.lazy(() => import("./Pages/CampusDrives/Communication/Communication"));
+
 // const CampusDriveList = React.lazy(() => import("./Pages/Dashboard/CampusDrive/CampusDriveList"));
-// const CampusDrive = React.lazy(() => import("./Pages/Dashboard/CampusDrive/CampusDrive"));
-// const DefineJobs = React.lazy(() => import("./Pages/Dashboard/CampusDrive/DefineJobs/DefineJobs"));
-// const Communication = React.lazy(() => import("./Pages/Dashboard/CampusDrive/Communication/Communication"));
-// const CampusInterviews = React.lazy(() => import("./Pages/Dashboard/CampusDrive/CampusInterviews/CampusInterviews"));
-const OffCampusDriveCmp = React.lazy(() => import("./Pages/DashBoard/OffCampusDrive/OffCampusDriveCmp"))
+ // const DefineJobs = React.lazy(() => import("./Pages/Dashboard/CampusDrive/DefineJobs/DefineJobs"));
+
+const CampusInterviews = React.lazy(() => import("./Pages/CampusDrives/CampusInterviews/CampusInterviews"));
+// const OffCampusDrive = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffCampusDrive"))
 // const OffCampusDriveHomePage = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffCampusDriveHomePage"))
+const OffCampusDriveCmp = React.lazy(() => import("./Pages/DashBoard/OffCampusDrive/OffCampusDriveCmp"))
 
 const OffDefineJobs = React.lazy(() => import("./Pages/DashBoard/OffCampusDrive/OffDefineJobs/OffDefineJobs"))
 // const OffCommunication = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffCommunication/OffCommunication"))
@@ -373,14 +377,14 @@ const routes = [
   //     name: "CampusDriveList",
   //     component: <CampusDriveList/>,
   //   },
-  //   {
-  //     path: "/dashboard/campus-drive/:campusDriveId/home/:universityId",
-  //     strict: true,
-  //     exact: true,
-  //     role: "dashboard",
-  //     name: "CampusDrive",
-  //     component: <CampusDrive/>,
-  //   },
+    {
+      path: "/jobs/:campusDriveId/define-jobs/:universityId",
+      strict: true,
+      exact: true,
+      role: "dashboard",
+      name: "DefineJobs",
+      component: <DefineJobsMain/>,
+    },
   //   {
   //     path: "/dashboard/campus-drive/:campusDriveId/define-jobs/:universityId",
   //     strict: true,
@@ -389,46 +393,46 @@ const routes = [
   //     name: "DefineJobs",
   //     component: <DefineJobs/>,
   //   },
-  //   {
-  //     path: "/dashboard/campus-drive/:campusDriveId/communication/:universityId",
-  //     strict: true,
-  //     exact: true,
-  //     role: "dashboard",
-  //     name: "Communication",
-  //     component: <Communication/>,
-  //   },
-  //   {
-  //     path: "/dashboard/campus-drive/:campusDriveId/campus-interviews/:universityId",
-  //     strict: true,
-  //     exact: true,
-  //     role: "dashboard",
-  //     name: "CampusInterviews",
-  //     component: <CampusInterviews/>,
-  //   },
-  {
-    path: "/dashboard/off-campus-drive",
-    strict: true,
-    exact: true,
-    role: "dashboard",
-    name: "OffCampusDrive",
-    component: <OffCampusDriveCmp />,
-  },
-  {
-    path: "/dashboard/off-campus-drive/:offCampusDriveId/home/:universityId",
-    strict: true,
-    exact: true,
-    role: "dashboard",
-    name: "OffCampusDriveHomePage",
-    component: <OffDefineJobs/>,
-  },
     {
-      path: "/dashboard/off-campus-drive/:offCampusDriveId/off-define-jobs/:universityId",
+      path: "/jobs/:campusDriveId/communication/:universityId",
       strict: true,
       exact: true,
       role: "dashboard",
-      name: "OffDefineJobs",
-      component: <OffDefineJobs/>,
+      name: "communication",
+      component: <Communication/>,
     },
+    {
+      path: "/jobs/:campusDriveId/interviews/:universityId",
+      strict: true,
+      exact: true,
+      role: "dashboard",
+      name: "CampusInterviews",
+      component: <CampusInterviews/>,
+    },
+  //   {
+  //     path: "/dashboard/off-campus-drive",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "OffCampusDrive",
+  //     component: <OffCampusDrive/>,
+  //   },
+  //   {
+  //     path: "/dashboard/off-campus-drive/:offCampusDriveId/home/:universityId",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "OffCampusDriveHomePage",
+  //     component: <OffCampusDriveHomePage/>,
+  //   },
+  //   {
+  //     path: "/dashboard/off-campus-drive/:offCampusDriveId/off-define-jobs/:universityId",
+  //     strict: true,
+  //     exact: true,
+  //     role: "dashboard",
+  //     name: "OffDefineJobs",
+  //     component: <OffDefineJobs/>,
+  //   },
   //   {
   //     path: "/dashboard/off-campus-drive/:offCampusDriveId/off-communication/:universityId",
   //     strict: true,
