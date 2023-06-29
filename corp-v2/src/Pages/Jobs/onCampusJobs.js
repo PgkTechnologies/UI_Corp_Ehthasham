@@ -89,7 +89,7 @@ const OnCampusJobs = (props) => {
                                 <TiDownload size={30} />
                             </Badge>
                         }
-                        label={tabValue === 0 ? 'Campus Invite Received' : ''}
+                        label={tabValue === 0 ? 'Campus Invite Received' : ' '}
                         wrapped
                         style={{
                             outline: "none",
@@ -103,7 +103,7 @@ const OnCampusJobs = (props) => {
 
                             </Badge>
                         }
-                        label={tabValue === 1 ? 'Campus Invite Sent' : ''}
+                        label={tabValue === 1 ? 'Campus Invite Sent' : ' '}
                         wrapped
                         style={{
                             outline: "none",
@@ -184,14 +184,16 @@ const OnCampusJobs = (props) => {
 
 
                 {tabValue === 1 &&
-                    <> 
+                    <div
+                     className="container-body"
+                     > 
                         {receivedList?.length >= 1 ?
                             receivedList?.map((item, index) => {
 
                                 return (
-                                    <div
-                                    //  className="container-body"
-                                     >
+                                    // <div
+                                    // //  className="container-body"
+                                    //  >
                                         <div className="cards-container">
 
                                             <div className='jobs-cards-container'>
@@ -242,7 +244,7 @@ const OnCampusJobs = (props) => {
                                         </div>
 
 
-                                    </div>
+                                     
 
                                 );
                             })
@@ -251,7 +253,7 @@ const OnCampusJobs = (props) => {
                                 <h5>No Active Drives</h5>
                             </div>
                         }
-                    </>
+                    </div>
                 }
             </div>
         </>
