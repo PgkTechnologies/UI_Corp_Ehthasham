@@ -189,7 +189,9 @@ const OnCampusJobs = (props) => {
                             receivedList?.map((item, index) => {
 
                                 return (
-                                    <div className="container-body">
+                                    <div
+                                    //  className="container-body"
+                                     >
                                         <div className="cards-container">
 
                                             <div className='jobs-cards-container'>
