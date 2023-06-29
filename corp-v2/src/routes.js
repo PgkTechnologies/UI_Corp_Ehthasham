@@ -98,7 +98,7 @@ const DefineJobsMain = React.lazy(() => import("./Pages/CampusDrives/DefineJobs/
 
 const Communication = React.lazy(() => import("./Pages/CampusDrives/Communication/Communication"));
 
-// const CampusDriveList = React.lazy(() => import("./Pages/Dashboard/CampusDrive/CampusDriveList"));
+const CampusDriveList = React.lazy(() => import("./Pages/Jobs/onCampusJobs"));
  // const DefineJobs = React.lazy(() => import("./Pages/Dashboard/CampusDrive/DefineJobs/DefineJobs"));
 
 const CampusInterviews = React.lazy(() => import("./Pages/CampusDrives/CampusInterviews/CampusInterviews"));
@@ -369,14 +369,15 @@ const routes = [
     name: "Requests",
     component: <Requests />,
   },
-  //   {
-  //     path: "/dashboard/campus-drive",
-  //     strict: true,
-  //     exact: true,
-  //     role: "dashboard",
-  //     name: "CampusDriveList",
-  //     component: <CampusDriveList/>,
-  //   },
+  //
+    {
+      path: "/jobs/campus-drive",
+      strict: true,
+      exact: true,
+      role: "dashboard",
+      name: "CampusDriveList",
+      component: <CampusDriveList/>,
+    },
     {
       path: "/jobs/:campusDriveId/define-jobs/:universityId",
       strict: true,

@@ -1,7 +1,7 @@
 import { Badge, Container, Tab, Tabs, Box } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import OutboxIcon from '@mui/icons-material/Outbox';
-import { AccountBalance } from "@mui/icons-material";
+import { AccountBalance, ArrowRight, CalendarMonth, LocationOn } from "@mui/icons-material";
 import { IoArrowForwardCircleSharp } from 'react-icons/io5';
 import { TiDownload } from 'react-icons/ti';
 import { useDispatch } from "react-redux";
@@ -67,19 +67,21 @@ const OnCampusJobs = (props) => {
     console.log(sentList, receivedList, 'sentVALUE    ')
     return (
         <>
+
             <div style={{
                 display: 'flex',
                 paddingTop: '150px',
                 width: '100%',
                 flexDirection: 'column',
-                background: '#72A0C1', color: '#000000'
+                // background: '#72A0C1', color: '#000000'
             }}>
+                <h3 style={{ fontWeight: 'bold' }} >Campus Jobs</h3>
                 <Tabs
                     value={tabValue}
-                    onChange={handleTabChange}
                     indicatorColor="secondary"
                     textColor="primary"
                     variant="scrollable"
+                    onChange={handleTabChange}
                 >
                     <Tab
                         icon={
@@ -91,7 +93,7 @@ const OnCampusJobs = (props) => {
                         wrapped
                         style={{
                             outline: "none",
-                            minWidth: '13%'
+                            minWidth: '15%'
                         }}
                     />
                     <Tab
@@ -105,109 +107,148 @@ const OnCampusJobs = (props) => {
                         wrapped
                         style={{
                             outline: "none",
-                            minWidth: '13%'
+                            minWidth: '15%'
                         }}
                     />
                 </Tabs>
-                {tabValue === 0 && <>
-                    {sentList.map((item, index) => {
-                        return <div className="cards-job" key={index}>
-                            <div className="col-lg-12 col-md-12 col-sm-12 card-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
-                                <div className="icon" style={{ marginRight: "30px" }}>
+                {tabValue === 0 &&
+                    <>
 
-                                    <AccountBalance />
-                                </div>
-                                <div>
-                                    <span style={{ fontWeight: "bold", paddingRight: '55px' }} >
-                                        {item?.receiverName}
-                                    </span>
+                        {sentList?.length >= 1 ?
+                            sentList?.map((item, index) => {
 
-                                    <span style={{ paddingRight: '205px' }}>
-                                        {item?.receiverLocation}
-                                    </span>
+                                return (
+                                    <div className="container-body">
+                                        <div className="cards-container">
 
-                                    {item?.campusDriveClosed ? (
-                                        <span style={{ paddingLeft: '800px' }}>
-                                            <LockRoundedIcon style={{ color: 'red' }} />
-                                            <p style={{fontWeight:'bold' , color:'#FF2400'}} >Drive Closed</p>
-                                        </span>
-                                    ) : (
-                                        <span style={{ paddingLeft: '800px' }}>
-                                            <IoArrowForwardCircleSharp
-                                                size={35}
-                                                onClick={() => {
-                                                    navigateToCampusDrive(item?.campusDriveID, item?.receiverID);
-                                                }}
-                                            />
-                                        </span>
-                                    )}
-                                </div>
+                                            <div className='jobs-cards-container'>
+
+
+                                                <div className="row job-card-main">
+                                                    <div
+                                                        className="col-5 d-flex justify-content-flex-start align-items-center"
+                                                        style={{ fontWeight: "bold" }}
+                                                    >
+                                                        <AccountBalance style={{ fontSize: "30px", marginRight: "25px" }} />
+                                                        {item?.receiverName}
+                                                    </div>
+                                                    <div
+                                                        className="col-3 d-flex justify-content-flex-start align-items-center"
+                                                        style={{ fontSize: "15px", color: "gray" }}
+                                                    >
+                                                        <LocationOn style={{ marginRight: "10px", color: "gray" }} />
+                                                        {item?.receiverLocation}
+                                                    </div>
+                                                    <div
+                                                        className="col-3 d-flex justify-content-flex-start align-items-center"
+                                                        style={{ fontSize: "15px", color: "gray" }}
+                                                    >
+                                                        <CalendarMonth style={{ marginRight: "10px", color: "gray" }} />
+                                                        {item.responseDate}
+                                                    </div>
+                                                    <div className="col-1 d-flex justify-content-end align-items-center">
+                                                        {item?.campusDriveClosed ? (
+                                                            <LockRoundedIcon style={{ color: 'red' }} />
+                                                        ) : (
+                                                            <ArrowRight
+                                                                style={{ fontSize: "50px", color: "darkblue", cursor: "pointer" }}
+                                                                onClick={() => {
+                                                                    navigateToCampusDrive(item?.campusDriveID, item?.receiverID);
+                                                                }}
+                                                            />
+                                                        )}
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+
+
+
+                                        </div>
+
+
+                                    </div>
+
+                                );
+                            })
+                            :
+                            <div style={{ color: 'gray', fontWeight: 'bold', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60%' }}>
+                                <h5>No Active Drives</h5>
                             </div>
+                        }
 
-                        </div>
-                    })
-                    }
-                    <Container component={Box} py={3} style={{ display: 'flex', justifyContent: 'center', marginTop: '25px' }}>
-                        <Pagination
-                            count={Math.ceil(sentCount / size)}
-                            page={sentPage}
-                            shape={'rounded'}
-                            color={'primary'}
-                            variant={'outlined'}
-                            onChange={(event, value) => setSentPage(value)}
-                        />
-                    </Container>
-                </>}
+                    </>
+                }
 
 
                 {tabValue === 1 &&
-                    <>
-                        {receivedList.map((item, index) => {
-                            return <div className="cards-job" key={index}>
-                                <div className="col-lg-12 col-md-12 col-sm-12 card-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
-                                    <div className="icon" style={{ marginRight: "30px" }}>
+                    <> 
+                        {receivedList?.length >= 1 ?
+                            receivedList?.map((item, index) => {
 
-                                        <AccountBalance />
+                                return (
+                                    <div className="container-body">
+                                        <div className="cards-container">
+
+                                            <div className='jobs-cards-container'>
+
+
+                                                <div className="row job-card-main">
+                                                    <div
+                                                        className="col-5 d-flex justify-content-flex-start align-items-center"
+                                                        style={{ fontWeight: "bold" }}
+                                                    >
+                                                        <AccountBalance style={{ fontSize: "30px", marginRight: "25px" }} />
+                                                        {item?.initiatorName}
+                                                    </div>
+                                                    <div
+                                                        className="col-3 d-flex justify-content-flex-start align-items-center"
+                                                        style={{ fontSize: "15px", color: "gray" }}
+                                                    >
+                                                        <LocationOn style={{ marginRight: "10px", color: "gray" }} />
+                                                        {item?.initiatorLocation}
+                                                    </div>
+                                                    <div
+                                                        className="col-3 d-flex justify-content-flex-start align-items-center"
+                                                        style={{ fontSize: "15px", color: "gray" }}
+                                                    >
+                                                        <CalendarMonth style={{ marginRight: "10px", color: "gray" }} />
+                                                        {item.responseDate}
+                                                    </div>
+                                                    <div className="col-1 d-flex justify-content-end align-items-center">
+                                                        {item?.campusDriveClosed ? (
+                                                            <LockRoundedIcon style={{ color: 'red' }} />
+                                                        ) : (
+                                                            <ArrowRight
+                                                                style={{ fontSize: "50px", color: "darkblue", cursor: "pointer" }}
+                                                                onClick={() => {
+                                                                    navigateToCampusDrive(item?.campusDriveID, item?.initiatorID)
+                                                                }}
+                                                            />
+                                                        )}
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+
+
+
+                                        </div>
+
+
                                     </div>
-                                    <div>
-                                        <span style={{ fontWeight: "bold", paddingRight: '55px' }} >
-                                            {item?.initiatorName}
-                                        </span>
 
-                                        <span style={{ paddingRight: '205px' }}>
-                                            {item?.initiatorLocation}
-                                        </span>
-                                        {item?.campusDriveClosed ? (
-                                        <span style={{ paddingLeft: '900px' }}>
-                                            <LockRoundedIcon style={{ color: 'red' }}/>
-                                            <p style={{fontWeight:'bold' , color:'#FF7F50'}} >Drive Closed</p>
-                                        </span>
-                                    ) : (
-                                        <span style={{ paddingLeft: '900px' }}>
-                                            <IoArrowForwardCircleSharp
-                                                size={35}
-                                                onClick={() => {
-                                                    navigateToCampusDrive(item?.campusDriveID, item?.initiatorID)
-                                                }}
-                                            />
-                                        </span>
-                                    )}
-                                    </div>
-                                </div>
-
+                                );
+                            })
+                            :
+                            <div style={{ color: 'gray', fontWeight: 'bold', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60%' }}>
+                                <h5>No Active Drives</h5>
                             </div>
-                        })
                         }
-                        <Container component={Box} py={3} style={{ display: 'flex', justifyContent: 'center', marginTop: '25px' }}>
-                            <Pagination
-                                count={Math.ceil(receivedCount / size)}
-                                page={receivedPage}
-                                shape={'rounded'}
-                                color={'primary'}
-                                variant={'outlined'}
-                                onChange={(event, value) => setReceivedPage(value)}
-                            />
-                        </Container>
                     </>
                 }
             </div>

@@ -31,7 +31,9 @@ const Jobs = () => {
 
                 <div className="jobs-main-button">
                     <button className="campus-jobs tab-select"
-                        onClick={() => { handleCampusDrive('ONCAM') }}
+                        onClick={() => { navigate("/jobs/campus-drive")
+                            //  handleCampusDrive('ONCAM') /jobs/campus-drive
+                             }}
                     >ON Campus Drive</button>
 
                 </div>
