@@ -75,7 +75,7 @@ const OnCampusJobs = (props) => {
                 flexDirection: 'column',
                 // background: '#72A0C1', color: '#000000'
             }}>
-                <h3 style={{ fontWeight: 'bold' }} >Campus Jobs</h3>
+                <h3 style={{ fontWeight: 'bold' }} >Campus Drives</h3>
                 <Tabs
                     value={tabValue}
                     indicatorColor="secondary"
