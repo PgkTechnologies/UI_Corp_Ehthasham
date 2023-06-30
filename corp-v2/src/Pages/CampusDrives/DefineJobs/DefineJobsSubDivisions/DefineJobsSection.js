@@ -369,7 +369,7 @@ const DefineJobsSection = (props) => {
                                         type="button"
                                         className="btn d-flex justify-content-around align-items-center"
                                         style={{
-                                            
+
                                             width: "100px",
                                             fontSize: ".700rem",
                                             borderRadius: "4px",
@@ -456,200 +456,202 @@ const DefineJobsSection = (props) => {
 
     console.log(jobType, "LISR");
     return (
-        <div className="bgWhite" style={{ overflow: "hidden" }}>
-            <p className="text-center text-primary p-2">Define Jobs</p>
-            {driveType ? (
-                <>
-                    <div
-                        className="CD-define-jobs-list"
-                        style={{
-                            overflowY: "scroll",
-                            overflowX: "hidden",
-                        }}
-                    >
-                        {jobsList.length === 0 &&
-                            !section.firstSection &&
-                            !section.secondSection ? (
-                            <div style={{ display:'flex',justifyContent:"center" , alignItems:'center' ,fontWeight: 'bold' }}>
-                                <p>Please add jobs to continue...</p>
-                            </div>
-                        ) : undefined}
-                        {section.firstSection || section.secondSection ? (
-                            <div className="define-job-modal">
-                                <div className="define-job-header">
-                                    <div></div>
-                                    <p className="text-white">{jobType} Job</p>
-                                    <span>
-                                        <i
-                                            className="fas fa-times-circle text-white"
-                                            style={{ cursor: "pointer" }}
-                                            onClick={closeWindow}
-                                        ></i>
-                                    </span>
-                                </div>
-                                {section.firstSection ? (
-                                    //Campus Drive Using only HC
-                                    <HiringCriteriaFormSection
-                                        cancelHandler={closeWindow}
-                                        jobType={jobType}
-                                        hiringCriteriaList={hiringCriteriaList}
-                                        submitHandler={submitHcData}
-                                        mode={mode}
-                                        JobID={JobID}
-                                        noEditBtn={selectedJob?.publishFlag}
-                                        hcId={selectedHcId}
-                                        updateMode={(_mode) => {
-                                            setMode(_mode);
-                                        }}
-                                    />
-                                ) : undefined}
-                                {section.secondSection ? (
-                                    <JobFormSection
-                                        selectedJob={selectedJob}
-                                        mode={mode}
-                                        noEditBtn={selectedJob?.publishFlag}
-                                        isEditable={selectedJob?.publishFlag}
-                                        updateMode={(_mode) => {
-                                            setMode(_mode);
-                                        }}
-                                        hcId={selectedHcId}
-                                        hiringCriteriaList={hiringCriteriaList}
-                                        cancelHandler={closeWindow}
-                                        submitHandler={submitJobData}
-                                    />
-                                ) : undefined}
-                            </div>
-                        ) : undefined}
-                        {jobsList.length && !section.firstSection && !section.secondSection
-                            ? getJobsList()
-                            : undefined}
-                    </div>
-                </>
-            ) : (
-                <>
-                    <div className="page-body" style={{ marginTop: 10 }}>
-                        <p className="heading text-center" style={{ fontWeight: "bold" }}>
-                            Off Campus Drive
-                        </p>
+        <div className="cmp-main">
+            <div className="bgWhite" style={{ overflow: "hidden" }}>
+                <p className="text-center text-primary p-2">Define Jobs</p>
+                {driveType ? (
+                    <>
                         <div
-                            className="col-md-6"
+                            className="CD-define-jobs-list"
                             style={{
-                                padding: "0px 4px",
-                                alignContent: "center",
-                                marginTop: "5%",
-                                marginLeft: "20%",
+                                overflowY: "scroll",
+                                overflowX: "hidden",
                             }}
                         >
-                            <div className="mb-15">
-                                <PgkMultiSelectField
-                                    name={"jobName"}
-                                    values={selectedJobsList}
-                                    onChange={handleChange}
-                                    options={publishedJobsList?.map((item, index) => {
-                                        return { label: item.jobName, value: item.jobID };
-                                    })}
-                                    labelStyles={{ fontSize: ".800rem" }}
-                                    selectStyles={{ fontSize: ".800rem" }}
-                                    menuStyles={{ fontSize: ".800rem" }}
-                                    label={`Pulished Jobs`}
-                                />
-                            </div>
+                            {jobsList.length === 0 &&
+                                !section.firstSection &&
+                                !section.secondSection ? (
+                                <div style={{ display: 'flex', justifyContent: "center", alignItems: 'center', fontWeight: 'bold' }}>
+                                    <p>Please add jobs to continue...</p>
+                                </div>
+                            ) : undefined}
+                            {section.firstSection || section.secondSection ? (
+                                <div className="define-job-modal">
+                                    <div className="define-job-header">
+                                        <div></div>
+                                        <p className="text-white">{jobType} Job</p>
+                                        <span>
+                                            <i
+                                                className="fas fa-times-circle text-white"
+                                                style={{ cursor: "pointer" }}
+                                                onClick={closeWindow}
+                                            ></i>
+                                        </span>
+                                    </div>
+                                    {section.firstSection ? (
+                                        //Campus Drive Using only HC
+                                        <HiringCriteriaFormSection
+                                            cancelHandler={closeWindow}
+                                            jobType={jobType}
+                                            hiringCriteriaList={hiringCriteriaList}
+                                            submitHandler={submitHcData}
+                                            mode={mode}
+                                            JobID={JobID}
+                                            noEditBtn={selectedJob?.publishFlag}
+                                            hcId={selectedHcId}
+                                            updateMode={(_mode) => {
+                                                setMode(_mode);
+                                            }}
+                                        />
+                                    ) : undefined}
+                                    {section.secondSection ? (
+                                        <JobFormSection
+                                            selectedJob={selectedJob}
+                                            mode={mode}
+                                            noEditBtn={selectedJob?.publishFlag}
+                                            isEditable={selectedJob?.publishFlag}
+                                            updateMode={(_mode) => {
+                                                setMode(_mode);
+                                            }}
+                                            hcId={selectedHcId}
+                                            hiringCriteriaList={hiringCriteriaList}
+                                            cancelHandler={closeWindow}
+                                            submitHandler={submitJobData}
+                                        />
+                                    ) : undefined}
+                                </div>
+                            ) : undefined}
+                            {jobsList.length && !section.firstSection && !section.secondSection
+                                ? getJobsList()
+                                : undefined}
                         </div>
-                        <button
-                            type="button"
-                            className="btn btn-primary"
-                            style={{
-                                marginBottom: "4%",
-                                bottom: "0",
-                                position: "absolute",
-                                marginLeft: "20%",
-                            }}
-                            onClick={() => {
-                                toggleDriveType();
-                            }}
-                        >
-                            Back
-                        </button>
-                        <button
-                            type="button"
-                            className="btn btn-primary"
-                            style={{
-                                marginBottom: "4%",
-                                bottom: "0",
-                                position: "absolute",
-                                marginLeft: "50%",
-                            }}
-                            onClick={() => {
-                                handleSubmit();
-                            }}
-                        >
-                            Save
-                        </button>
-                    </div>
-                </>
-            )}
-            {props?.universityId === "OffCampus" &&
-                !section.firstSection &&
-                !section.secondSection ? (
-                <>
-                    {driveType ? (
-                        <button
-                            type="button"
-                            className="btn btn-primary"
-                            style={{
-                                marginBottom: "4%",
-                                marginTop: "5px",
-                                bottom: "0",
-                                marginLeft: "36%",
-                            }}
-                            onClick={() => {
-                                onAddJob();
-                            }}
-                        >
-                            Add Jobs
-                        </button>
-                    ) : (
-                        <></>
-                    )}
-                </>
-            ) : (
-                <>
-                    {!section.firstSection && !section.secondSection ? (
-                        <div className="Jobs-Add-btn">
+                    </>
+                ) : (
+                    <>
+                        <div className="page-body" style={{ marginTop: 10 }}>
+                            <p className="heading text-center" style={{ fontWeight: "bold" }}>
+                                Off Campus Drive
+                            </p>
+                            <div
+                                className="col-md-6"
+                                style={{
+                                    padding: "0px 4px",
+                                    alignContent: "center",
+                                    marginTop: "5%",
+                                    marginLeft: "20%",
+                                }}
+                            >
+                                <div className="mb-15">
+                                    <PgkMultiSelectField
+                                        name={"jobName"}
+                                        values={selectedJobsList}
+                                        onChange={handleChange}
+                                        options={publishedJobsList?.map((item, index) => {
+                                            return { label: item.jobName, value: item.jobID };
+                                        })}
+                                        labelStyles={{ fontSize: ".800rem" }}
+                                        selectStyles={{ fontSize: ".800rem" }}
+                                        menuStyles={{ fontSize: ".800rem" }}
+                                        label={`Pulished Jobs`}
+                                    />
+                                </div>
+                            </div>
                             <button
                                 type="button"
-                                onClick={() => {
-                                    setSection({
-                                        firstSection: true,
-                                        secondSection: false,
-                                    });
-                                    setJobID("");
+                                className="btn btn-primary"
+                                style={{
+                                    marginBottom: "4%",
+                                    bottom: "0",
+                                    position: "absolute",
+                                    marginLeft: "20%",
                                 }}
-                                className="btn"
+                                onClick={() => {
+                                    toggleDriveType();
+                                }}
                             >
-                                Add new Job
+                                Back
+                            </button>
+                            <button
+                                type="button"
+                                className="btn btn-primary"
+                                style={{
+                                    marginBottom: "4%",
+                                    bottom: "0",
+                                    position: "absolute",
+                                    marginLeft: "50%",
+                                }}
+                                onClick={() => {
+                                    handleSubmit();
+                                }}
+                            >
+                                Save
                             </button>
                         </div>
-                    ) : undefined}
-                </>
-            )}
+                    </>
+                )}
+                {props?.universityId === "OffCampus" &&
+                    !section.firstSection &&
+                    !section.secondSection ? (
+                    <>
+                        {driveType ? (
+                            <button
+                                type="button"
+                                className="btn btn-primary"
+                                style={{
+                                    marginBottom: "4%",
+                                    marginTop: "5px",
+                                    bottom: "0",
+                                    marginLeft: "36%",
+                                }}
+                                onClick={() => {
+                                    onAddJob();
+                                }}
+                            >
+                                Add Jobs
+                            </button>
+                        ) : (
+                            <></>
+                        )}
+                    </>
+                ) : (
+                    <>
+                        {!section.firstSection && !section.secondSection ? (
+                            <div className="Jobs-Add-btn">
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setSection({
+                                            firstSection: true,
+                                            secondSection: false,
+                                        });
+                                        setJobID("");
+                                    }}
+                                    className="btn"
+                                >
+                                    Add new Job
+                                </button>
+                            </div>
+                        ) : undefined}
+                    </>
+                )}
 
-            {toastModal && (
-                <Modal isOpen={toastModal} >
-                    <ModalBody>
-                        <CancelOutlined onClick={() => {
-                            setToastModal(false);
-                        }} />
-                    </ModalBody>
-                    <h3>{
-                        toastModal
-                            ? props.mode === "ADD"
-                                ? "Job Saved Successfully!"
-                                : "Job Saved Successfully!"
-                            : ""
-                    }</h3>
-                </Modal>
-            )}
+                {toastModal && (
+                    <Modal isOpen={toastModal} >
+                        <ModalBody>
+                            <CancelOutlined onClick={() => {
+                                setToastModal(false);
+                            }} />
+                        </ModalBody>
+                        <h3>{
+                            toastModal
+                                ? props.mode === "ADD"
+                                    ? "Job Saved Successfully!"
+                                    : "Job Saved Successfully!"
+                                : ""
+                        }</h3>
+                    </Modal>
+                )}
+            </div>
         </div>
     );
 };

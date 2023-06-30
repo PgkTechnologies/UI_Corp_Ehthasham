@@ -716,7 +716,7 @@ const HiringCriteriaForm = (props) => {
 
   // HC DATA SENDING TO Parent
   const handleSubmit = (model) => {
-    console.log(jobFormData, "jobFormData");
+    console.log("jobFormData");
     let finalHiringCriteria = {};
     let updatedJobData = {};
     jobFormFields.forEach((item) => {

@@ -87,11 +87,9 @@ const DefineJobApplicationWindowSection = (props) => {
                                         <div
                                             className="col-3 job-icon job-blue-icon d-flex justify-content-center align-items-center"
                                             style={{ borderRadius: "5px", width: "60px" }}
-                                        >
-                                            <i
-                                                className="fas fa-briefcase"
-                                                style={{ color: "white", padding: "10px" }}
-                                            />
+                                        >   
+                                            <Work />
+                                            
                                         </div>
                                         <p
                                             className="col-9 job-label text-ellipsis"

@@ -41,8 +41,8 @@ const DateAndLocationFinalization = (props) => {
 
     const [requestType, setRequestType] = useState("");
 
-    const handleFormChange = (name, value, errorMessage) => {
-        //const [name, value] = event.target;
+    const handleFormChange = (event) => {
+        const {name, value, errorMessage} = event.target;
         console.log(name, value, "DDD");
         let data = campusDriveDatesFinalizationForm[name];
         if (name === "location" || name === "nameOfTheDrive") {
@@ -150,7 +150,7 @@ const DateAndLocationFinalization = (props) => {
         }
     };
 
-    console.log('ddjdididi')
+    console.log(editDrive,'editttt')
 
     return (
         <div style={{ width: "90%" }}>
@@ -224,6 +224,136 @@ const DateAndLocationFinalization = (props) => {
 
 
             </div>
+            
+                <div className="jobs-content-container">
+                {editDrive === "edit" ? (
+                        <div className="cmp-main cmp-job">
+                            <h4 className=" mb-3">Dates And Location Finalization</h4>
+                            <form onSubmit={saveUpdatedData}>
+                                <div className="row">
+                                    <div className="col-12">
+                                        <TextField
+                                            label="Name of the Drive"
+                                            type="text"
+                                            name="nameOfTheDrive"
+                                            variant="filled"
+                                            InputLabelProps={{ shrink: true }}
+                                            value={driveInfo?.driveName}
+                                            style={{ width: "100%", marginBottom: "15px" }}
+                                            disabled={true}
+                                            error={
+                                                campusDriveDatesFinalizationForm?.nameOfTheDrive
+                                                    ?.errorMessage
+                                            }
+                                        />
+                                    </div>
+                                    <div className="col-12">
+                                        <TextField
+                                            label="Venue"
+                                            type="text"
+                                            required={
+                                                campusDriveDatesFinalizationForm?.location
+                                                    ?.isRequired
+                                            }
+                                            onChange={handleFormChange}
+                                            name="location"
+                                            variant="filled"
+                                            InputLabelProps={{ shrink: true }}
+                                            value={
+                                                campusDriveDatesFinalizationForm?.location?.value
+                                            }
+                                            style={{ width: "100%", marginBottom: "15px" }}
+                                            disabled={
+                                                campusDriveDatesFinalizationForm?.location
+                                                    ?.isDisabled
+                                            }
+                                            error={
+                                                campusDriveDatesFinalizationForm?.location
+                                                    ?.errorMessage
+                                            }
+                                        />
+                                    </div>
+                                    <div className="col-12">
+                                        <TextField
+                                            label="Start Date"
+                                            type="Date"
+                                            onChange={handleFormChange}
+                                            errorMessage={
+                                                campusDriveDatesFinalizationForm?.startDate
+                                                    ?.errorMessage
+                                            }
+                                            required={
+                                                campusDriveDatesFinalizationForm?.startDate
+                                                    ?.isRequired
+                                            }
+                                            disabled={
+                                                campusDriveDatesFinalizationForm?.startDate
+                                                    ?.isDisabled
+                                            }
+                                            name="startDate"
+                                            variant="filled"
+                                            InputLabelProps={{ shrink: true }}
+                                            value={
+                                                campusDriveDatesFinalizationForm?.startDate?.value
+                                                    ? moment(
+                                                        campusDriveDatesFinalizationForm?.startDate
+                                                            ?.value
+                                                    ).format("YYYY-MM-DD")
+                                                    : null
+                                            }
+                                            style={{ width: "100%", marginBottom: "15px" }}
+                                        />
+                                    </div>
+                                    <div className="col-12">
+                                        <TextField
+                                            label="End Date"
+                                            type="date"
+                                            name="endDate"
+                                            variant="filled"
+                                            InputLabelProps={{ shrink: true }}
+                                            onChange={handleFormChange}
+                                            value={
+                                                campusDriveDatesFinalizationForm?.endDate?.value
+                                                    ? moment(
+                                                        campusDriveDatesFinalizationForm?.endDate
+                                                            ?.value
+                                                    ).format("YYYY-MM-DD")
+                                                    : null
+                                            }
+                                            errorMessage={
+                                                campusDriveDatesFinalizationForm?.endDate
+                                                    ?.errorMessage
+                                            }
+                                            required={
+                                                campusDriveDatesFinalizationForm?.endDate
+                                                    ?.isRequired
+                                            }
+                                            disabled={
+                                                campusDriveDatesFinalizationForm?.endDate
+                                                    ?.isDisabled
+                                            }
+                                            style={{ width: "100%", marginBottom: "15px" }}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="d-flex justify-content-center align-items-center mt-5">
+                                    <button type="submit" className="btn" style={{marginRight : '50px' }} >
+                                        Save
+                                    </button>
+                                
+                                    <button type="submit" className="btn"  onClick={onCancel}>
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    ) : (
+                        null
+                    )}
+
+
+                </div>
+
         </div>
     );
 };
