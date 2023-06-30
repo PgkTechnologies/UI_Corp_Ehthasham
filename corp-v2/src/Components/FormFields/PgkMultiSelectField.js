@@ -55,7 +55,7 @@ function PgkMultiSelectField(props) {
 
     const {
         label='',
-        variant='outlined',
+        variant='filled',
         size='small',
         name='',
         values=[],

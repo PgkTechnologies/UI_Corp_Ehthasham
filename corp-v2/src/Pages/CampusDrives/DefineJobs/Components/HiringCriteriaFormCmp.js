@@ -583,13 +583,15 @@ const HiringCriteriaFormCmp = (props) => {
               >
                 Location *
               </label>
-              <input
-                className="dataFieldInput"
-                list="cities"
-                name="location"
-                ref={location}
-                onChange={props?.handleRadio}
-              />
+              <div>
+                <input
+                  className="dataFieldInput"
+                  list="cities"
+                  name="location"
+                  ref={location}
+                  onChange={props?.handleRadio}
+                />
+              </div>
               <datalist
                 id="cities"
                 value={props?.jobFormData?.location?.value}
@@ -910,13 +912,13 @@ const HiringCriteriaFormCmp = (props) => {
                 >
                   <div
                     className={`col-md-${props?.jobFormData?.attachment?.value?.attachment
-                        ? "11"
-                        : "12"
+                      ? "11"
+                      : "12"
                       }`}
                     style={{ margin: 0, padding: 0 }}
                   >
                     <div className="d-attach">
-                      {props?.jobFormData?.attachment?.value?.attachmentName ? (
+                      {/* {props?.jobFormData?.attachment?.value?.attachmentName ? (
                         <div
                           className={
                             "d-flex justify-content-between align-items-center"
@@ -959,28 +961,35 @@ const HiringCriteriaFormCmp = (props) => {
                             />
                           ) : null}
                         </div>
-                      ) : null}
+                      ) : null} */}
                       <label
                         htmlFor="attachment"
-                        className="d-label"
-                        style={{ backgroundColor: "#253AA3" }}
+                        className="file_label"
+                        style={{ fontWeight: 'bold', color: '#0D6EFD' }}
                       >
-                        {" "}
-                        <i className="fas fa-paperclip mr-2"></i> Attachment *
+                       Attachment *
+                        {/* {" "}
+                        <p className="fas fa-paperclip mr-2"> Attachment *</p> */}
                       </label>
-                      <input
-                        type="file"
-                        onChange={(e) => {
-                          if (props?.fileHandler) {
-                            props?.fileHandler("attachment", e);
-                          }
-                        }}
-                        className="d-inp d-none"
-                        name="attachment"
-                        accept=".pdf"
-                        disabled={props?.jobFormData?.attachment?.isDisabled}
-                        id="attachment"
-                      />
+                      <div>
+                        <input
+                          type="file"
+                          onChange={(e) => {
+                            if (props?.fileHandler) {
+                              props?.fileHandler("attachment", e);
+                            }
+                          }}
+                          className="attach-inp"
+                          name="attachment"
+                          accept=".pdf"
+                          disabled={props?.jobFormData?.attachment?.isDisabled}
+                          id="attachment"
+                        />
+                        <p className="attach-inp_label">
+                          {props?.jobFormData?.attachment?.value
+                            ?.attachmentName}
+                        </p>
+                      </div>
                     </div>
                   </div>
 

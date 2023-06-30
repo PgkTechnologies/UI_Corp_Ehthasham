@@ -107,8 +107,8 @@ const CampusInterviews = React.lazy(() => import("./Pages/CampusDrives/CampusInt
 const OffCampusDriveCmp = React.lazy(() => import("./Pages/DashBoard/OffCampusDrive/OffCampusDriveCmp"))
 
 const OffDefineJobs = React.lazy(() => import("./Pages/DashBoard/OffCampusDrive/OffDefineJobs/OffDefineJobs"))
-// const OffCommunication = React.lazy(() => import("./Pages/Dashboard/OffCampusDrive/OffCommunication/OffCommunication"))
-const OffCampusInterviews = React.lazy(() => import("./Pages/DashBoard/OffCampusDrive/OffCampusInterviews/OffCampusInterviews"))
+const OffCommunication = React.lazy(() => import("./Pages/DashBoard/OffCampusDrive/OffCampusCommunication/OffCommunication"))
+const OffCampusInterviews = React.lazy(() => import("./Pages/DashBoard/OffCampusDrive/OffCampusInterviews/Sections/OffCampusInterviews"))
 const History = React.lazy(() => import("./Pages/TransactionHistory/History"));
 const Support = React.lazy(() => import("./Pages/DashBoard/Support/Support"));
 const TicketChatCmp = React.lazy(() => import('./Pages/DashBoard/Support/TicketChatCmp'));
@@ -433,22 +433,22 @@ const routes = [
       name: "OffDefineJobs",
       component: <OffDefineJobs/>,
     },
-  //   {
-  //     path: "/dashboard/off-campus-drive/:offCampusDriveId/off-communication/:universityId",
-  //     strict: true,
-  //     exact: true,
-  //     role: "dashboard",
-  //     name: "OffCommunication",
-  //     component: <OffCommunication/>,
-  //   },
-  // {
-  //   path: "/dashboard/off-campus-drive/:offCampusDriveId/off-campus-interviews/:universityId",
-  //   strict: true,
-  //   exact: true,
-  //   role: "dashboard",
-  //   name: "OffCampusInterviews",
-  //   component: <OffCampusInterviews />,
-  // },
+    {
+      path: "/dashboard/off-campus-drive/:offCampusDriveId/off-communication/:universityId",
+      strict: true,
+      exact: true,
+      role: "dashboard",
+      name: "OffCommunication",
+      component: <OffCommunication/>,
+    },
+  {
+    path: "/dashboard/off-campus-drive/:offCampusDriveId/off-campus-interviews/:universityId",
+    strict: true,
+    exact: true,
+    role: "dashboard",
+    name: "OffCampusInterviews",
+    component: <OffCampusInterviews />,
+  },
   {
     path: "/analytics",
     strict: true,
