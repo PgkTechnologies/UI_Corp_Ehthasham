@@ -2,7 +2,7 @@
 import { take, put, call, takeLatest } from "redux-saga/effects";
 import Axios from "../../utils/Axios";
 import { toast } from "react-toastify";
-import history from '../../@history';
+// import history from '../../@history';
 import { ACTION_POST_ADD_OTHER_INFORMATION_REQUEST, ACTION_POST_PUBLISH_OTHER_INFORMATION_REQUEST, ACTION_GET_PUBLISH_OTHER_INFORMATION_LIST_REQUEST } from '../Actions/SagaActions/SagaActionTypes';
 import { actionUpdateGlobalLoaderSagaAction } from '../Actions/SagaActions/CommonSagaActions';
 

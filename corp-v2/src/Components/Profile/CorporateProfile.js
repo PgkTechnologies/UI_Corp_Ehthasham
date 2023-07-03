@@ -15,6 +15,8 @@ import CryptoJS from "crypto-js";
 import { actionPatchCorporateProfileSagaAction, actionPostPublishCorporateProfileSagaAction } from "../../Store/Actions/SagaActions/CorporateProfileSagaActions";
 import Publish from "../../Pages/DashBoard/Publish/Publish";
 import { toast } from "react-toastify";
+import { actionPostPublishOtherInformationRequest } from "../../Store/Actions/SagaActions/OtherInformationSagaActions";
+import CustomToastModal from "../CustomToastModal";
 
 
 
@@ -187,11 +189,12 @@ const CorporateProfile = ({ setShowPublish, showPublish }) => {
 
     const initialData = {
         universityProfile: false,
+        OterInformation : false
     };
 
     const [profile, setProfile] = useState();
     const [checkStatus, setCheckStatus] = useState(false);
-    const [showModal, setShowModal] = useState(false);
+    const [otherShowModal, setOtherShowModal] = useState(false);
     const [showTermsAndConditions, setShowTermsAndConditions] = useState(false);
     const [profilePicture, setProfilePicture] = useState();
     const [attachment, setAttachment] = useState({
@@ -216,6 +219,8 @@ const CorporateProfile = ({ setShowPublish, showPublish }) => {
         states: false,
         cities: false,
     });
+
+    const [showModal, setShowModal] = useState(false);
 
     const [allCountries, setAllCountries] = useState([]);
     const [countries, setCountries] = useState([]);
@@ -392,7 +397,7 @@ const CorporateProfile = ({ setShowPublish, showPublish }) => {
 
     useEffect(() => {
         if (profileInfo) {
-            setProfilePicture(profileInfo?.profilePicture);
+           
             setAttachment({
                 attachment: profileInfo?.attachment,
                 attachmentName: profileInfo?.attachmentName,
@@ -634,7 +639,7 @@ const CorporateProfile = ({ setShowPublish, showPublish }) => {
                 let reader = new FileReader();
                 reader.onload = function (ev) {
                     if (name === "profilePicture") {
-                        setProfilePicture(ev.target.result.split(",")[1]);
+                       
                     } else if (name === "attachment") {
                         getFile(event.target.files[0]).then((customJsonFile) => {
                             console.log(customJsonFile, "cc");
@@ -854,6 +859,8 @@ const CorporateProfile = ({ setShowPublish, showPublish }) => {
 
     const handleChange = (event) => {
         const { name, checked } = event.target;
+
+        console.log(name,checked,'nameeee and checked')
         setPostPublishProfile((preState) => ({
             ...preState,
             [name]: checked,
@@ -870,7 +877,28 @@ const CorporateProfile = ({ setShowPublish, showPublish }) => {
         } else {
             setInputError("Select atleast one profile to publish");
         }
+
+        // if(postPublishProfile?.OterInformation) {
+        //     setInputError("");
+        //     onAddOtherInformation();
+        // }
     };
+
+    const onAddOtherInformation = () => {
+        const ID = localStorage.getItem('otherInfoID');
+        if ( ID ) {
+          dispatch(actionPostPublishOtherInformationRequest({
+            apiPayloadRequest: [ID],
+            callback: onPublish
+          }))
+        }
+        toast.success('Other information has been Published')
+      }
+
+const onPublish = (data) => {
+    console.log(data.message,'datsss')
+
+}
 
 
     console.log(profile, profileInfo, "TOT");
@@ -1354,6 +1382,15 @@ const CorporateProfile = ({ setShowPublish, showPublish }) => {
                 </Modal.Header>
                 <Modal.Body>Your Profile has been updated successfully</Modal.Body>
             </Modal>
+
+            {otherShowModal && <CustomToastModal
+        onClose={() => {
+          setOtherShowModal(false);
+        }}
+        show={otherShowModal}
+        iconNameClass={"fa-file"}
+        message={"Selected Information has been Published Successfully"}
+      />}
         </>
     )
 }
