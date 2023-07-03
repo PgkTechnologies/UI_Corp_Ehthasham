@@ -29,10 +29,9 @@ const Jobs = () => {
                  
                 <img src="/images/corporateIcons/JobsPage.svg" alt="Example" style={{ maxWidth: '100%', maxHeight: '100%', zIndex: '-1' }} />
 
-                <div className="jobs-main-button">
+                <div className="jobs-main-button" style={{marginLeft:'210px'}} >
                     <button className="campus-jobs tab-select"
                         onClick={() => { navigate("/jobs/campus-drive")
-                            //  handleCampusDrive('ONCAM') /jobs/campus-drive
                              }}
                     >ON Campus Drive</button>
 
