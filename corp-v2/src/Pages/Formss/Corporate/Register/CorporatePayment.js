@@ -107,7 +107,7 @@ const CorporatePayment = () => {
     useEffect(() => {
         let model;
         if (payment === true) {
-            if (tokensPurchase) {      // need to uncomment ehtasham commented
+            if (tokensPurchase) {       
                 model = {
                     payType: "ADD_TKN",
                     tokensToAdd: tokensPurchase,
