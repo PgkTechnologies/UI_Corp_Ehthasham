@@ -114,7 +114,7 @@ const Support = React.lazy(() => import("./Pages/DashBoard/Support/Support"));
 const TicketChatCmp = React.lazy(() => import('./Pages/DashBoard/Support/TicketChatCmp'));
 // const UniversityStudents = React.lazy(() => import("./Pages/Dashboard/Subscribe/University/UniversityStudents/UniversityStudents"));
 const ForgotPassword = React.lazy(() => import("./Pages/Formss/Corporate/ForgotPassword/ForgotPassword"));
-const Mike = React.lazy(() => import("./Pages/Formss/Corporate/Login/LoginForm"));
+
 
 
 const routes = [
@@ -184,14 +184,7 @@ const routes = [
     name: "CorporatePayment",
     component: <CorporatePayment />,
   },
-  {
-    path: "/myl",
-    strict: true,
-    exact: true,
-    role: "corporateReg",
-    name: "Login",
-    component: <Mike />,
-  },
+  
   //   {
   //     path: "/payment",
   //     strict: true,
