@@ -6,8 +6,9 @@ import { CSVLink } from 'react-csv';
 import { actionGetCampusDriveDefineJobsListRequestSaga } from "../../../../Store/Actions/SagaActions/CampusDriveWorkflowActions/DefineJobsSagaActions";
 import { actionGetInterviewRoundsRequestSaga, actionGetStudentsListSaga, actionPostStudentsListShareRequestSaga } from "../../../../Store/Actions/SagaActions/CampusDriveWorkflowActions/CampusInterviewSagaAction";
 import { actionGetCampusDriveStudentResumeRequest } from "../../../../Store/Actions/SagaActions/CampusDriveSagaActions";
-import { Modal, ModalBody } from "reactstrap";
 import { CancelOutlined } from "@mui/icons-material";
+import PreLoader from "../../../../utils/PreLoader";
+import { Modal, ModalBody } from "react-bootstrap";
 
 const ShareRoundResults = (props) => {
     const dispatch = useDispatch();
@@ -20,6 +21,8 @@ const ShareRoundResults = (props) => {
     const [roundId, setRoundId] = useState();
     const [showToastModal, setShowToastModal] = useState(false);
     const csvLink = useRef();
+
+    const apiStatus = useSelector(state => state.DashboardReducer.apiStatus);
 
     const onJobChange = (event) => {
         const { name, value } = event.target;
@@ -412,6 +415,7 @@ const ShareRoundResults = (props) => {
                         </tr>
                     </thead>
                     <tbody>
+                    {apiStatus ? <PreLoader /> : null}
                         {
                             studentsListForRound?.studentsList && studentsListForRound?.studentsList?.length > 0
                                 ?

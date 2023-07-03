@@ -8,7 +8,6 @@ export const AuthProvider = ({ children }) => {
   const [tokenPurchase, setTokenPurchase] = useState(null);
   const localToken = localStorage.getItem("AUTH");
 
-  console.log(children,'TOKENNN')
 
   let check = true;
   useEffect(() => {

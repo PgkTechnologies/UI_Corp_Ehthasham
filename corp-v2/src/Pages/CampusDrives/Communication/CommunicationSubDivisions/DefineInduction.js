@@ -294,6 +294,7 @@ const DefineInduction = (props) => {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    console.log(allEmailTemplates,'hiuu')
 
     return (
         <>
@@ -320,7 +321,7 @@ const DefineInduction = (props) => {
 
 
                                 <div style={{ textAlign: "center", backgroundColor: "gray" }}>
-                                    <div className="card-Induction" >
+                                    <div className="card-Induction" style={{ borderRadius: '10px' }} >
                                         <div className="card-header" style={{ textAlign: "center", background: "#03355bdc", color: "white" }}>
                                             Define Induction
                                         </div>
@@ -329,7 +330,7 @@ const DefineInduction = (props) => {
                                                 <div className="card-body" >
                                                     <Grid container item spacing={3}>
                                                         <Col xs={12}>
-                                                            <FormControl className="largeinput" variant="outlined" style={{ width: "100%" }} >
+                                                            <FormControl className="largeinput" variant="outlined" style={{ width: "95%", marginTop: '15px', marginBottom: '10px' }} >
                                                                 <TextField
                                                                     label="Link"
                                                                     type="text"
@@ -350,7 +351,7 @@ const DefineInduction = (props) => {
                                                             </FormControl>
                                                         </Col>
                                                         <Col xs={6}>
-                                                            <FormControl className="largeinput" variant="outlined" style={{ width: "100%" }}>
+                                                            <FormControl className="largeinput" variant="outlined" style={{ width: "91%", marginBottom: '10px' }}>
                                                                 <TextField
                                                                     label="Date"
                                                                     type="Date"
@@ -374,7 +375,7 @@ const DefineInduction = (props) => {
                                                             </FormControl>
                                                         </Col>
                                                         <Col xs={6}>
-                                                            <FormControl className="largeinput" variant="outlined" style={{ width: "100%" }}>
+                                                            <FormControl className="largeinput" variant="outlined" style={{ width: "92%", marginBottom: '10px' }}>
                                                                 <TextField
                                                                     label="Time"
                                                                     type="Time"
@@ -395,7 +396,7 @@ const DefineInduction = (props) => {
                                                             </FormControl>
                                                         </Col>
                                                         <Col xs={12} style={{ paddingBottom: "10px" }}>
-                                                            <FormControl className="largeinput" variant="outlined" style={{ width: "100%" }} >
+                                                            <FormControl className="largeinput" variant="outlined" style={{ width: "95%", marginBottom: '10px' }} >
                                                                 <TextField
                                                                     label="Other Information"
                                                                     type="text"
@@ -418,7 +419,7 @@ const DefineInduction = (props) => {
 
                                                         <div className="d-flex flex-row justify-content-around align-items-center job-details-form w-full" style={{ background: "white" }}>
                                                             <div className="d-attach" style={{ maxWidth: "95%" }}>
-                                                                <p className="float-left" style={{ fontSize: "18px", fontFamily: "Poppins-Regular", display: "block" }}>{inductionInfo.attachFileName}</p>
+                                                                {/* <p className="attach-inp_label" style={{ fontSize: "18px", fontFamily: "Poppins-Regular", display: "block" }}>{inductionInfo.attachFileName}</p>
                                                                 <p style={{ position: "absolute", top: "40px", fontSize: "18px", fontFamily: "Poppins-Regular", display: "block", color: "red" }}>{fileSizeErr}</p>
                                                                 <input
                                                                     type="file"
@@ -429,17 +430,49 @@ const DefineInduction = (props) => {
                                                                     onChange={handleChange}
                                                                 />
                                                                 <label htmlFor="attachFile" className="d-label">
-                                                                    <i className="fas fa-paperclip mr-2"></i> Attach File
+                                                                    <i className="file_label"></i> Attach File
+                                                                </label> */}
+                                                                <label
+                                                                    htmlFor="attachment"
+                                                                    className="file_label"
+                                                                    style={{ fontWeight: 'bold', color: '#0D6EFD', marginRight:'20px' }}
+                                                                >
+                                                                    Attachment *
                                                                 </label>
+
+                                                                <input
+                                                                    type="file"
+                                                                    onChange={handleChange}
+                                                                    className="attach-inp"
+                                                                    name="attachFile"
+                                                                    accept=".pdf"
+                                                                    id="attachFile"
+                                                                />
+                                                                <p className="attach-inp_label">
+                                                                    {inductionInfo.attachFileName}
+                                                                </p>
+
                                                             </div>
                                                         </div>
 
                                                         <div className="d-flex flex-row justify-content-around align-items-center job-details-form w-full" style={fileSizeErr ? { paddingTop: "20px", background: "white" } : { paddingTop: "0px", background: "white" }}>
                                                             <div className="d-attach" style={{ maxWidth: "95%" }}>
-                                                                <p style={{ paddingLeft: "150px", fontSize: "18px", fontFamily: "Poppins-Regular", display: "block" }}>
+                                                                <p style={{ paddingLeft: "10px", fontSize: "18px", fontFamily: "Poppins-Regular", display: "block" }}>
+                                                                                        </p>
+                                                                <p style={{ position: "absolute", top: "40px", fontSize: "18px", fontFamily: "Poppins-Regular", display: "block", color: "red" }}>{emailTemplateErr}</p>
+                                                                <label htmlFor="EmailTemplate" className="d-label" style={{ left: "-1px",marginRight:'10px' }}>
+                                                                    <i className="fas fa-envelope mr-2"></i>Choose Email Template
+                                                                </label>
+                                                                <select
+                                                                    name="emailTemplateID"
+                                                                    class="d-inp"
+                                                                    id="inputGroupSelect01"
+                                                                    onChange={handleChange}
+                                                                    required={true}>
+                                                                    <option selected>
                                                                     {
                                                                         allEmailTemplates?.length > 0 ?
-                                                                            <>
+                                                                            <div >
 
                                                                                 {
                                                                                     allEmailTemplates.map((email) => {
@@ -448,23 +481,14 @@ const DefineInduction = (props) => {
                                                                                         }
                                                                                     })
                                                                                 }
-                                                                            </>
+                                                                            </div>
                                                                             :
                                                                             <>
+                                                                            Choose...
                                                                             </>
                                                                     }
-                                                                </p>
-                                                                <p style={{ position: "absolute", top: "40px", fontSize: "18px", fontFamily: "Poppins-Regular", display: "block", color: "red" }}>{emailTemplateErr}</p>
-                                                                <label htmlFor="EmailTemplate" className="d-label" style={{ left: "-1px" }}>
-                                                                    <i className="fas fa-envelope mr-2"></i> Email Template
-                                                                </label>
-                                                                <select
-                                                                    name="emailTemplateID"
-                                                                    class="d-inp"
-                                                                    id="inputGroupSelect01"
-                                                                    onChange={handleChange}
-                                                                    required={true}>
-                                                                    <option selected>Choose...</option>
+                                           
+                                                                    </option>
                                                                     {
                                                                         allEmailTemplates?.length > 0 ?
                                                                             <>
@@ -497,16 +521,17 @@ const DefineInduction = (props) => {
                                                                 }));
                                                             }}
                                                             color={'primary'} />
-                                                        <p style={{ fontSize: '14px' ,marginTop: '17px' }}>
-                                                            On Clicking Save, a notification and email will be triggered to the university and its students
+                                                        <p style={{ fontSize: '14px', marginTop: '35px' }}>
+                                                            On Clicking Save, a notification and email will be triggered to the university<br/>
+                                                             and its students
                                                         </p>
                                                     </div>
                                                 </div>
                                                 <div className="card-footer">
                                                     <button className="btn mr-2" type="submit"
                                                         disabled={inductionInfo?.sharedFlag}
-                                                    >Share</button>
-                                                    <button className="btn mr-2" disabled={inductionInfo.inductionID > 0 ? false : true}>Disable</button>
+                                                        style={{ marginRight: '20px' }} >Share</button>
+                                                    <button style={{ marginRight: '20px' }} className="btn mr-2" disabled={inductionInfo.inductionID > 0 ? false : true}>Disable</button>
                                                     <button className="btn mr-2" type="submit">Save</button>
                                                 </div>
                                             </form>

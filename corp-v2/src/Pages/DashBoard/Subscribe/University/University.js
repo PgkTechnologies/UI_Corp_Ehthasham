@@ -8,12 +8,16 @@ import PreLoader from "../../../../utils/PreLoader";
 import { Button, Modal } from "react-bootstrap";
 import { Tab, Tabs } from "@material-ui/core";
 import OtherInformationItems from "./OtherInformations";
+import HeaderModal from "../../../../Components/Common/HeaderModalForm";
+import { useAuth } from "../../../../utils/Auth";
 
 
 const University = (props) => {
     const corpProfileInfo = useSelector(
         (state) => state.DashboardReducer.profileInfo
+
     );
+    const auth = useAuth();
 
     const TokenData = useSelector(
         (state) => state.DashboardReducer.balance
@@ -312,8 +316,9 @@ const University = (props) => {
         const newVal = Math.abs(val);
         setAdditionalTokens(newVal);
         setIsSubscribe(false);
+        auth.setTokenPurchase(true);
         setIsTokenModalOpen(true);
-        // localStorage.setItem("pathname", history.location.pathname);
+        // localStorage.setItem("pathname", history.location);
     };
 
     const closeSendModal = () => {
@@ -465,7 +470,7 @@ const University = (props) => {
 
     const model = universityInfoPublishedList?.filter(x => !x?.isSubscribed)
 
-    console.log(model, 'infooooooo')
+    console.log(history.location, 'infooooooo')
 
     return (
         <>
@@ -596,21 +601,21 @@ const University = (props) => {
 
                                 <>
                                     {apiStatus ? <PreLoader /> : null}
-                                            <OtherInformationItems
-                                                subscribeHandler={() => {
-                                                    subscribeModal("UO", model?.publishID)
-                                                }}
+                                    <OtherInformationItems
+                                        subscribeHandler={() => {
+                                            subscribeModal("UO", model?.publishID)
+                                        }}
 
-                                                universityInfo = {universityInfo}
+                                        universityInfo={universityInfo}
 
-                                                // index={index}
+                                        // index={index}
 
-                                                item={{
-                                                    ...model,
-                                                    publisherName: universityInfo?.universityName,
-                                                    location: universityInfo?.universityHQAddressCity
-                                                }}
-                                            />
+                                        item={{
+                                            ...model,
+                                            publisherName: universityInfo?.universityName,
+                                            location: universityInfo?.universityHQAddressCity
+                                        }}
+                                    />
 
 
 
@@ -685,6 +690,9 @@ const University = (props) => {
                         </Button>
                         {publishId?.type !== "CR" ? (
                             <Button
+                                style={{
+                                    cursor: isAdditionalTokensRequired ? "pointer" : "not-allowed",
+                                }}
                                 className="btnTwo"
                                 variant="outline-primary"
                                 onClick={subscribeUnv}
@@ -776,6 +784,17 @@ const University = (props) => {
 
 
             </div>
+            {/* {isTokenModalOpen && (
+        <Modal show={isTokenModalOpen} modalStyles={{ maxWidth: "50%" }}>
+          <div className="purchase-modal" style={{width:'500px'}}>
+            <HeaderModal
+              additionalTokens={additionalTokens}
+              onClose={closeTokenModel}
+              universityId={universityId}
+            />
+          </div>
+        </Modal>
+      )} */}
 
 
         </>

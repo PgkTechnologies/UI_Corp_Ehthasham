@@ -694,7 +694,7 @@ const AddJobs = (props) => {
                             props.fileHandler("attachment", e);
                           }
                         }}
-                        className="d-inp d-none"
+                        // className="d-inp d-none"
                         name="attachment"
                         accept=".pdf"
                         disabled={props?.jobFormData?.attachment?.isDisabled}
