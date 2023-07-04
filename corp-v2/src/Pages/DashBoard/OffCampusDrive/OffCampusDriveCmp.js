@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CreateOffCampusDriveCmp from "../../../Components/Common/OffCampus/CreateOffCampusDriveCmp";
 import { actionGetAllOffCampusDrivesRequest, actionPostAddNewOffCampusRequest } from "../../../Store/Actions/SagaActions/OffCampusDrive/OffCampusDriveSagaAction";
-
+import HttpsIcon from '@mui/icons-material/Https';
 
 const OffCampusDriveCmp = () => {
 
@@ -135,12 +135,14 @@ const OffCampusDriveCmp = () => {
                                                 {item.startDate}
                                             </div>
                                             <div className="col-1 d-flex justify-content-end align-items-center">
+                                            { item?.campusDriveClosed ? <HttpsIcon style={{color:'#FF1D18',cursor: "not-allowed"}}/> : 
                                                 <ArrowRight
                                                     style={{ fontSize: "50px", color: "darkblue", cursor: "pointer" }}
                                                     onClick={() => {
                                                         navigateToOffCampusDrive(item.cdID, item.initiatorID, "/off-define-jobs/",item?.driveName);
                                                     }}
                                                 />
+                                            }
                                             </div>
                                         </div>
 

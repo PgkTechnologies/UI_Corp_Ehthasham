@@ -6,13 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PreLoader from "../../../../utils/PreLoader";
 import { SubscribeSearchSagaAction } from "../../../../Store/Actions/SagaActions/SubscriptionSagaAction";
+import PreLoaderSmall from "../../../../utils/PreLoaderSmall";
 
 
 const SearchBar = (props) => {
   const [filterdValues, setFilteredValues] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
   const dispatch = useDispatch();
-  const searchStatus = useSelector((state) => state?.loginReducer?.searchStatus);
+  const searchStatus = useSelector((state) => state?.CorporateReducer?.apiStatus);
   const navigate = useNavigate();
   const size = 20;
   const page = 1;
@@ -78,7 +79,7 @@ const SearchBar = (props) => {
       />
       {searchStatus ? (
         <div>
-          {/* <PreLoaderSmall/> */}
+          <PreLoaderSmall/>
           
         </div>
       ) : null}

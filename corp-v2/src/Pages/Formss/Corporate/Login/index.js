@@ -15,9 +15,9 @@ const Login = () => {   //same as login Form and cmp
 
   const [loginType, setLoginType] = useState("");
   const [type] = useState("Corporate");
-   const history = useNavigate();
-   const location = useLocation();
-   const auth = useAuth();
+  const history = useNavigate();
+  const location = useLocation();
+  const auth = useAuth();
 
   const initialState = {
     email: "",
@@ -36,7 +36,7 @@ const Login = () => {   //same as login Form and cmp
   const [password, setPassword] = useState("");
 
   // const type = "Corporate" ;
-  
+
 
   useEffect(() => {
     //storeAuthToken();
@@ -57,7 +57,7 @@ const Login = () => {   //same as login Form and cmp
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-   
+
     switch (name) {
       case "email":
         if (value) {
@@ -116,7 +116,7 @@ const Login = () => {   //same as login Form and cmp
           callback: onSuccess,
         })
       );
-      
+
     } else {
       toast.error("Please enter all input fields");
     }
@@ -124,13 +124,13 @@ const Login = () => {   //same as login Form and cmp
 
   const redirectPath = location.state?.path || "/";
 
-  
+
 
   useEffect(() => {
     const authCheck = localStorage.getItem("AUTH");
-    
+
     if (authCheck) {
-      auth.logIn(authCheck); 
+      auth.logIn(authCheck);
       history(redirectPath, { replace: true });
     }
   }, []);
@@ -138,7 +138,7 @@ const Login = () => {   //same as login Form and cmp
 
   const onSuccess = (navigateUrl) => {
 
-  
+
 
     const authCheck = localStorage.getItem("AUTH");
     if (navigateUrl) {
@@ -148,17 +148,17 @@ const Login = () => {   //same as login Form and cmp
     }
 
     if (navigateUrl === "/dashboard") {
-   
+
       history("/dashboard");
     } else if (navigateUrl === "/verify") {
       history("/register/authentication");
     } else {
       localStorage.setItem("navigateCancelUrl", "/");
-      history("/register/payment"); 
+      history("/register/payment");
     }
   };
-// console.log(loginObj,'emalll')
-  
+  // console.log(loginObj,'emalll')
+
   return (
 
     <section className="login">
@@ -172,101 +172,92 @@ const Login = () => {   //same as login Form and cmp
         </div>
         <div className="row">
           <div className="main-container">
-            <div className='page'>
+            
+            <form className="row log-in-container" onSubmit={handleSubmit}>
+              <div className="col-lg-6 col-md-6 col-sm-12 log-in-content" style={{}}>
+                <p style={{ paddingLeft: '10px', textAlign: 'center', lineHeight: '5rem' }}>Perfect Recruitment Solution<span style={{ color: '#0291ff' }}>.</span></p>
+              </div>
+              <div className="col-lg-6 col-md-6 col-sm-12 log-in-card-main">
+                <div className="log-in-card blurbg_parent">
+                  <div className="blurBg"></div>
+                  <div className="log-in-as-text">
+                    <p style={{ fontWeight: "bold" }}>LOGIN AS </p>
+                    <p style={{ fontSize: "30px", color: "#016bbc" }}>
+                      Corporate{" "}
+                    </p>
+                  </div>
+                  <hr
+                    className="mt-4"
+                    style={{ width: "90%", marginBottom: "30px", color: "gray" }}
+                  ></hr>
 
+                  <div className="login-text">
+                    <TextField
+                      label="ID / Email"
+                      type="text"
+                      name="email"
+                      variant="filled"
+                      style={{ width: "100%", marginBottom: "15px" }}
+                      value={email}
+                      required={true}
+                      onChange={handleChange}
+                    // helperText={emailErr ? emailErr : ''}
+                    />
+                  </div>
+                  <div className="login-text">
+                    <TextField
+                      label="Password"
+                      type="password"
+                      name="password"
+                      variant="filled"
+                      style={{ width: "100%", marginBottom: "15px" }}
+                      value={password}
+                      onChange={handleChange}
+                      required={true}
 
-              <form className="row log-in-container" onSubmit={handleSubmit }>
-                <div className="col-lg-6 col-md-6 col-sm-12 log-in-content" style={{}}>
-                  <p style={{ paddingLeft: '10px', textAlign: 'center', lineHeight: '5rem' }}>Perfect Recruitment Solution<span style={{ color: '#0291ff' }}>.</span></p>
-                </div>
-                <div className="col-lg-6 col-md-6 col-sm-12 log-in-card-main">
-                  <div className="log-in-card blurbg_parent">
-                    <div className="blurBg"></div>
-                    <div className="log-in-as-text">
-                      <p style={{ fontWeight: "bold" }}>LOGIN AS </p>
-                      <p style={{ fontSize: "30px", color: "#016bbc" }}>
-                        Corporate{" "}
-                      </p>
-                    </div>
-                    <hr
-                      className="mt-4"
-                      style={{ width: "90%", marginBottom: "30px", color: "gray" }}
-                    ></hr>
-
-                    <div className="login-text">
-                      <TextField
-                        label="ID / Email"
-                        type="text"
-                        name="email"
-                        variant="filled"
-                        style={{ width: "100%", marginBottom: "15px" }}
-                         value={email}
-                        required={true}
-                        onChange={handleChange}
-                      // helperText={emailErr ? emailErr : ''}
-                      />
-                    </div>
-                    <div className="login-text">
-                      <TextField
-                        label="Password"
-                        type="password"
-                        name="password"
-                        variant="filled"
-                        style={{ width: "100%", marginBottom: "15px" }}
-                        value={password}
-                        onChange={handleChange}
-                        required={true}
-
-                      />
-                    </div>
-                    <div
-                      className="d-flex justify-content-end"
-                      style={{ marginBottom: "20px" }}
-                    >
-                      <Link to={'/forgotPassword'} >Forgot Password?</Link>
-                    </div>
-                    <button
-                      type="submit"
-                      // disabled={emailErr || passwordErr || !email || !password}
-                      className="btn mt-3 mb-3"
-                      style={{
-                        width: "100%",
-                        color: "white",
-                        background: "#246DE8",
-                        border: "none",
-                      }}
-                    >
-                      Login
-                    </button>
-                    <hr style={{ width: "100%", color: "gray" }}></hr>
-                    <div className="d-flex justify-content-center mt-4">
-                      <div>
-                        Don't have an Account?{" "}
-                        <Link to= {'/register'}>
+                    />
+                  </div>
+                  <div
+                    className="d-flex justify-content-end"
+                    style={{ marginBottom: "20px" }}
+                  >
+                    <Link to={'/forgotPassword'} >Forgot Password?</Link>
+                  </div>
+                  <button
+                    type="submit"
+                    // disabled={emailErr || passwordErr || !email || !password}
+                    className="btn mt-3 mb-3"
+                    style={{
+                      width: "100%",
+                      color: "white",
+                      background: "#246DE8",
+                      border: "none",
+                    }}
+                  >
+                    Login
+                  </button>
+                  <hr style={{ width: "100%", color: "gray" }}></hr>
+                  <div className="d-flex justify-content-center mt-4">
+                    <div>
+                      Don't have an Account?{" "}
+                      <Link to={'/register'}>
                         <span
-                          
-                         className="sign-up">
+
+                          className="sign-up">
                           {" "}
                           Sign Up
                         </span>
-                        </Link>
-                      </div>
+                      </Link>
                     </div>
-
                   </div>
+
                 </div>
+              </div>
 
 
-              </form>
+            </form>
 
 
-
-
-
-
-
-
-            </div>
 
           </div>
         </div>

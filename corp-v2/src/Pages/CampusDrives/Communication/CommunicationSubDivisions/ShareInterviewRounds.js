@@ -745,6 +745,46 @@ const ShareInterviewRounds = (props) => {
             </div>
           </div>
 
+          {/* <div className="d-attach">
+                  {props?.tempAttachment?.attachmentName ? (
+                    <div
+                      className={
+                        "d-flex justify-content-between align-items-center"
+                      }
+                      style={{ width: "84%" }}
+                    >
+                      <p
+                        className="float-left"
+                        style={{
+                          padding: "8px",
+                          fontSize: ".800rem",
+                          flex: "1",
+                        }}
+                      >
+                        {props?.tempAttachment?.attachmentName}
+                      </p>
+                    </div>
+                  ) : null}
+                  <input
+                    type="file"
+                    onChange={props?.fileHandler}
+                    className="d-inp d-none"
+                    name="attachment"
+                    accept=".pdf"
+                    disabled={props?.disable ? true : false}
+                    id="attachment"
+                  />
+                  <label
+                    htmlFor="attachment"
+                    className="d-label"
+                    style={{ backgroundColor: "#253AA3" }}
+                  >
+                    {" "}
+                    <i className="fas fa-paperclip mr-2"></i> Attachment
+                  </label>
+                  
+                </div> */}
+
           <div
             className="d-flex flex-row justify-content-around align-items-center job-details-form w-full"
             style={{ background: "white" }}

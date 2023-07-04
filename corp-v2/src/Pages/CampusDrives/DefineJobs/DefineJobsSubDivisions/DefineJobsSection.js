@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import IconButton from "@material-ui/core/IconButton";
-import Close from "@material-ui/icons/Close";
+import { IconButton } from "@material-ui/core";
+import { Close } from "@material-ui/icons";
 import { useParams } from "react-router-dom";
 import { actionAssignJobRequesttoOffCampusDrivesAction, actionDeleteCampusDriveJobRequestSaga, actionGetCampusDriveDefineJobsListRequestSaga, actionGetCampusDriveHiringCriteriaListRequestSaga, actionPostOrPatchCampusDriveHiringCriteriaRequestSaga, actionPostOrPatchCampusDriveJobRequestSaga, actionPostOrPatchOffCampusDriveHiringCriteriaRequestSaga, actionPostOrPatchOffCampusDriveJobRequestSaga } from "../../../../Store/Actions/SagaActions/CampusDriveWorkflowActions/DefineJobsSagaActions";
 import { actionGetOffCampusDriveJobsRequest, actionPostAddAllPublishedJobsRequest } from "../../../../Store/Actions/SagaActions/OffCampusDrive/OffCampusDriveSagaAction";
@@ -477,17 +477,20 @@ const DefineJobsSection = (props) => {
                             ) : undefined}
                             {section.firstSection || section.secondSection ? (
                                 <div className="define-job-modal">
-                                    <div className="define-job-header">
-                                        <div></div>
-                                        <p className="text-white">{jobType} Job</p>
-                                        <span>
-                                            <i
-                                                className="fas fa-times-circle text-white"
-                                                style={{ cursor: "pointer" }}
-                                                onClick={closeWindow}
-                                            ></i>
-                                        </span>
+                                    <div className="define-job-header" style={{ background: '#03355bdc', display: 'flex', width: '100%', justifyContent: "space-between",  alignItems: 'center' }}>
+
+                                        <p style={{paddingLeft:'400px',color:'white',marginTop:'5px'}} >{jobType} Job</p>
+
+                                        <IconButton
+                                            style={{ color: "white" }}
+                                            onClick={closeWindow}
+                                            component="span"
+                                        >
+                                            <Close />
+                                        </IconButton>
+
                                     </div>
+
                                     {section.firstSection ? (
                                         //Campus Drive Using only HC
                                         <HiringCriteriaFormSection
@@ -637,18 +640,21 @@ const DefineJobsSection = (props) => {
 
                 {toastModal && (
                     <Modal isOpen={toastModal} >
-                        <ModalBody>
-                            <CancelOutlined onClick={() => {
-                                setToastModal(false);
-                            }} />
-                        </ModalBody>
-                        <h3>{
-                            toastModal
-                                ? props.mode === "ADD"
-                                    ? "Job Saved Successfully!"
-                                    : "Job Saved Successfully!"
-                                : ""
-                        }</h3>
+                        <div style={{ display: 'inline-flex' }}>
+
+                            <h3 style={{ margin: '70px 50px ' }}>{
+                                toastModal
+                                    ? props.mode === "ADD"
+                                        ? "Job Saved Successfully!"
+                                        : "Job Saved Successfully!"
+                                    : ""
+                            }</h3>
+                            <ModalBody>
+                                <CancelOutlined onClick={() => {
+                                    setToastModal(false);
+                                }} />
+                            </ModalBody>
+                        </div>
                     </Modal>
                 )}
             </div>

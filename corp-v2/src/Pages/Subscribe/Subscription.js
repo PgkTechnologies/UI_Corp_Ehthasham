@@ -18,7 +18,7 @@ const SubscriptionHistory = () => {
 
   const [subscriptionList, setSubscriptionList] = useState([])
   const dispatch = useDispatch();
-  const apiStatus = useSelector((state) => state.loginReducer?.apiStatus);
+  const apiStatus = useSelector((state) => state.CorporateReducer?.apiStatus);
 
   const [tabValue, setTabValue] = useState(0);
 

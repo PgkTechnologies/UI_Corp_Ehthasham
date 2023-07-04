@@ -129,8 +129,8 @@ const DefineInterviewRounds = (props) => {
                           <p
                             className="job-label"
                             style={{
-                              marginTop:'7px',
-                              float: "left",
+                              // marginTop:'7px',
+                              // float: "left",
                               fontWeight: "bold",
                               fontFamily: "Poppins-Regular",
                             }}
@@ -142,7 +142,7 @@ const DefineInterviewRounds = (props) => {
                           <p
                             className="job-label"
                             style={{
-                              float: "left",
+                              // float: "left",
                               fontFamily: "Poppins-Regular",
                             }}
                           >

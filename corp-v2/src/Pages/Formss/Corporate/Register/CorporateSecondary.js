@@ -162,7 +162,7 @@ const CorporateSecondary = () => {
     };
 
     const handleChange = (event) => {
-        const {name, value, error} = event.target;
+        const { name, value, error } = event.target;
         if (['corporateHQAddressPhone', 'corporateLocalBranchAddressPhone'].includes(name)) {
             while (value.toString().startsWith('+91')) {
                 value = value.replace('+91', '')
@@ -198,7 +198,7 @@ const CorporateSecondary = () => {
         switch (name) {
             case "corporateHQAddressZipCode":
                 // if (val.match(phoneno)) {
-                if (value.length <= 6 && value.length > 4 ) {
+                if (value.length <= 6 && value.length > 4) {
                     setErrors((preState) => ({
                         ...preState,
                         corporateHQAddressZipCode: "",
@@ -211,9 +211,9 @@ const CorporateSecondary = () => {
                 }
                 return;
 
-                case "corporateHQAddressPhone":
+            case "corporateHQAddressPhone":
                 // if (val.match(phoneno)) {
-                if (value.length === 10 ) {
+                if (value.length === 10) {
                     setErrors((preState) => ({
                         ...preState,
                         corporateHQAddressPhone: "",
@@ -226,7 +226,7 @@ const CorporateSecondary = () => {
                 }
                 return;
 
-                case "corporateHQAddressEmail":
+            case "corporateHQAddressEmail":
                 const mailformat1 =
                     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
                 if (value && mailformat1.test(value)) {
@@ -244,54 +244,54 @@ const CorporateSecondary = () => {
 
 
 
-                case "corporateLocalBranchAddressZipCode":
-                    // if (val.match(phoneno)) {
-                    if (value.length <= 6 && value.length > 4 ) {
-                        setErrors((preState) => ({
-                            ...preState,
-                            corporateLocalBranchAddressZipCode: "",
-                        }));
-                    } else {
-                        setErrors((preState) => ({
-                            ...preState,
-                            corporateLocalBranchAddressZipCode: "Invalid",
-                        }));
-                    }
-                    return;
-    
-                    case "corporateLocalBranchAddressPhone":
-                    // if (val.match(phoneno)) {
-                    if (value.length === 10 ) {
-                        setErrors((preState) => ({
-                            ...preState,
-                            corporateLocalBranchAddressPhone: "",
-                        }));
-                    } else {
-                        setErrors((preState) => ({
-                            ...preState,
-                            corporateLocalBranchAddressPhone: "Invalid",
-                        }));
-                    }
-                    return;
-    
-                    case "corporateLocalBranchAddressEmail":
-                    const mailformat2 =
-                        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-                    if (value && mailformat2.test(value)) {
-                        setErrors((preState) => ({
-                            ...preState,
-                            corporateLocalBranchAddressEmail: "",
-                        }));
-                    } else if (!value || !mailformat2.test(value)) {
-                        setErrors((preState) => ({
-                            ...preState,
-                            corporateLocalBranchAddressEmail: "Invalid Email",
-                        }));
-                    }
-                    return;
-               
-                default: break;
-            }
+            case "corporateLocalBranchAddressZipCode":
+                // if (val.match(phoneno)) {
+                if (value.length <= 6 && value.length > 4) {
+                    setErrors((preState) => ({
+                        ...preState,
+                        corporateLocalBranchAddressZipCode: "",
+                    }));
+                } else {
+                    setErrors((preState) => ({
+                        ...preState,
+                        corporateLocalBranchAddressZipCode: "Invalid",
+                    }));
+                }
+                return;
+
+            case "corporateLocalBranchAddressPhone":
+                // if (val.match(phoneno)) {
+                if (value.length === 10) {
+                    setErrors((preState) => ({
+                        ...preState,
+                        corporateLocalBranchAddressPhone: "",
+                    }));
+                } else {
+                    setErrors((preState) => ({
+                        ...preState,
+                        corporateLocalBranchAddressPhone: "Invalid",
+                    }));
+                }
+                return;
+
+            case "corporateLocalBranchAddressEmail":
+                const mailformat2 =
+                    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                if (value && mailformat2.test(value)) {
+                    setErrors((preState) => ({
+                        ...preState,
+                        corporateLocalBranchAddressEmail: "",
+                    }));
+                } else if (!value || !mailformat2.test(value)) {
+                    setErrors((preState) => ({
+                        ...preState,
+                        corporateLocalBranchAddressEmail: "Invalid Email",
+                    }));
+                }
+                return;
+
+            default: break;
+        }
     }
 
     const getCitiesByStateName = (countryName, stateName, type) => {
@@ -429,63 +429,63 @@ const CorporateSecondary = () => {
 
         <section className="login">
 
-        <div className="log-in-main-container" style={{ background: "rgba(0, 0, 0, 0.5)" }}>
-          <video autoPlay muted loop className="back-vid">
-            <source src='./Videos/v1.mp4' type="video/mp4" />
-          </video>
-          <div className="logo-container">
-            <div className="logo-main">C2Hire.</div>
-          </div>
-          {/* <div className="row"> */}
-            {/* <div className="main-container">
+            <div className="log-in-main-container" style={{ background: "rgba(0, 0, 0, 0.5)" }}>
+                <video autoPlay muted loop className="back-vid">
+                    <source src='./Videos/v1.mp4' type="video/mp4" />
+                </video>
+                <div className="logo-container">
+                    <div className="logo-main">C2Hire.</div>
+                </div>
+                {/* <div className="row"> */}
+                {/* <div className="main-container">
               <div className='page'> */}
 
 
-        <div className="page container" >
-            <div className="log-in-container">
-                <div className=" col-12 register-card-main">
-                    <div className="registration-card">
-                        <div style={{ width: "100%" }}>
-                            <div className="register-as-text">
-                                <p style={{ fontWeight: "bold" }}>REGISTER AS </p>
-                                <p style={{ fontSize: "30px", color: "#016bbc" }}>
-                                    Corporate{" "}
-                                </p>
-                                <div style={{color:'rgb(1, 107, 188)' , textAlign :'center' }}> Secondary Details(Address)</div>
+                <div className="page container" >
+                    <div className="log-in-container">
+                        <div className=" col-12 register-card-main">
+                            <div className="registration-card">
+                                <div style={{ width: "100%" }}>
+                                    <div className="register-as-text">
+                                        <p style={{ fontWeight: "bold" }}>REGISTER AS </p>
+                                        <p style={{ fontSize: "30px", color: "#016bbc" }}>
+                                            Corporate{" "}
+                                        </p>
+                                        <div style={{ color: 'rgb(1, 107, 188)', textAlign: 'center' }}> Secondary Details(Address)</div>
+                                    </div>
+                                    <hr
+                                        className="mt-2"
+                                        style={{ width: "90%", marginBottom: "30px", color: "gray" }}
+                                    ></hr>
+                                </div>
+                                <CorporateSecondaryCmp
+                                    history={history}
+                                    selectedName={selectedName}
+                                    path={"data:image/png;base64," + path}
+                                    corporateSecondary={corporateSecondary}
+                                    errors={errors}
+                                    isBtnDisabled={isBtnDisabled}
+                                    attachment={corporateSecondary.profilePicture}
+                                    countryCodes={countries}
+                                    stateList={stateList}
+                                    citylist={citylist}
+                                    // countryCodesLocal={countriesLocal}
+                                    stateListLocal={stateListLocal}
+                                    citylistLocal={citylistLocal}
+                                    filename={filename}
+                                    saveData={saveData}
+                                    handleChangeImg={handleChangeImg}
+                                    handleChange={handleChange}
+                                    handleSubmit={handleSubmit}
+                                />
                             </div>
-                            <hr
-                                className="mt-2"
-                                style={{ width: "90%", marginBottom: "30px", color: "gray" }}
-                            ></hr>
                         </div>
-                        <CorporateSecondaryCmp
-                            history={history}
-                            selectedName={selectedName}
-                            path={"data:image/png;base64," + path}
-                            corporateSecondary={corporateSecondary}
-                            errors={errors}
-                            isBtnDisabled={isBtnDisabled}
-                            attachment={corporateSecondary.profilePicture}
-                            countryCodes={countries}
-                            stateList={stateList}
-                            citylist={citylist}
-                            // countryCodesLocal={countriesLocal}
-                            stateListLocal={stateListLocal}
-                            citylistLocal={citylistLocal}
-                            filename={filename}
-                            saveData={saveData}
-                            handleChangeImg={handleChangeImg}
-                            handleChange={handleChange}
-                            handleSubmit={handleSubmit}
-                        />
                     </div>
+
                 </div>
             </div>
-
-        </div>
-        </div>
-        {/* </div> */}
-        {/* </div>
+            {/* </div> */}
+            {/* </div>
         </div> */}
         </section>
 

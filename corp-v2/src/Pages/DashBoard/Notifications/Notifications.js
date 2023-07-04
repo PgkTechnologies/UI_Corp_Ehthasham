@@ -187,7 +187,7 @@ const Notifications = () => {
         const observer = new IntersectionObserver((entries) => {
             const entry = entries[0];
             if (entry.isIntersecting) {
-                setPage((prev) => prev + 0.5);
+                setPage((prev) => prev + 1);
             }
         })
         observer.observe(myRef.current);

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import IconButton from "@material-ui/core/IconButton";
-import Close from "@material-ui/icons/Close";
 import moment from "moment";
 import Checkbox from "@material-ui/core/Checkbox";
 import PgkTextField from "../../../../../Components/FormFields/PgkTextField";
 import PgkSelectField from "../../../../../Components/FormFields/PgkSelectField";
 import { isFirstDateSameOrBefore } from "../../../../../utils/utils";
 import { actionGetCampusDriveEmailTemplatesListRequestSaga } from "../../../../../Store/Actions/SagaActions/CampusDriveWorkflowActions/CommunicationSagaAction";
+import { Close } from "@material-ui/icons";
+import { IconButton } from "@material-ui/core";
  
 const applicationFormFields = [
   "publishID",
@@ -272,11 +272,11 @@ const ApplicationWindowForm = (props) => {
     >
       <div
         className="modal-header hiring-modal-header"
-        style={{ padding: "12px", alignSelf: "center" }}
+        style={{ padding: "12px", alignSelf: "center",background:'#03355bdc' }}
       >
         <h5
           className="modal-title"
-          style={{ fontSize: "12px", alignSelf: "center" }}
+          style={{ fontSize: "12px", alignSelf: "center",color:'white' }}
         >
           Define Published Job Window
         </h5>
@@ -289,7 +289,7 @@ const ApplicationWindowForm = (props) => {
           <Close />
         </IconButton>
       </div>
-      <div className={"row"}>
+      <div className={"row"} style={{margin:'10px 0px 0px 15px',width:'97%'}}>
         <PgkTextField
           inputLabelProps={{ shrink: true, style: { fontSize: ".800rem" } }}
           name="jobName"
@@ -401,7 +401,7 @@ const ApplicationWindowForm = (props) => {
         />
       </div>
       {!applicationForm?.emailTemplateId?.isDisabled ? (
-        <div className={"d-flex align-items-center justify-content-center"}>
+        <div className={"d-flex align-items-center justify-content-center"} style={{marginTop:'10px'}}>
           <PgkSelectField
             name="emailTemplateId"
             value={applicationForm?.emailTemplateId?.value}

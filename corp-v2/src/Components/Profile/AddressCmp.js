@@ -13,7 +13,7 @@ import PreLoader from "../../utils/PreLoader";
 const AddressCmp = (props) => {
   const { profileData, countries, cityListHQ, onChange, cityListLocal,toggleCorporateHeadQuarters } = props;
   const [age, setAge] = React.useState("");
-  const apiStatus = useSelector((state) => state.loginReducer?.apiStatus);
+  const apiStatus = useSelector((state) => state.CorporateReducer?.apiStatus);
   const handleChange = (event) => {
     setAge(event.target.value);
   };
