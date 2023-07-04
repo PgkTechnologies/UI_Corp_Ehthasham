@@ -25,7 +25,7 @@ const Header = (props) => {
   const history = useNavigate();
   // const tokenPurchase = useRef(show)
   const profileDataGet = useSelector(
-    (state) => state.loginReducer?.universityProfile
+    (state) => state.DashboardReducer?.profileInfo
   );
 
   const balance = useSelector((state) => state.DashboardReducer.balance);
@@ -193,8 +193,8 @@ const Header = (props) => {
                         : null
                     }
                     className="profile-pic-img"
-                    alt={profileDataGet?.universityName}
-                    name={profileDataGet?.universityName}
+                    alt={profileDataGet?.corporateName}
+                    name={profileDataGet?.corporateName}
                   />
                 ) : null}
               </div>
@@ -258,7 +258,7 @@ const Header = (props) => {
             </div>
           ) : null}
         </div>
-      </div >
+      </div>
 
       {/* Modal */}
 

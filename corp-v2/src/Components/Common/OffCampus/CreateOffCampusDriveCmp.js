@@ -9,7 +9,7 @@ const CreateOffCampusDriveCmp = (props) => {
         <Modal isOpen={true} toggle={props?.togglePopup} className="modal-dialog modal-lg" >
             <div style={{ textAlign: "center", backgroundColor: "gray" }}>
                 <div className="card">
-                    <div className="card-header" style={{ textAlign: "center", background: "#253AA3", color: "white" }}>
+                    <div className="card-header" style={{ textAlign: "center", background: "#03355bdc", color: "white" }}>
                         Create new Off-Campus Drive
                         <CancelOutlined className="cancelbtn2" onClick={props?.togglePopup} style={{float:"right"}} />
                     </div>

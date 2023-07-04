@@ -29,7 +29,7 @@ const Jobs = () => {
                  
                 <img src="/images/corporateIcons/JobsPage.svg" alt="Example" style={{ maxWidth: '100%', maxHeight: '100%', zIndex: '-1' }} />
 
-                <div className="jobs-main-button" style={{marginLeft:'210px'}} >
+                <div className="jobs-main-button" style={{marginLeft:'140px'}} >
                     <button className="campus-jobs tab-select"
                         onClick={() => { navigate("/jobs/campus-drive")
                              }}
@@ -38,7 +38,7 @@ const Jobs = () => {
                 </div>
 
                 <div style={{ position: 'absolute', bottom: '110px', right: '45px' ,width:'20%',marginRight:'10px'}}>
-                    <button className="step-card tab-select"
+                    <button className="campus-jobs tab-select"
                         onClick={() => { navigate("/dashboard/off-campus-drive") }}
                     >
                         OFF Campus Drive</button>

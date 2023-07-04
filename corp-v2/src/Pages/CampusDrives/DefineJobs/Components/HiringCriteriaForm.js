@@ -1,14 +1,13 @@
 //CampusDrive - 3
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
- 
-import IconButton from "@material-ui/core/IconButton";
-import Close from "@material-ui/icons/Close";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import { HiringSagaAction } from "../../../../Store/Actions/SagaActions/HiringSagaAction";
 import { EditCampusDriveJobsSagaAction, GetJobByIdSagaAction, GetJobByIdSagaActionCampusDrive } from "../../../../Store/Actions/SagaActions/JobsSagaAction";
 import HiringCriteriaFormCmp from "./HiringCriteriaFormCmp";
+import { IconButton } from "@material-ui/core";
+import { Close } from "@material-ui/icons";
 
 const HiringCriteriaForm = (props) => {
   const { hcId } = props;
@@ -1129,7 +1128,7 @@ const HiringCriteriaForm = (props) => {
               : "Hiring Criteria Info"}
           </h5>
           <IconButton
-            style={{ color: "white", marginTop: "-10px" }}
+            style={{ color: "red", marginTop: "-10px" }}
             onClick={props?.openCloseModal}
             component="span"
           >

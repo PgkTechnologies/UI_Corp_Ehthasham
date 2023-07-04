@@ -150,12 +150,12 @@ const DefineEmailTemplate = (props) => {
     return (
         <>
             <div className="bgWhite">
-                <div className="d-flex flex-column justify-content-start align-items-center w-full">
+                <div className="d-flex flex-column justify-content-start align-items-center w-full" style={{background:'#e4f0fa81'}}>
                     <p className="heading" style={{ color: "#253AA3", fontWeight: "bold", fontFamily: "Poppins-Regular", display: "block" }}>
                         Define Email Template
                     </p>
                 </div>
-                <br />
+                
                 {
                     creatEmailTemplate
                         ?
@@ -169,7 +169,7 @@ const DefineEmailTemplate = (props) => {
                         </>
                         :
                         <>
-                            <div className="d-flex flex-column justify-content-start align-items-center w-full">
+                            <div className="d-flex flex-column justify-content-start align-items-center w-full" style={{background:'#e4f0fa81',borderRadius:'0px 0px 10px 10px'}}>
                                 <p className="heading" style={{ fontFamily: "Poppins-Regular", display: "block" }}>
                                     Existing Templates
                                 </p>
