@@ -73,14 +73,13 @@ const OnCampusJobs = (props) => {
                 paddingTop: '150px',
                 width: '100%',
                 flexDirection: 'column',
-                // background: '#72A0C1', color: '#000000'
             }}>
                 <h3 style={{ fontWeight: 'bold' }} >Campus Drives</h3>
                 <Tabs
                     value={tabValue}
                     indicatorColor="secondary"
                     textColor="primary"
-                    variant="scrollable"
+                    // variant="scrollable"
                     onChange={handleTabChange}
                 >
                     <Tab
@@ -99,7 +98,7 @@ const OnCampusJobs = (props) => {
                     <Tab
                         icon={
                             <Badge color="error">
-                                <OutboxIcon size={40} />
+                                <OutboxIcon  />
 
                             </Badge>
                         }
@@ -107,18 +106,18 @@ const OnCampusJobs = (props) => {
                         wrapped
                         style={{
                             outline: "none",
-                            minWidth: '15%'
+                            minWidth: '15%',
+                            minHeight: '100px'
                         }}
                     />
                 </Tabs>
                 {tabValue === 0 &&
                     <>
+                        <div className="container-body">
+                            {sentList?.length >= 1 ?
+                                sentList?.map((item, index) => {
 
-                        {sentList?.length >= 1 ?
-                            sentList?.map((item, index) => {
-
-                                return (
-                                    <div className="container-body">
+                                    return (
                                         <div className="cards-container">
 
                                             <div className='jobs-cards-container'>
@@ -168,25 +167,32 @@ const OnCampusJobs = (props) => {
 
                                         </div>
 
-
-                                    </div>
-
-                                );
-                            })
-                            :
-                            <div style={{ color: 'gray', fontWeight: 'bold', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60%' }}>
-                                <h5>No Active Drives</h5>
-                            </div>
-                        }
-
+                                    );
+                                })
+                                :
+                                <div style={{ color: 'gray', fontWeight: 'bold', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60%' }}>
+                                    <h5>No Active Drives</h5>
+                                </div>
+                            }
+                        </div>
+                        <Container component={Box} py={3} style={{ display: 'flex', justifyContent: 'center', marginTop: '25px' }}>
+                            <Pagination
+                                count={Math.ceil(sentCount / size)}
+                                page={sentPage}
+                                shape={'rounded'}
+                                color={'primary'}
+                                variant={'outlined'}
+                                onChange={(event, value) => setSentPage(value)}
+                            />
+                        </Container>
                     </>
                 }
 
 
                 {tabValue === 1 &&
                     <div
-                     className="container-body"
-                     > 
+                        className="container-body"
+                    >
                         {receivedList?.length >= 1 ?
                             receivedList?.map((item, index) => {
 
@@ -194,57 +200,57 @@ const OnCampusJobs = (props) => {
                                     // <div
                                     // //  className="container-body"
                                     //  >
-                                        <div className="cards-container">
+                                    <div className="cards-container">
 
-                                            <div className='jobs-cards-container'>
+                                        <div className='jobs-cards-container'>
 
 
-                                                <div className="row job-card-main">
-                                                    <div
-                                                        className="col-5 d-flex justify-content-flex-start align-items-center"
-                                                        style={{ fontWeight: "bold" }}
-                                                    >
-                                                        <AccountBalance style={{ fontSize: "30px", marginRight: "25px" }} />
-                                                        {item?.initiatorName}
-                                                    </div>
-                                                    <div
-                                                        className="col-3 d-flex justify-content-flex-start align-items-center"
-                                                        style={{ fontSize: "15px", color: "gray" }}
-                                                    >
-                                                        <LocationOn style={{ marginRight: "10px", color: "gray" }} />
-                                                        {item?.initiatorLocation}
-                                                    </div>
-                                                    <div
-                                                        className="col-3 d-flex justify-content-flex-start align-items-center"
-                                                        style={{ fontSize: "15px", color: "gray" }}
-                                                    >
-                                                        <CalendarMonth style={{ marginRight: "10px", color: "gray" }} />
-                                                        {item.responseDate}
-                                                    </div>
-                                                    <div className="col-1 d-flex justify-content-end align-items-center">
-                                                        {item?.campusDriveClosed ? (
-                                                            <LockRoundedIcon style={{ color: 'red' }} />
-                                                        ) : (
-                                                            <ArrowRight
-                                                                style={{ fontSize: "50px", color: "darkblue", cursor: "pointer" }}
-                                                                onClick={() => {
-                                                                    navigateToCampusDrive(item?.campusDriveID, item?.initiatorID)
-                                                                }}
-                                                            />
-                                                        )}
-                                                    </div>
+                                            <div className="row job-card-main">
+                                                <div
+                                                    className="col-5 d-flex justify-content-flex-start align-items-center"
+                                                    style={{ fontWeight: "bold" }}
+                                                >
+                                                    <AccountBalance style={{ fontSize: "30px", marginRight: "25px" }} />
+                                                    {item?.initiatorName}
                                                 </div>
-
-
+                                                <div
+                                                    className="col-3 d-flex justify-content-flex-start align-items-center"
+                                                    style={{ fontSize: "15px", color: "gray" }}
+                                                >
+                                                    <LocationOn style={{ marginRight: "10px", color: "gray" }} />
+                                                    {item?.initiatorLocation}
+                                                </div>
+                                                <div
+                                                    className="col-3 d-flex justify-content-flex-start align-items-center"
+                                                    style={{ fontSize: "15px", color: "gray" }}
+                                                >
+                                                    <CalendarMonth style={{ marginRight: "10px", color: "gray" }} />
+                                                    {item.responseDate}
+                                                </div>
+                                                <div className="col-1 d-flex justify-content-end align-items-center">
+                                                    {item?.campusDriveClosed ? (
+                                                        <LockRoundedIcon style={{ color: 'red' }} />
+                                                    ) : (
+                                                        <ArrowRight
+                                                            style={{ fontSize: "50px", color: "darkblue", cursor: "pointer" }}
+                                                            onClick={() => {
+                                                                navigateToCampusDrive(item?.campusDriveID, item?.initiatorID)
+                                                            }}
+                                                        />
+                                                    )}
+                                                </div>
                                             </div>
-
-
 
 
                                         </div>
 
 
-                                     
+
+
+                                    </div>
+
+
+
 
                                 );
                             })
@@ -253,6 +259,16 @@ const OnCampusJobs = (props) => {
                                 <h5>No Active Drives</h5>
                             </div>
                         }
+                        <Container component={Box} py={3} style={{ display: 'flex', justifyContent: 'center', marginTop: '25px' }}>
+                            <Pagination
+                                count={Math.ceil(receivedCount / size)}
+                                page={receivedPage}
+                                shape={'rounded'}
+                                color={'primary'}
+                                variant={'outlined'}
+                                onChange={(event, value) => setReceivedPage(value)}
+                            />
+                        </Container>
                     </div>
                 }
             </div>
