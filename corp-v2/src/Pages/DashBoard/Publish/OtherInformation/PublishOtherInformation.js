@@ -46,7 +46,8 @@ const PublishOtherInformation = () => {
         }
     };
 
-    const getPublishedOtherInformation = () => {
+    const getPublishedOtherInformation = (response) => {
+
         // dispatch(
         //   actionGetPublishOtherInformationListRequest({
         //     callback: onOtherInformationListResponse,
@@ -73,57 +74,129 @@ const PublishOtherInformation = () => {
         }));
     };
 
-    const onChangeHandler = (event) => {
-
-        const { name, value, error = undefined } = event.target;
+    const changeHandler = (event) => {
+        const { name, error = undefined, value } = event.target;
 
         console.log(name, value, 'iiittttt')
 
         switch (name) {
+
             case 'title':
+
             case 'information':
                 updateField(name, value, error);
                 break;
+                return;
+        }
+
+
+    }
+
+    const onChangeHandler = (name, e, error = undefined, value) => {
+
+        // const { } = event.target;
+
+        console.log(e.target.files[0], 'iiittttt111')
+
+        switch (name) {
+
+            // case 'information':
+            //     updateField(name, value, error);
+            //     break;
             case 'attachment':
-                if (value.target.files) {
-                    const file = value.target.files[0];
+                if (error) {
+                    //             console.log(event.target,'noooo')
+                    //             const file = event.target.files[0];
 
-                    let error = undefined;
+                    //             let error = undefined;
 
-                    if (parseFloat((value.target.files[0].size / 1024).toFixed(2)) > 5000) {
-                        error = 'Please select file below 5 MB';
-                    }
+                    //             if (parseFloat((event.target.files[0].size / 1024).toFixed(2)) > 5000) {
+                    //                 error = 'Please select file below 5 MB';
+                    //             }
 
+                    //             const reader = new FileReader();
+                    //             reader.readAsBinaryString(file);
+
+                    //             reader.onloadend = () => {
+                    //                 setOtherInfo((prevOtherInfo) => ({
+                    //                     ...prevOtherInfo,
+                    //                     [name]: {
+                    //                         ...prevOtherInfo[name],
+                    //                         value: {
+                    //                             attachment: event.target.files[0],
+                    //                             attachmentName: event.target.files[0].name,
+                    //                             attachmentBase64: btoa(reader.result)
+                    //                         },
+                    //                         error: error
+                    //                     },
+                    //                 }));
+                    //             };
+
+                    //             reader.onerror = () => {
+                    //                 toast.error("Something went wrong!");
+                    //             };
+                    //         }
+                    //         break;
+
+                    //     default:
+                    //         break;
+                    // }
+                    let data = otherInfo[name];
+                    data["value"] = undefined;
+                    data["errorMessage"] = error;
+
+                    setOtherInfo((prevState) => ({
+                        ...prevState,
+                        ...data,
+                    }));
+
+                    return;
+                }
+
+                const file = e.target.files[0];
+                if (!file) {
+                    return;
+                }
+
+                let errorMessage = undefined;
+
+                if (parseFloat((e.target.files[0].size / 1024).toFixed(2)) > 5000) {
+                    errorMessage = "Please select file below 5 MB";
+                }
+
+                // dispatch(actionUpdateGlobalLoaderSagaAction(true));
+                if (e.target.files[0].length < 250) {
+                }
+                try {
                     const reader = new FileReader();
                     reader.readAsBinaryString(file);
 
                     reader.onloadend = () => {
-                        setOtherInfo((prevOtherInfo) => ({
-                            ...prevOtherInfo,
-                            [name]: {
-                                ...prevOtherInfo[name],
-                                value: {
-                                    attachment: value.target.files[0],
-                                    attachmentName: value.target.files[0].name,
-                                    attachmentBase64: btoa(reader.result)
-                                },
-                                error: error
-                            },
+                        let data = otherInfo[name];
+                        data["value"] = {
+                            attachment: btoa(reader.result),
+                            attachmentName: e.target.files[0].name,
+                        };
+                        data["errorMessage"] = errorMessage;
+
+                        setOtherInfo((prevState) => ({
+                            ...prevState,
+                            ...data,
                         }));
                     };
 
                     reader.onerror = () => {
                         toast.error("Something went wrong!");
                     };
+                } catch (error) {
+                    toast.error("Something went wrong!");
+                } finally {
+                    // dispatch(actionUpdateGlobalLoaderSagaAction(false));
                 }
-                break;
-
-            default:
-                break;
-        }
 
 
-    };
+        };
+    }
 
     const resetPublishOtherInformation = () => {
         setOtherInfo(initialData);
@@ -178,6 +251,9 @@ const PublishOtherInformation = () => {
     }
 
     const onAddOtherInformation = (response) => {
+        console.log(response, 'respoooom')
+
+        localStorage.setItem('otherInfoID', response?.id)
         // if (response?.id) {
         //   dispatch(actionPostPublishOtherInformationRequest({
         //     apiPayloadRequest: [response.id],
@@ -187,19 +263,20 @@ const PublishOtherInformation = () => {
     }
 
     const addOtherInformation = () => {
-        if (isFormValid()) {
-            const updatedOtherInformation = {
-                title: otherInfo?.title?.value,
-                information: otherInfo?.information?.value,
-                // attachment: otherInfo?.attachment?.value?.attachmentBase64,
-                // attachmentName: otherInfo?.attachment?.value?.attachmentName,
-            }
-            console.log(updatedOtherInformation, 'nfejnfewjfk')
-            dispatch(actionPostAddOtherInformationRequest({
-                apiPayloadRequest: updatedOtherInformation,
-                callback: onAddOtherInformation
-            }));
+        // if (isFormValid()) {
+        const updatedOtherInformation = {
+            title: otherInfo?.title?.value,
+            information: otherInfo?.information?.value,
+            attachment: otherInfo?.attachment?.value?.attachment,
+            attachmentName: otherInfo?.attachment?.value?.attachmentName,
         }
+        console.log(updatedOtherInformation, 'nfejnfewjfk')
+        dispatch(actionPostAddOtherInformationRequest({
+            apiPayloadRequest: updatedOtherInformation,
+            callback: onAddOtherInformation
+        }
+        ));
+        // }
     }
 
     const [tabValue, setTabValue] = useState(0);
@@ -227,9 +304,9 @@ const PublishOtherInformation = () => {
                                 type="text"
                                 name="title"
                                 variant="filled"
-                                onChange={onChangeHandler}
+                                onChange={changeHandler}
                                 style={{ width: "100%", marginBottom: "15px" }}
-                                error={otherInfo?.title?.error}
+                                // error={otherInfo?.title?.error}
                                 value={otherInfo?.title?.value}
                                 required={true}
                             />
@@ -245,7 +322,7 @@ const PublishOtherInformation = () => {
                                 variant="filled"
                                 style={{ width: "100%", marginBottom: "15px", }}
                                 value={otherInfo?.information?.value}
-                                onChange={onChangeHandler}
+                                onChange={changeHandler}
                                 error={otherInfo?.information?.error}
                                 required={true}
                             />
@@ -262,7 +339,7 @@ const PublishOtherInformation = () => {
                                     <input
                                         type="file"
                                         onChange={(e) => {
-                                            onChangeHandler('attachment',e);
+                                            onChangeHandler('attachment', e);
                                         }}
                                         className="attach-inp"
                                         accept=".pdf"
@@ -270,6 +347,7 @@ const PublishOtherInformation = () => {
                                         id="attachment"
                                         alt=""
                                         required
+                                    // value={otherInfo?.attachment?.value?.attachmentName}
                                     />
                                 </div>
                                 <div>

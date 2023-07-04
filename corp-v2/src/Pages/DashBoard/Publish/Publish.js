@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ListGroup, Modal } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { actionGetPublishOtherInformationListRequest } from "../../../Store/Actions/SagaActions/OtherInformationSagaActions";
 
 const Publish = (props) => {
+    const dispatch = useDispatch();
+
     let isNotDisabled =
         props.allProfiles?.publishedFlag === false;
 
-        console.log(props.allProfiles,'hihiihi')
+    console.log(props.allProfiles, 'hihiihi')
+
+    useEffect(() => {
+        getPublishedOtherInformation();
+      }, [])
+
+    const getPublishedOtherInformation = () => {
+        dispatch(
+            actionGetPublishOtherInformationListRequest({
+                callback: onOtherInformationListResponse,
+            })
+        );
+    }
+
+    const onOtherInformationListResponse = (resp) => {
+        console.log(resp, 'respoinse')
+    }
+
+
 
     return (
         <Modal
@@ -41,6 +63,25 @@ const Publish = (props) => {
                                 ) : (
                                     <></>
                                 )}
+
+
+                                {/* {props.allProfiles?.OterInformation  ? ( */}
+                                    {/* <ListGroup.Item>
+                                        <div className="d-flex">
+                                            <input
+                                                type="checkbox"
+                                                name="OterInformation"
+                                                id="OterInformation"
+                                                onChange={props?.handleChange}
+                                            />
+                                            <label className="sub-title" htmlFor="OterInformation">
+                                                Other Information
+                                            </label>
+                                        </div>
+                                    </ListGroup.Item> */}
+                                {/* ) : (
+                                    <></>
+                                )} */}
 
                             </div>
                         ) : (
